@@ -1,0 +1,87 @@
+// ── variables مش محتاج @use هنا لأن styles.scss هيعمل @import للاتنين ──
+
+// Responsive
+@mixin sm { @media (max-width: 576px)  { @content; } }
+@mixin md { @media (max-width: 768px)  { @content; } }
+@mixin lg { @media (max-width: 992px)  { @content; } }
+@mixin xl { @media (max-width: 1200px) { @content; } }
+
+@mixin md-up { @media (min-width: 769px)  { @content; } }
+@mixin lg-up { @media (min-width: 993px)  { @content; } }
+
+// Container
+@mixin container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+// Section padding
+@mixin section {
+  padding-block: 80px;
+  @include md { padding-block: 48px; }
+}
+
+// Flex helpers
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Card hover lift
+@mixin card-hover {
+  transition: all 0.3s ease;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.16);
+  }
+}
+
+// Overlay gradient
+@mixin overlay-gradient($direction: to top) {
+  background: linear-gradient(
+    #{$direction},
+    rgba(0,0,0,0.75) 0%,
+    rgba(0,0,0,0.2) 60%,
+    transparent 100%
+  );
+}
+
+// Text truncate
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// Button base
+@mixin btn-base {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 9999px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}

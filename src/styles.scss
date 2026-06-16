@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Styles */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import 'variables'; // ملف المتغيرات بتاعك اللي عملناه
+و
+
+// عمل Reset أساسي وتظبيط الـ Box Sizing لضمان الـ Layout
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: $font-body;
+  color: $color-text-dark;
+  background-color: $color-bg-white;
+  scroll-behavior: smooth; // حركة Scroll ناعمة ومريحة للـ UX
+  -webkit-font-smoothing: antialiased;
+}
+
+// تظبيط الخطوط الافتراضية للـ Headlines بناءً على الـ Brand Identity
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-headings;
+  color: $color-primary-navy;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  @include transition-smooth;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Global Custom Scrollbar (حركة سنيور بتخلي شكل السايت محترف)
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: $color-bg-light;
+}
+::-webkit-scrollbar-thumb {
+  background: $color-secondary-gold;
+  border-radius: 4px;
+  &:hover {
+    background: $color-primary-navy;
+  }
+}

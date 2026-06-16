@@ -1,0 +1,24 @@
+
+@import 'variables';
+
+// تعديل بسيط فقط لتأثير الـ Active والـ Hover والزرار الخاص بالبراند
+.nav-link {
+  font-family: $font-body;
+  transition: color 0.3s ease;
+  
+  &:hover, &.active {
+    color: #b22222 !important; // لون الـ Lotus Red للبراند
+  }
+}
+
+.btn-lotus {
+  background-color: #b22222;
+  font-family: $font-body;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $color-primary-navy;
+    transform: translateY(-2px);
+  }
+}

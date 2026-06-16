@@ -1,0 +1,45 @@
+// ==========================================================================
+// Eastbound DMC - Brand Colors (حسب الـ Guidelines لصفحة 7)
+// ==========================================================================
+$color-primary-navy: #0f1c3f;      // Deep Navy - اللون الأساسي الملوكي
+$color-secondary-gold: #c5a880;    // Warm Gold/Sand - ألوان الصحراء والفخامة
+$color-accent-yellow: #fdc938;     // Bright Yellow - للإضاءات والـ CTA المهمة
+$color-text-dark: #2b2b2b;         // مريح للعين في القراءة
+$color-text-light: #ffffff;
+$color-bg-light: #f9f9f9;          // خلفية السيكشنز الفاتحة
+$color-bg-white: #ffffff;
+
+// ==========================================================================
+// Typography & Fonts (حسب الـ Guidelines لصفحة 9)
+// ==========================================================================
+$font-headings: 'Cinzel', serif;            // للـ Headlines الكبيرة والبرستيج
+$font-body: 'Myriad Pro', sans-serif;       // للقراءة والنصوص الطويلة والـ Cards
+$font-arabic: 'Simplified Arabic', sans-serif; // في حال وجود نصوص عربية
+
+// ==========================================================================
+// Responsive Breakpoints (Mobile First Approach)
+// ==========================================================================
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// ==========================================================================
+// Mixins (لتوفير السطور وكتابة Clean Code)
+// ==========================================================================
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm { @media (min-width: $breakpoint-sm) { @content; } }
+  @if $breakpoint == md { @media (min-width: $breakpoint-md) { @content; } }
+  @if $breakpoint == lg { @media (min-width: $breakpoint-lg) { @content; } }
+  @if $breakpoint == xl { @media (min-width: $breakpoint-xl) { @content; } }
+}
+
+@mixin transition-smooth {
+  transition: all 0.3s ease-in-out;
+}
