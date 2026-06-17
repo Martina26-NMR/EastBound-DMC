@@ -11,15 +11,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
 })
 export class Navbar implements OnInit {
-  // بنعمل inject للـ Platform ID الحالي
+
   private platformId = inject(PLATFORM_ID);
 
   ngOnInit() {
-    // بنعمل تشيك: لو إحنا جوه المتصفح، استخدم window براحتك بدون أيرور
     if (isPlatformBrowser(this.platformId)) {
       
-      // ⚠️ حطي الكود اللي كان ضارب عندك هنا جوه الـ If دي ⚠️
-      // مثال:
       console.log(window.innerWidth); 
       
     }

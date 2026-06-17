@@ -1,8 +1,8 @@
 /* Global Styles */
+@use 'variables' as *;
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import '@fortawesome/fontawesome-free/css/all.min.css';
-@import 'variables'; // ملف المتغيرات بتاعك اللي عملناه
-و
+
 
 // عمل Reset أساسي وتظبيط الـ Box Sizing لضمان الـ Layout
 * {

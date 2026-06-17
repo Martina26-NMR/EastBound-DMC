@@ -1,13 +1,28 @@
 
-@import 'variables';
+@use 'variables' as *;
 
-// تعديل بسيط فقط لتأثير الـ Active والـ Hover والزرار الخاص بالبراند
 .nav-link {
   font-family: $font-body;
   transition: color 0.3s ease;
-  
   &:hover, &.active {
-    color: #b22222 !important; // لون الـ Lotus Red للبراند
+    color: #b22222 !important; 
+  }
+}
+.navbar-brand {
+  
+  display: flex;
+  align-items: center;
+  
+  .icon {
+    height: 50px;         
+    width: auto;          
+    object-fit: contain;   
+    
+
+    @media (max-width: 768px) {
+      height: 45px;       
+      width: auto;
+    }
   }
 }
 

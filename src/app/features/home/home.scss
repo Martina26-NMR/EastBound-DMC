@@ -1,0 +1,138 @@
+@use 'variables' as *;
+
+.hero-section {
+  min-height: 85vh; // طول ممتاز جداً على الـ Desktop والموبايل
+  background-color: #fcfbfa;
+  overflow: hidden;
+
+  // حاوية السلايدر الأساسية
+  .hero-slider-container {
+    z-index: 1;
+    
+    .slide-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 1; // كل الصور بتاخد ليفيل 1 في الخلفية
+      transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out; // تسييح ناعم جداً لمدة ثانية ونصف
+
+      // لما السلايد يكون هو النشط
+      &.active {
+        opacity: 1;
+        visibility: visible;
+        z-index: 2; // الصورة النشطة تطلع فوق الكل فوراً
+
+        .hero-image-bg {
+          animation: kenBurns 6s ease-out forwards; // تشغيل تأثير الزووم السينمائي أول ما الصورة تظهر
+        }
+      }
+    }
+  }
+
+  // تأثير الصور الإبداعي
+  .hero-image-bg {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.85;
+    
+    // لضمان إن السنتر في الموبايل يركز على العناصر المهمة في الصور (الأهرامات والبتراء)
+    @media (max-width: 768px) {
+      background-position: center center !important;
+    }
+  }
+
+  // مسارات الصور الكاستم
+  .slide-1 { background-image: url('/images/slide  1.jpg'); background-position: center bottom; }
+  .slide-2 { background-image: url('/images/slide 4.jpg'); background-position: center center; }
+  .slide-3 { background-image: url('/images/slide 5.jpg'); background-position: center center; }
+  
+
+  .hero-light-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; // يغطي الشاشة كلها بالكامل
+    
+    // دمج تسييح أبيض من فوق مع بقعة أوف وايت ناعمة جداً في النص ومسحوبة على شفاف في الأطراف
+    background: 
+      radial-gradient(circle at center, rgba(252, 251, 250, 0.88) 0%, rgba(252, 251, 250, 0.7) 5%, transparent 50%);
+    
+    z-index: 5;
+  }
+
+  // استايلات النصوص والخطوط الفخمة كما هي
+  .discover-text {
+    font-family: 'Alex Brush', 'Dancing Script', cursive;
+    color: #a81c24;
+    font-size: 3.5rem;
+    @media (max-width: 768px) { font-size: 2.5rem; }
+  }
+
+  .hero-title {
+    font-family: $font-headings; // 👈 تم التغيير للمتغير بتاعك
+    color: $color-primary-navy;   // 👈 تم التغيير للمتغير بتاعك
+    font-size: 4rem;
+    letter-spacing: 2px;
+    @media (max-width: 768px) { font-size: 2.2rem; letter-spacing: 1px; }
+  }
+
+  .separator-container {
+    .line { width: 100px; height: 1px; background-color: $color-secondary-gold; } // 👈 تم التغيير للمتغير بتاعك
+    .gold-star { color: $color-secondary-gold; font-size:1rem; } // 👈 تم التغيير للمتغير بتاعك
+  }
+
+  .hero-subtitle {
+    font-family: $font-body; // 👈 تم التغيير للمتغير بتاعك
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: $color-text-dark !important; // 👈 تم التغيير للمتغير بتاعك بعد حل التكرار
+    max-width: 450px;
+    @media (max-width: 768px) { font-size: 1.1rem; }
+  }
+}
+
+// تأثير الـ Ken Burns السينمائي: زووم خفيف مع تحرك ناعم جداً للأعلى
+@keyframes kenBurns {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    transform: scale(1.06) translateY(-10px);
+  }
+}
+
+// أزرار الأكشن وتوافقها مع شاشات الموبايل الصغيرة
+.btn-dark-red {
+  background-color: #a81c24;
+  border: 1px solid #a81c24;
+  font-size: 0.95rem;
+  &:hover { background-color: $color-primary-navy; border-color: $color-primary-navy; } // 👈 تم التغيير للمتغير بتاعك
+}
+.btn-outline-dark-red {
+  color: #a81c24;
+  border: 1px solid #a81c24;
+  font-size: 0.95rem;
+  &:hover { color: $color-primary-navy; border-color: $color-primary-navy; } // 👈 تم التغيير للمتغير بتاعك
+}
+.tiny-icon { font-size: 0.7rem; vertical-align: middle; }
+
+@media (max-width: 576px) {
+  .hero-section {
+    min-height: 75vh; // تقليل الطول على الموبايل عشان يدي مساحة مريحة للعين
+    .d-flex.flex-row {
+      flex-direction: row !important; // الحفاظ على الزرارين جنب بعض زي الديزاين الأصلي حتى في الموبايل
+      gap: 10px !important;
+    }
+    .btn {
+      padding: 8px 16px !important;
+      font-size: 0.85rem;
+    }
+  }
+}

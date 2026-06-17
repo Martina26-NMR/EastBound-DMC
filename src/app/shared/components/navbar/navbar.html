@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-3">
   <div class="container">
-    <a class="navbar-brand py-0" routerLink="/">
-      <img src="icons/logo.png" alt="Eastbound DMC" height="50">
+    <a class="navbar-brand p-0" routerLink="/">
+      <img src="\images\logooo.svg" alt="Eastbound DMC" class="icon">
     </a>
     
     <button class="navbar-toggler" type="button" (click)="toggleMenu()">
@@ -19,7 +19,12 @@
         <li class="nav-item"><a class="nav-link text-dark fw-medium px-2" routerLink="/contact" routerLinkActive="active" (click)="isMenuOpen.set(false)">Contact</a></li>
       </ul>
       
- 
+   <div class="d-lg-none mt-3 text-center">
+        <button class="btn btn-lotus rounded-pill px-4 py-2 fw-bold text-white w-100">
+          Get a Free Quote
+        </button>
+      </div>
+
     </div>
 
     <div class="d-none d-lg-block">

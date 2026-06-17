@@ -5,13 +5,20 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./features/home/home').then(m => m.Home)
+      import('./features/home/home').then(m => m.Home),
+    pathMatch: 'full'
   },
   {
     path: 'destinations',
     loadComponent: () =>
       import('./features/destinations/destinations')
         .then(m => m.Destinations)
+  },
+  {
+    path: 'about-us',
+    loadComponent: () =>
+      import('./features/about-us/about-us')
+        .then(m => m.AboutUs)
   },
 
   {
