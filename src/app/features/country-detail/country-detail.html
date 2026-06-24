@@ -1,1 +1,312 @@
-<p>country-detail works!</p>
+<section class="luxury-hero d-flex align-items-center mb-4" 
+         [style.backgroundImage]="slug().toLowerCase() === 'egypt' ? 'url(/images/hero/egypt-hero.jpg)' : 'url(/images/hero/jordan-hero.jpg)'">
+  <div class="container text-white text-center text-md-start">
+    <h1 class="display-3 fw-bold text-uppercase text-capitalize">{{ slug() }}</h1>
+    <p class="lead max-w-500 mb-4">
+      Discover ancient wonders, timeless culture and unforgettable experiences.
+    </p>
+    <button class="btn btn-danger text-uppercase px-4 py-2 small fw-bold rounded-1">
+      Explore {{ slug() }}
+    </button>
+  </div>
+</section>
+
+<div class="breadcrumb-wrapper py-3 bg-light-cream">
+  <div class="container">
+    <nav class="small text-muted">
+      <a routerLink="/" class="text-decoration-none text-secondary">Home</a>
+      <span class="mx-2">&gt;</span>
+      <a routerLink="/destinations" class="text-decoration-none text-secondary">All Destinations</a>
+      <span class="mx-2">&gt;</span>
+      <span class="text-navy fw-bold text-capitalize">{{ slug() }}</span>
+    </nav>
+  </div>
+</div>
+
+<section class="country-tours-section py-5 bg-light-cream">
+  <div class="container">
+    
+    <div class="text-center mb-5 luxury-text-center">
+      <span class="luxury-subtitle d-block text-uppercase tracking-wider small mb-2 text-muted" style="letter-spacing: 2px;">Explore Our Collection</span>
+      <h1 class="luxury-creative-title text-capitalize text-navy fw-bold">
+        Amazing Tours In <span class="gold-gradient-text">{{ slug() }}</span>
+      </h1>
+      <p class="luxury-description text-muted max-w-600 mx-auto small">
+        Handcrafted luxury itineraries designed to take you deeper into the heart of history, culture, and breathtaking landscapes.
+      </p>
+    </div>
+
+    <!-- الـ Tabs العلوية وفلتر الترتيب حسب السعر -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3 border-bottom pb-3">
+      <div class="sticky-tabs-container p-1 rounded-pill d-inline-flex gap-2">
+        <button class="btn px-4 py-2 rounded-pill fw-bold transition-all"
+                [class.btn-dark-red]="activeTab() === 'package'"
+                [class.text-secondary]="activeTab() !== 'package'"
+                (click)="setTab('package')">
+          Tour Packages
+        </button>
+        <button class="btn px-4 py-2 rounded-pill fw-bold transition-all"
+                [class.btn-dark-red]="activeTab() === 'day-tour'"
+                [class.text-secondary]="activeTab() !== 'day-tour'"
+                (click)="setTab('day-tour')">
+          Day Tours
+        </button>
+      </div>
+
+      <!-- الـ Price Sort Dropdown الفخم -->
+      <div class="luxury-sort-wrapper">
+        <label class="small text-muted me-2"><i class="fa-solid fa-arrow-down-short-wide me-1"></i> Sort By:</label>
+        <select class="form-select d-inline-block w-auto small-select rounded-3" 
+                (change)="onSortChange($any($event.target).value)">
+          <option value="featured">Featured & Recommended</option>
+          <option value="priceLow">Price: Low to High</option>
+          <option value="priceHigh">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- الحاوية العلوية الأولى (Tour Packages / Day Tours) -->
+    <div class="row g-4 justify-content-center mb-5">
+      @if (isLoading()) {
+        <!-- الـ Skeleton Loaders الذكية في حالة التحميل -->
+        @for (i of [1, 2, 3]; track i) {
+          <div class="col-md-6 col-lg-4">
+            <div class="skeleton-card rounded-4 overflow-hidden shadow-sm bg-white">
+              <div class="skeleton-img-wrapper shim"></div>
+              <div class="p-4 bg-white">
+                <div class="skeleton-line shim w-25 mb-3 rounded-pill"></div>
+                <div class="skeleton-line shim w-75 mb-2"></div>
+                <div class="skeleton-line shim w-50"></div>
+              </div>
+            </div>
+          </div>
+        }
+      } @else {
+        <!-- الكروت الحقيقية مع أنيميشن الدخول الانسيابي الفخم -->
+        @for (tour of filteredTours(); track tour.id) {
+          <div class="col-md-6 col-lg-4 card-fade-in-item">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative" [routerLink]="['/tours', tour.id]">
+              <div class="position-relative" style="height: 220px;">
+                <img [src]="tour.image" [alt]="tour.title" class="w-100 h-100 object-fit-cover" />
+                
+                @if (tour.featuredTag) {
+                  <div class="luxury-ribbon-tag">
+                    <span class="ribbon-text">{{ tour.featuredTag }}</span>
+                  </div>
+                }
+
+                <div class="position-absolute bottom-0 start-0 p-3 text-white w-100 bg-gradient-dark z-2">
+                  <span class="badge bg-gold text-navy rounded-pill mb-2 px-3 py-1 small fw-bold">{{ tour.duration }}</span>
+                  <h3 class="h6 fw-bold text-white mb-0">{{ tour.title }}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+
+  <div class="text-center mb-5">
+    <p class="mb-2 text-muted small">Find the perfect tour package for your next adventure</p>
+    <button class="btn btn-danger btn-sm text-uppercase px-4 fw-bold">
+      View All {{ activeTab() }}s ({{ filteredTours().length }})
+    </button>
+  </div>
+
+  <!-- Top Destinations -->
+  <div class="top-destinations-wrapper mb-5 py-4 border-top">
+    <div class="container">
+      <h2 class="text-navy text-center text-uppercase tracking-wider fw-bold h4 mb-4">
+        Top Destinations In <span class="text-capitalize">{{ slug() }}</span>
+      </h2>
+      <div class="row g-3">
+        @for (city of topDestinationsList(); track city.name) {
+          <div class="col-6 col-md-3">
+            <div class="city-card rounded-3 overflow-hidden position-relative bg-white shadow-sm border"
+                 [routerLink]="['/destinations', slug().toLowerCase(), city.name.toLowerCase()]">
+              <div style="height: 150px;" class="overflow-hidden">
+                <img [src]="city.img" [alt]="city.name" class="w-100 h-100 object-fit-cover" />
+              </div>
+              <div class="p-3">
+                <h4 class="h6 fw-bold text-navy mb-1">{{ city.name }}</h4>
+                <p class="text-muted small mb-0 text-truncate">{{ city.desc }}</p>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+      <div class="text-center mt-4">
+        <button routerLink="/destinations" class="btn btn-outline-secondary btn-sm text-uppercase px-4 fw-bold">
+          View All Destinations
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why Travel With Us -->
+  <div class="why-travel-wrapper py-5 my-5 border-top border-bottom text-center">
+    <div class="container">
+      <h2 class="text-navy text-uppercase tracking-wider fw-bold h5 mb-4">Why Travel With Us</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-4 col-md-2">
+          <i class="fa-solid fa-user-tie text-danger fs-3 mb-2"></i>
+          <p class="fw-bold small text-navy mb-0">Local Experts</p>
+        </div>
+        <div class="col-4 col-md-2">
+          <i class="fa-solid fa-wand-magic-sparkles text-danger fs-3 mb-2"></i>
+          <p class="fw-bold small text-navy mb-0">Tailor-Made</p>
+        </div>
+        <div class="col-4 col-md-2">
+          <i class="fa-solid fa-clock text-danger fs-3 mb-2"></i>
+          <p class="fw-bold small text-navy mb-0">24/7 Support</p>
+        </div>
+        <div class="col-4 col-md-2">
+          <i class="fa-solid fa-tags text-danger fs-3 mb-2"></i>
+          <p class="fw-bold small text-navy mb-0">Best Price</p>
+        </div>
+        <div class="col-4 col-md-2">
+          <i class="fa-solid fa-shield-heart text-danger fs-3 mb-2"></i>
+          <p class="fw-bold small text-navy mb-0">Comfort & Safety</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Section (الحاوية السفلية المفلترة بالمدن) -->
+  <div class="container">
+    <h2 class="text-navy text-center text-uppercase tracking-wider fw-bold h4 mb-4 text-capitalize">
+      Featured {{ slug() }} Tours
+    </h2>
+
+    <div class="interactive-tabs-wrapper text-center mb-5">
+      <div class="filters-scroll-container d-flex justify-content-md-center align-items-center gap-2 overflow-auto no-scrollbar">
+        <button class="btn filter-pill"
+                [class.active-pill]="selectedCity() === 'all'"
+                (click)="setCity('all')">
+          All Cities
+        </button>
+        @for (city of citiesOptions(); track city) {
+          <button class="btn filter-pill"
+                  [class.active-pill]="selectedCity().toLowerCase() === city.toLowerCase()"
+                  (click)="setCity(city)">
+            {{ city }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      @if (isLoading()) {
+        <!-- الـ Skeletons للحاوية السفلية أيضاً عند التبديل بين المدن -->
+        @for (i of [1, 2, 3]; track i) {
+          <div class="col-md-6 col-lg-4">
+            <div class="skeleton-card rounded-4 overflow-hidden shadow-sm bg-white">
+              <div class="skeleton-img-wrapper shim"></div>
+              <div class="p-4 bg-white">
+                <div class="skeleton-line shim w-25 mb-3 rounded-pill"></div>
+                <div class="skeleton-line shim w-75 mb-2"></div>
+                <div class="skeleton-line shim w-50"></div>
+              </div>
+            </div>
+          </div>
+        }
+      } @else {
+        @for (tour of filteredTours(); track tour.id) {
+          <div class="col-md-6 col-lg-4 card-fade-in-item">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden destination-card cinematic-card card-revealed position-relative"
+                 [routerLink]="['/tours', tour.id]">
+              
+              <div class="position-relative card-img-wrapper" style="height: 250px;">
+                <img [src]="tour.image" [alt]="tour.title" class="w-100 h-100 card-img-main object-fit-cover" />
+                
+                @if (tour.featuredTag) {
+                  <div class="luxury-ribbon-tag">
+                    <span class="ribbon-text">{{ tour.featuredTag }}</span>
+                  </div>
+                }
+
+                <div class="position-absolute top-0 start-0 w-100 h-100 card-gradient-overlay d-flex flex-column justify-content-end p-4 z-2">
+                  @if (tour.rating) {
+                    <span class="position-absolute bg-white text-navy px-3 py-1 rounded-pill small fw-bold shadow-sm d-flex align-items-center gap-1" style="top: 15px; right: 15px; z-index: 3;">
+                      <i class="fa-solid fa-star text-warning small"></i> {{ tour.rating }}
+                    </span>
+                  }
+                  <span class="badge bg-gold text-navy rounded-pill align-self-start mb-2 px-3 py-1 small fw-bold">
+                    {{ tour.duration }}
+                  </span>
+                  <h3 class="text-white fw-bold mb-1 h5">{{ tour.title }}</h3>
+                  <p class="text-white-50 small mb-0"><i class="fa-solid fa-location-dot me-1"></i> {{ tour.locations }}</p>
+                </div>
+              </div>
+
+              <div class="card-body bg-white p-4 d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="text-muted small d-block">From</span>
+                  <span class="text-navy fw-bold h4 mb-0">${{ tour.price }}</span>
+                  <span class="text-muted small"> / person</span>
+                </div>
+                <button class="btn btn-outline-danger rounded-circle p-0 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        } @empty {
+          <div class="text-center py-5">
+            <i class="fa-solid fa-map-location-dot text-muted display-1 mb-3"></i>
+            <h3 class="text-navy fw-bold">No Tours Found</h3>
+            <p class="text-secondary">We don't have active tours matching this filter right now.</p>
+          </div>
+        }
+      }
+    </div>
+
+    <div class="text-center mt-5">
+      <button routerLink="/tours" class="btn btn-outline-danger text-uppercase px-4 py-2 small fw-bold">
+        View All Tours
+      </button>
+    </div>
+
+    <!-- قسم الـ Testimonials الفخم والمطور كلياً كشاشة عرض سنمائية زجاجية -->
+    <div class="testimonials-wrapper mt-5 pt-5 border-top text-center position-relative">
+      <h2 class="text-navy text-uppercase tracking-wider fw-bold h4 mb-5">What Our Travelers Say</h2>
+      
+      <div class="luxury-testimonial-box mx-auto position-relative">
+        <div class="quote-icon-bg"><i class="fa-solid fa-quote-left"></i></div>
+        
+        <div class="position-relative z-2">
+          <div class="stars-rating-wrapper mb-3 text-warning">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          
+          <p class="testimonial-quote-text mb-4 fs-5 fst-italic">
+            "{{ testimonial().text }}"
+          </p>
+          
+          <div class="testimonial-author-meta">
+            <h5 class="small fw-bold text-navy mb-1">{{ testimonial().author }}</h5>
+            <span class="small text-muted d-block"><i class="fa-solid fa-passport me-1"></i> Verified Traveler - {{ testimonial().country }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner py-5 text-white text-center position-relative bg-dark"
+         [style.backgroundImage]="slug().toLowerCase() === 'egypt' ? 'url(/images/cta/egypt-cta.jpg)' : 'url(/images/cta/jordan-cta.jpg)'"
+         style="background-size: cover; background-position: center;">
+  <div class="container position-relative z-2 py-3">
+    <h3 class="text-uppercase fw-bold mb-2 text-white">Ready To Explore {{ slug() }}?</h3>
+    <p class="small mb-4 opacity-75 text-white">Let us create the perfect journey for you.</p>
+    <button class="btn btn-white text-danger text-uppercase px-4 py-2 small fw-bold rounded-1 bg-white border-0">
+      Plan Your Trip
+    </button>
+  </div>
+</section>

@@ -1,50 +1,4 @@
-// import { Injectable, signal, computed } from '@angular/core';
 
-// export interface Tour {
-//   id: string;
-//   destinationId: string; // الربط مع الـ Destination
-//   title: string;
-//   price: number;
-//   duration: string;
-//   image: string;
-//   isFeatured: boolean; // عشان نسحبها في الهوم بيج علطول
-// }
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class TourService {
-//   private toursList = signal<Tour[]>([
-//     {
-//       id: '101',
-//       destinationId: '1', // تابعة لمصر
-//       title: 'Classic Cairo & Nile Cruise',
-//       price: 1250,
-//       duration: '8 Days',
-//       image: '/images/slide 1.jpg',
-//       isFeatured: true
-//     },
-//     {
-//       id: '102',
-//       destinationId: '2', // تابعة للأردن
-//       title: 'Highlights of Jordan & Petra',
-//       price: 1400,
-//       duration: '6 Days',
-//       image: '/images/slide 4.jpg',
-//       isFeatured: true
-//     }
-//   ]);
-
-//   tours = this.toursList.asReadonly();
-
-//   // 👈 ميثود سحرية بالـ Computed Signal بتجيب الرحلات المميزة للهوم بيج تلقائي
-//   featuredTours = computed(() => this.toursList().filter(t => t.isFeatured));
-
-//   // ميثود تجيب رحلات بلد معينة (مثلاً لما تدخلي صفحة مصر يعرض رحلات مصر بس)
-//   getToursByDestination(destinationId: string) {
-//     return this.toursList().filter(t => t.destinationId === destinationId);
-//   }
-// }
 
 
 import { Injectable, signal, computed } from '@angular/core';
@@ -62,6 +16,8 @@ export interface Tour {
   isFeatured: boolean; // عشان نسحبها في الـ Popular Tours في الهوم بيج
   rating?: number; // تقييم اختياري زي الـ (4.9) اللي في الديزاين
   reviewsCount?: number; // عدد التقييمات (120)
+
+  featuredTag: string;
 }
 
 @Injectable({
@@ -83,7 +39,11 @@ export class TourService {
       image: '/images/tours/egypt-classic.webp',
       isFeatured: true,
       rating: 4.9,
-      reviewsCount: 120
+      reviewsCount: 120,
+      featuredTag: 'Best Seller'
+
+
+
     },
     {
       id: 'tour-eg-nile-cruise',
@@ -96,7 +56,11 @@ export class TourService {
       image: '/images/tours/nile-cruise.webp',
       isFeatured: true,
       rating: 4.8,
-      reviewsCount: 76
+      reviewsCount: 76,
+
+
+
+      featuredTag: 'Best Seller'
     },
     {
       id: 'tour-eg-luxury',
@@ -109,7 +73,8 @@ export class TourService {
       image: '/images/tours/egypt-luxury.webp',
       isFeatured: false,
       rating: 4.9,
-      reviewsCount: 45
+      reviewsCount: 45,
+       featuredTag: 'Best Seller'
     },
     {
       id: 'tour-eg-pyramids-day',
@@ -120,7 +85,8 @@ export class TourService {
       locations: 'Giza, Cairo',
       price: 75,
       image: '/images/tours/pyramids-day.webp',
-      isFeatured: false
+      isFeatured: false,
+       featuredTag: 'Best Seller'
     },
 
     // === رحلات الأردن (Jordan Tours) ===
@@ -135,7 +101,8 @@ export class TourService {
       image: '/images/tours/jordan-classic.webp',
       isFeatured: true,
       rating: 4.8,
-      reviewsCount: 98
+      reviewsCount: 98,
+       featuredTag: 'Luxury Itinerary'
     },
     {
       id: 'tour-jo-adventure',
@@ -148,7 +115,8 @@ export class TourService {
       image: '/images/tours/petra-adventure.webp',
       isFeatured: true,
       rating: 4.9,
-      reviewsCount: 112
+      reviewsCount: 112,
+       featuredTag: 'best seller'
     },
     {
       id: 'tour-jo-luxury',
@@ -161,7 +129,8 @@ export class TourService {
       image: '/images/tours/jordan-luxury.webp',
       isFeatured: false,
       rating: 4.7,
-      reviewsCount: 34
+      reviewsCount: 34,
+       featuredTag: 'Luxury Itinerary'
     },
     {
       id: 'tour-jo-petra-day',
@@ -172,14 +141,15 @@ export class TourService {
       locations: 'Petra',
       price: 120,
       image: '/images/tours/petra-day.webp',
-      isFeatured: false
+      isFeatured: false,
+       featuredTag: 'Luxury Itinerary'
     }
   ]);
 
   // Expose الـ Signal الأصلي كـ Read-only
   tours = this.toursData.asReadonly();
 
-  // 3️⃣ الـ Computed Signal السحري عشان نسحب الـ Featured اللي هيظهروا في الهوم بيج فوراً
+  // 3️⃣ الـ Computed Signal عشان نسحب الـ Featured اللي هيظهروا في الهوم بيج فوراً
   featuredTours = computed(() => this.toursData().filter(tour => tour.isFeatured));
 
   // 4️⃣ ميثود لفلترة الرحلات بناءً على البلد ونوع الـ Tab (Package ولا Day Tour)
@@ -187,5 +157,17 @@ export class TourService {
     return this.toursData().filter(tour => 
       tour.destinationId === destinationId && tour.type === type
     );
+  }
+
+  // 5️⃣ ميثود لفلترة الرحلات حسب المدينة/المحافظة (عشان صفحة كايـرو أو الأقصر المستقلة)
+  getToursByCity(cityName: string): Tour[] {
+    return this.toursData().filter(tour => 
+      tour.locations.toLowerCase().includes(cityName.toLowerCase())
+    );
+  }
+
+  // 6️⃣ ميثود لجلب تفاصيل رحلة واحدة بناءً على الـ ID (عشان صفحة الـ Tour Details)
+  getTourById(tourId: string): Tour | undefined {
+    return this.toursData().find(tour => tour.id === tourId);
   }
 }

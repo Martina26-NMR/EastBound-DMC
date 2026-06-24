@@ -1,4 +1,3 @@
-
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -13,12 +12,20 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/destinations/destinations')
         .then(m => m.Destinations),
-        title: 'Our Destinations | Eastbound DMC'
+    title: 'Our Destinations | Eastbound DMC'
   },
   {
     path: 'destinations/:slug',
-    loadComponent: () => import('./features/country-detail/country-detail').then(m => m.CountryDetail),
+    loadComponent: () => 
+      import('./features/country-detail/country-detail').then(m => m.CountryDetail),
     title: 'Explore Destination | Eastbound DMC'
+  },
+  // 1️⃣ الروت الناقص الأول: صفحة المدينة/المحافظة المستقلة جوه البلد (مثال: destinations/egypt/cairo)
+  {
+    path: 'destinations/:slug/:cityName',
+    loadComponent: () => 
+      import('./features/destinations/city-detail/city-detail').then(m => m.CityDetail),
+    title: 'Explore City | Eastbound DMC'
   },
   {
     path: 'about-us',
@@ -26,26 +33,33 @@ export const routes: Routes = [
       import('./features/about-us/about-us')
         .then(m => m.AboutUs)
   },
-
   {
     path: 'tailor-made',
     loadComponent: () =>
       import('./features/tailor-made/tailor-made')
         .then(m => m.TailorMade),
-        title: 'Tailor-Made Journey | Eastbound DMC'
+    title: 'Tailor-Made Journey | Eastbound DMC'
   },
   {
     path: 'contact',
     loadComponent: () =>
       import('./features/contact/contact')
-        .then(m => m.Contact)
+        .then(m => m.Contact),
+    title: 'Contact Us | Eastbound DMC'
   },
   {
     path: 'tours',
     loadComponent: () =>
       import('./features/tours/tours')
         .then(m => m.Tours),
-        title: 'Our Tours & Packages | Eastbound DMC'
+    title: 'Our Tours & Packages | Eastbound DMC'
+  },
+  // 2️⃣ الروت الناقص الثاني: صفحة تفاصيل الرحلة المنفردة بناءً على الـ ID بتاعها (مثال: tours/tour-eg-classic)
+  {
+    path: 'tours/:id',
+    loadComponent: () => 
+      import('./features/destinations/tour-detail/tour-detail').then(m => m.TourDetail),
+    title: 'Tour Details | Eastbound DMC'
   },
   {
     path: 'blog',
@@ -54,11 +68,7 @@ export const routes: Routes = [
         .then(m => m.Blog)
   },
   {
-    path: 'contact',
-    loadComponent: () => import('./features/contact/contact').then(m => m.Contact)
-  },
-  {
-  path: '**',
+    path: '**',
     redirectTo: '',
     pathMatch: 'full'
   }
