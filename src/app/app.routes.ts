@@ -20,7 +20,7 @@ export const routes: Routes = [
       import('./features/country-detail/country-detail').then(m => m.CountryDetail),
     title: 'Explore Destination | Eastbound DMC'
   },
-  // 1️⃣ الروت الناقص الأول: صفحة المدينة/المحافظة المستقلة جوه البلد (مثال: destinations/egypt/cairo)
+ 
   {
     path: 'destinations/:slug/:cityName',
     loadComponent: () => 
@@ -54,18 +54,19 @@ export const routes: Routes = [
         .then(m => m.Tours),
     title: 'Our Tours & Packages | Eastbound DMC'
   },
-  // 2️⃣ الروت الناقص الثاني: صفحة تفاصيل الرحلة المنفردة بناءً على الـ ID بتاعها (مثال: tours/tour-eg-classic)
+ 
   {
-    path: 'tours/:id',
-    loadComponent: () => 
-      import('./features/destinations/tour-detail/tour-detail').then(m => m.TourDetail),
+   
+  path: 'tours/:id', 
+  loadComponent: () => import('./features/destinations/tour-detail/tour-detail').then(m => m.TourDetailComponent) ,
+
     title: 'Tour Details | Eastbound DMC'
   },
   {
-    path: 'blog',
+    path: 'magazine',
     loadComponent: () =>
-      import('./features/blog/blog')
-        .then(m => m.Blog)
+      import('./features/magazine/magazine')
+        .then(m => m.Magazine)
   },
   {
     path: '**',

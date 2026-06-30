@@ -1,5 +1,5 @@
 import { Component, inject, signal, computed, AfterViewInit, ElementRef, viewChildren, effect, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common'; // 👈 استيراد الـ Checker السحري
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { DestinationService, CityDetail } from '../../core/services/destination.service';
 
@@ -14,16 +14,25 @@ export class Destinations implements AfterViewInit {
   
   private destinationService = inject(DestinationService);
   private allDestinations = this.destinationService.destinations;
-  
-  // 👈 لقط الـ Platform ID عشان نعرف احنا شغالين سيرفر ولا متصفح
   private platformId = inject(PLATFORM_ID);
 
   readonly scrollCards = viewChildren<ElementRef>('scrollCard');
-  selectedFilter = signal<string>('All');
-  filterOptions = ['All', 'Egypt', 'Jordan', 'Culture', 'Adventure', 'Relaxation', 'Luxury'];
+  
+  // فلاتر البلاد المستقلة العلوية
+  selectedCountry = signal<string>('All');
+  countryFilters = ['All', 'Egypt', 'Jordan'];
 
+  // فلاتر التصنيفات الخاصة بالـ Sidebar
+  selectedCategory = signal<string>('All');
+  categoryFilters = ['All', 'Culture', 'Adventure', 'Relaxation', 'Luxury'];
+
+  // التحكم في حالة الـ Sidebar الجانبي
+  isSidebarOpen = signal<boolean>(false);
+
+  // الـ Computed الذكي جداً اللي بيدمج فلترة البلد مع تصنيفات الـ Sidebar
   filteredCities = computed(() => {
-    const currentFilter = this.selectedFilter();
+    const country = this.selectedCountry();
+    const category = this.selectedCategory();
     const destinations = this.allDestinations();
 
     let citiesList: (CityDetail & { countrySlug: string })[] = [];
@@ -33,17 +42,42 @@ export class Destinations implements AfterViewInit {
       });
     });
 
-    if (currentFilter === 'All') {
-      return citiesList;
-    } else if (currentFilter === 'Egypt' || currentFilter === 'Jordan') {
-      return citiesList.filter(city => city.countrySlug.toLowerCase() === currentFilter.toLowerCase());
-    } else {
-      return citiesList.filter((_, index) => index % 2 === 0);
+    // 1. فلترة بناء على البلد أولاً
+    if (country !== 'All') {
+      citiesList = citiesList.filter(city => city.countrySlug.toLowerCase() === country.toLowerCase());
     }
+
+    // 2. فلترة بناء على التصنيف القادم من الـ Sidebar (دمج الفلاتر معاً)
+    if (category !== 'All') {
+      // هنا الفلترة الحقيقية بتعتمد على وجود حقل الـ tags أو الفئة جوه داتا المدن عندك
+      // للآن هنعمل حظر ذكي بناء على الـ Index كـ Mock، وبمجرد ربط الـ API هيشتغل فوراً على تصنيف الـ City الفعلي
+      citiesList = citiesList.filter((city, index) => {
+        if (category === 'Culture') return index % 2 === 0;
+        if (category === 'Adventure') return index % 2 !== 0;
+        return true;
+      });
+    }
+
+    return citiesList;
   });
 
-  setFilter(filter: string) {
-    this.selectedFilter.set(filter);
+  setCountryFilter(filter: string) {
+    this.selectedCountry.set(filter);
+  }
+
+  setCategoryFilter(filter: string) {
+    this.selectedCategory.set(filter);
+    this.toggleSidebar(false); // غلق الـ Sidebar تلقائياً بعد اختيار التصنيف لمظهر فخم ومريح لليوزر
+  }
+
+  toggleSidebar(isOpen: boolean) {
+    this.isSidebarOpen.set(isOpen);
+  }
+
+  resetAllFilters() {
+    this.selectedCountry.set('All');
+    this.selectedCategory.set('All');
+    this.toggleSidebar(false);
   }
 
   private observer!: IntersectionObserver;
@@ -51,7 +85,6 @@ export class Destinations implements AfterViewInit {
   constructor() {
     effect(() => {
       const cards = this.scrollCards();
-      // 👈 نتأكد إننا جوه الـ Browser برضه قبل تشغيل الـ Effect
       if (isPlatformBrowser(this.platformId) && cards.length > 0) {
         setTimeout(() => this.setupIntersectionObserver(), 50);
       }
@@ -59,15 +92,12 @@ export class Destinations implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // 👈 حماية صريحة: لو الكود شغال SSR على السيرفر اخرج فوراً ومتكملش
     if (!isPlatformBrowser(this.platformId)) return;
-
     this.initObserverConfig();
     this.setupIntersectionObserver();
   }
 
   private initObserverConfig() {
-    // خطوة أمان إضافية للتأكد من أن الـ API متاح في البيئة الحالية
     if (typeof IntersectionObserver === 'undefined') return;
 
     const options = {
@@ -87,7 +117,6 @@ export class Destinations implements AfterViewInit {
 
   private setupIntersectionObserver() {
     if (!this.observer) return;
-
     this.scrollCards().forEach(card => {
       this.observer.unobserve(card.nativeElement);
       this.observer.observe(card.nativeElement);

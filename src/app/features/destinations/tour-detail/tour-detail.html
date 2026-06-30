@@ -1,1 +1,156 @@
-<p>tour-detail works!</p>
+<div *ngIf="tour" class="tour-detail-page pb-5">
+  <nav class="eb-breadcrumb">
+  <div class="breadcrumb-item"><a href="/home">Home</a></div>
+<div class="breadcrumb-item">
+  <a [routerLink]="['/destinations', tour?.destinationId]">
+    {{ tour?.destinationId || 'Tours' }}
+  </a>
+</div>
+  <div class="breadcrumb-item active">10-Day Cairo & Nile Cruise</div>
+</nav>
+  <!-- 1. Creative Hero Section (Dynamic Floating Image Frame) -->
+  <div class="hero-creative-section position-relative py-5">
+    <div class="container position-relative z-index-10 px-4">
+      <div class="row align-items-center g-5">
+        
+        <!-- Left Side: Title & Premium Typography Info -->
+        <div class="col-12 col-lg-7 text-layout animate-fadeIn">
+          <span *ngIf="tour?.featuredTag || tour?.isFeatured" class="badge premium-badge mb-3 text-uppercase tracking-wider">
+            {{ tour?.featuredTag || 'Premium Experience' }}
+          </span>
+          <h1 class="display-4 fw-extrabold  mb-4 tracking-tight">
+            {{ tour?.fullTitle || tour?.title }}
+          </h1>
+          <div class="d-flex flex-wrap gap-3 align-items-center info-chips font-monospace small">
+            <span *ngIf="tour?.rating" class="rating-star fw-bold">★ {{ tour?.rating }}</span>
+            <span class="text-slate-400">({{ tour?.reviewsCount }} reviews)</span>
+            <span class="text-divider">•</span>
+            <span class="duration-pill">🕒 {{ tour?.duration }}</span>
+            <span class="text-divider">•</span>
+            <span class="location-pill">📍 {{ tour?.locations }}</span>
+          </div>
+        </div>
+
+        <!-- Right Side: The Creative Floating Image Box -->
+        <div class="col-12 col-lg-5">
+          <div class="creative-image-wrapper position-relative">
+            <!-- Background Glow Effect -->
+            <div class="glow-element position-absolute rounded-circle"></div>
+            <!-- Main Floating Glass Container -->
+            <div class="floating-image-container glass-card overflow-hidden rounded-4 shadow-2xl">
+              <img [src]="tour?.image" [alt]="tour?.title" class="img-fluid w-100 h-100 object-cover creative-zoom-img">
+              <div class="glass-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-end p-4">
+                <div class="blur-caption p-3 w-100 rounded-3 d-flex justify-content-between align-items-center">
+                  <span class="fw-bold  tracking-wide">Explore The Journey</span>
+                  <span class="explore-arrow">→</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Main Content Content Grid -->
+  <div class="container mt-4 px-4">
+    <div class="row g-4">
+      
+      <!-- Left Column: Overview & Itinerary -->
+      <div class="col-12 col-lg-8">
+        <div class="glass-card p-4 mb-4 shadow-lg">
+          <h2 class="h3 fw-bold mb-3 tracking-wide ">Trip Overview</h2>
+          <p class="text-description mb-4">{{ tour?.summary }}</p>
+          
+          <!-- Why Choose Matrix -->
+          <div *ngIf="tour?.whyChoose && tour.whyChoose!.length > 0" class="why-choose-box p-4 rounded-3">
+            <h5 class="fw-bold  mb-3 d-flex align-items-center gap-2">
+              ✦ Why Choose This Itinerary?
+            </h5>
+            <ul class="list-unstyled mb-0 space-y-3">
+              <li *ngFor="let point of tour?.whyChoose" class="text-description d-flex align-items-start gap-3">
+                <span class="check-icon fw-bold">✔</span> 
+                <span>{{ point }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Itinerary Section -->
+        <div *ngIf="tour?.itinerary && tour.itinerary!.length > 0" class="mt-5">
+          <h2 class="h3 fw-bold mb-4 d-flex align-items-center gap-2 tracking-wide ">
+            🗺️ Day-by-Day Itinerary
+          </h2>
+          
+          <div class="timeline-container position-relative mt-4">
+            <div *ngFor="let item of tour?.itinerary" class="timeline-item position-relative ps-5 mb-4">
+              
+              <div class="timeline-node position-absolute d-flex align-items-center justify-content-center fw-bold rounded-circle"
+                   [class.active]="activeDay === item.day">
+                {{ item.day }}
+              </div>
+
+              <div class="glass-accordion-card rounded-3" 
+                   [class.is-expanded]="activeDay === item.day" 
+                   (click)="toggleDay(item.day)">
+                <div class="card-header-trigger d-flex justify-content-between align-items-center p-3 cursor-pointer">
+                  <h3 class="h6 fw-bold mb-0 tracking-wide transition-colors">
+                    Day {{ item.day }}: {{ item.title }}
+                  </h3>
+                  <span class="arrow-icon small" [style.transform]="activeDay === item.day ? 'rotate(180deg)' : 'rotate(0deg)'">▼</span>
+                </div>
+
+                <div *ngIf="activeDay === item.day" class="card-body-content p-3 pt-0 text-description animate-fadeIn">
+                  <p class="mb-4 text-slate-300">{{ item.description }}</p>
+                  
+                  <div *ngIf="item.highlights && item.highlights.length > 0" class="highlights-box pt-3">
+                    <h6 class="text-xs fw-bold text-uppercase tracking-wider mb-3">Day Highlights:</h6>
+                    <div class="row g-3">
+                      <div *ngFor="let highlight of item.highlights" class="col-12 col-md-6 small d-flex align-items-center gap-2">
+                        <span class="bullet-point">•</span> {{ highlight }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Sticky Sidebar Booking -->
+      <div class="col-12 col-lg-4">
+        <div class="sticky-sidebar glass-card p-4 shadow-xl">
+          <div class="mb-4">
+            <span class="small text-muted-custom text-uppercase tracking-wider d-block mb-1">Price Starts From</span>
+            <div class="d-flex align-items-baseline gap-1">
+              <span class="display-6 fw-extrabold mb-0">${{ tour?.price }}</span>
+              <span class="small text-muted-custom">/ per person</span>
+            </div>
+          </div>
+
+          <hr class="border-glass-light my-4">
+
+          <!-- Travel Tips Inside Sidebar -->
+          <div *ngIf="tour?.travelTips && tour.travelTips!.length > 0" class="mb-4">
+            <h6 class="fw-bold  mb-3 d-flex align-items-center gap-2 tracking-wide">
+              💡 Essential Travel Tips
+            </h6>
+            <div class="d-flex flex-column gap-2">
+              <div *ngFor="let tip of tour?.travelTips" class="tip-pill p-3 rounded-3 small text-description">
+                {{ tip }}
+              </div>
+            </div>
+          </div>
+
+          <button class="btn premium-cta-btn w-100 py-3 fw-bold border-0 text-uppercase tracking-wider shadow-lg">
+            Book This Experience
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

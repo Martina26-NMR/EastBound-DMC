@@ -1,0 +1,334 @@
+/* ==========================================================================
+   EASTBOUND BRAND VARIABLES (LIGHT VERSION)
+   ========================================================================== */
+
+// 1. Official Color Palette
+$eb-red:       #d52027; // الأحمر الرسمي المعتمد للشعار والخلفيات
+$eb-yellow:    #fdc938; // الأصفر/الذهبي الدافئ المعتمد للنقوش والرموز
+$eb-black:     #000000; // الأسود الصريح
+$eb-white:     #ffffff; // الأبيض الصريح
+$eb-cream:     #fcfbfa; // درجة الكريمي الفاتحة جداً (الخلفية الأساسية للصفحة)
+
+// 2. Light Glassmorphism & Text Colors
+$eb-bg-light:     $eb-cream; 
+$eb-card-light:   rgba(255, 255, 255, 0.75); // كروت بيضاء شبه شفافة
+$eb-glass-border: rgba(0, 0, 0, 0.06);       // حدود زجاجية داكنة خفيفة جداً
+$text-main-read:  #1f2937;                   // رمادي داكن جداً مريح للقراءة بدلاً من الأسود الصريح
+$text-muted:      #6b7280;                   // لون النصوص الثانوية
+
+// 3. Official Typography
+$font-headings: 'Cinzel', serif;              
+$font-body:     'Myriad Pro', sans-serif;       
+$font-arabic:   'Simplified Arabic', serif;     
+
+/* ==========================================================================
+   BRAND CORE STYLES
+   ========================================================================== */
+
+.font-heading {
+    font-family: $font-headings;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: $text-main-read;
+}
+
+.font-body { font-family: $font-body; }
+.font-arabic { font-family: $font-arabic; }
+
+.text-brand-red    { color: $eb-red; }
+.text-brand-yellow { color: $eb-yellow; }
+.bg-brand-red      { background-color: $eb-red; }
+.bg-brand-yellow   { background-color: $eb-yellow; }
+.bg-brand-cream    { background-color: $eb-cream; }
+
+/* ==========================================================================
+   COMPONENTS & IMPLEMENTATION RULES
+   ========================================================================== */
+
+
+   // الـ Breadcrumb الفخم المتناسق مع المود الأبيض
+.eb-breadcrumb {
+  padding: 1.5rem 0 0.5rem 0;
+  font-size: 0.8rem;
+  font-family: $font-body;
+  letter-spacing: 0.03em;
+
+  .breadcrumb-item {
+    color: #c5a46d;
+    display: inline-flex;
+    align-items: center;
+
+    a {
+      color:  #c5a46d;
+      text-decoration: none;
+      transition: color 0.25s ease;
+
+      &:hover {
+        color: $eb-red; // يقلب أحمر البراند المعتمد عند الـ Hover
+      }
+    }
+
+    // الفاصل بين العناصر (سهم ناعم وبسيط)
+    &:not(:last-child)::after {
+     // أو يمكنكِ استخدام أيقونة FontAwesome مثل '\f105'
+      margin: 0 10px;
+      color: rgba(0, 0, 0, 0.15);
+    }
+
+    // العنصر الأخير النشط (اسم الرحلة الحالية)
+    &.active {
+      color: $eb-black;
+      font-weight: 500;
+    }
+  }
+}
+.eb-logo {
+    display: inline-block;
+    width: 100%;
+    max-width: 280px;
+    min-width: 200px;
+    height: auto;
+    
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.partner-logo {
+    max-width: 80%;
+    height: auto;
+    opacity: 0.85;
+}
+
+.btn-brand-primary {
+    font-family: $font-headings;
+    background-color: $eb-red;
+    color: $text-main-read;;
+    border: 2px solid transparent;
+    padding: 10px 24px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: $eb-black;
+        color: $eb-yellow;
+        border-color: $eb-yellow;
+    }
+}
+
+/* ==========================================================================
+   TOUR DETAIL PAGE (LIGHT MULTI-LAYER LAYOUT)
+   ========================================================================== */
+
+.tour-detail-page {
+  background-color: $eb-bg-light !important;
+  min-height: 100vh;
+  color: $text-main-read;
+  letter-spacing: -0.01em;
+
+  .text-description { 
+    color: $text-main-read !important; 
+    font-size: 0.95rem; 
+    line-height: 1.65; 
+  }
+  
+  .text-muted-custom { color: $text-muted !important; }
+  .text-divider { color: rgba(0, 0, 0, 0.08); }
+  .border-glass-light { border-color: $eb-glass-border !important; }
+  .cursor-pointer { cursor: pointer; }
+
+  // 1. Creative Hero Section (Light & Airy)
+  .hero-creative-section {
+    background: radial-gradient(circle at 80% 20%, rgba(213, 32, 39, 0.04) 0%, transparent 50%); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+
+    .premium-badge {
+      background: rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      color: $eb-red; // جعل النبضة باللون الأحمر على الخلفية الفاتحة ليظهر برقي
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .rating-star { color: $eb-yellow; }
+    
+    // تأثير الـ 3D للصورة على الخلفية الفاتحة
+    .creative-image-wrapper {
+      perspective: 1000px;
+
+      .glow-element {
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(213, 32, 39, 0.03) 0%, transparent 70%);
+        top: -30px;
+        right: -30px;
+        z-index: 1;
+        filter: blur(40px);
+      }
+
+      .floating-image-container {
+        height: 380px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        z-index: 2;
+        transform: rotateY(-4deg) rotateX(2deg);
+        transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.12); // ظل ناعم وخفيف يناسب الخلفية البيضاء
+
+        &:hover {
+          transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+          box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.18);
+
+          .creative-zoom-img {
+            transform: scale(1.08);
+          }
+
+          .explore-arrow {
+            transform: translateX(5px);
+          }
+        }
+
+        .creative-zoom-img {
+          transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .glass-overlay {
+          background: linear-gradient(to top, rgba(255, 255, 255, 0.85) 0%, transparent 40%);
+        }
+
+        .blur-caption {
+          background: #c5a46d;
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          color: $text-main-read;
+
+          .explore-arrow {
+            transition: transform 0.3s ease;
+            color: $eb-red;
+          }
+        }
+      }
+    }
+  }
+
+  // 2. Pure Light Glassmorphism Structure
+  .glass-card {
+    background: $eb-card-light;
+    border: 1px solid $eb-glass-border;
+    border-radius: 14px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04); // ظل خفيف جداً ليعطي عمق للكارت
+  }
+
+  .why-choose-box {
+    background-color: rgba(0, 0, 0, 0.01);
+    border-left: 3px solid $eb-red; // تغيير الخط الجانبي للأحمر ليعطي تباين أنيق
+    
+    .check-icon { color: $eb-red; }
+  }
+
+  // 3. Infographic Timeline (Light Mode)
+  .timeline-container {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      bottom: 24px;
+      left: 16px;
+      width: 1px;
+      background-color: rgba(0, 0, 0, 0.06);
+    }
+
+    .timeline-node {
+      width: 34px;
+      height: 34px;
+      left: 0;
+      top: 6px;
+      background-color: $eb-white;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      color: $text-muted;
+      font-size: 11px;
+      z-index: 3;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+      &.active {
+        background-color: $eb-red !important;
+        border-color: $eb-red !important;
+        color: $eb-white !important;
+        box-shadow: 0 4px 12px rgba(213, 32, 39, 0.25);
+      }
+    }
+
+    .glass-accordion-card {
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(0, 0, 0, 0.02);
+      transition: all 0.25s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+      }
+
+      &.is-expanded {
+        background: $eb-white;
+        border-color: rgba(0, 0, 0, 0.06);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      }
+
+      .bullet-point {
+        color: $eb-red;
+        margin-right: 4px;
+      }
+
+      .arrow-icon {
+        font-size: 8px;
+        color: $text-muted;
+        transition: transform 0.25s ease;
+      }
+    }
+  }
+
+  // 4. Sidebar Elements
+  .sticky-sidebar {
+    position: sticky;
+    top: 30px;
+    z-index: 5;
+  }
+
+  .tip-pill {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+  }
+
+  // Premium Solid Contrast Button (Dark to Red on Hover)
+  .premium-cta-btn {
+    background: $eb-black !important;
+    color: $eb-white !important;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      background: $eb-red !important;
+    }
+  }
+}
+
+// Micro-animations Animations
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
