@@ -1,3 +1,4 @@
+<!-- hero-section -->
 <section class="luxury-creative-hero d-flex align-items-center position-relative overflow-hidden mb-5">
   <!-- خلفية ناعمة جداً وضبابية لإعطاء عمق للمكان -->
   <div class="hero-blur-ambient position-absolute inset-0"></div>
@@ -5,6 +6,7 @@
   <div class="container position-relative z-2">
     <div class="row align-items-center g-5">
 
+<!-- breatcrumb -->
     <nav class="small text-muted">
       <a routerLink="/" class="text-decoration-none text-secondary">Home</a>
       <span class="mx-2">&gt;</span>
@@ -13,6 +15,7 @@
       <span class="text-navy fw-bold text-capitalize">{{ slug() }}</span>
     </nav>
 
+    <!-- hero section -->
       <!-- العمود الأول: النص داخل كارد زجاجي عائم (Floating Glass Card) -->
       <div class="col-12 col-lg-5 text-center text-lg-start ordering-mobile-2">
         <div class="hero-premium-floating-card p-4 p-md-5 rounded-4 border border-white border-opacity-10 backdrop-blur">
@@ -42,7 +45,7 @@
           
           <!-- برواز الصورة الفعلي مع تأثير الزوايا الناعمة جداً والـ Reveal -->
           <div class="premium-image-frame rounded-5 overflow-hidden shadow-lg">
-            <img [src]="slug().toLowerCase() === 'egypt' ? '/images/hero-section-egyot.webp' : '/images/hero-section-jordan.webp'" 
+            <img [src]="slug().toLowerCase() === 'egypt' ? '/images/5f3dc77bbf6d543c2c08fd0aaca00419.jpg' : '/images/hero-section-jordan.webp'" 
                  [alt]="slug()" 
                  class="w-100 h-100 object-cover hero-main-img"
                  onerror="this.src='https://images.unsplash.com/photo-1539650116574-8efeb43e2750?w=1200'">
@@ -80,7 +83,8 @@
       </p>
     </div>
 
-    <!-- الـ Tabs العلوية وفلتر الترتيب حسب السعر -->
+    <!--the tour filter packages/tour   -->
+   
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3 border-bottom pb-3">
       <div class="sticky-tabs-container p-1 rounded-pill d-inline-flex gap-2">
         <button class="btn px-4 py-2 rounded-pill fw-bold transition-all"
@@ -109,7 +113,7 @@
       </div>
     </div>
 
-    <!-- الحاوية العلوية الأولى (Tour Packages / Day Tours) -->
+    <!--(Tour Packages / Day Tours) -->
     <div class="row g-4 justify-content-center mb-5">
       @if (isLoading()) {
         <!-- الـ Skeleton Loaders الذكية في حالة التحميل -->
@@ -126,7 +130,6 @@
           </div>
         }
       } @else {
-        <!-- الكروت الحقيقية مع أنيميشن الدخول الانسيابي الفخم -->
         @for (tour of filteredTours(); track tour.id) {
           <div class="col-md-6 col-lg-4 card-fade-in-item">
             <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative" [routerLink]="['/tours', tour.id]">
@@ -170,11 +173,11 @@
             <div class="city-card rounded-3 overflow-hidden position-relative bg-white shadow-sm border"
                  [routerLink]="['/destinations', slug().toLowerCase(), city.name.toLowerCase()]">
               <div style="height: 150px;" class="overflow-hidden">
-                <img [src]="city.img" [alt]="city.name" class="w-100 h-100 object-fit-cover" />
+                <img [src]="city.image" [alt]="city.name" class="w-100 h-100 object-fit-cover" />
               </div>
               <div class="p-3">
                 <h4 class="h6 fw-bold text-navy mb-1">{{ city.name }}</h4>
-                <p class="text-muted small mb-0 text-truncate">{{ city.desc }}</p>
+                <p class="text-muted small mb-0 text-truncate">{{ city.description }}</p>
               </div>
             </div>
           </div>
@@ -344,7 +347,7 @@
 </section>
 
 <section class="cta-banner py-5 text-white text-center position-relative bg-dark"
-         [style.backgroundImage]="slug().toLowerCase() === 'egypt' ? 'url(/images/cta/egypt-cta.jpg)' : 'url(/images/cta/jordan-cta.jpg)'"
+         [style.backgroundImage]="slug().toLowerCase() === 'egypt' ? 'url(/images/5f3dc77bbf6d543c2c08fd0aaca00419.jpg)' : 'url(/images/cta/jordan-cta.jpg)'"
          style="background-size: cover; background-position: center;">
   <div class="container position-relative z-2 py-3">
     <h3 class="text-uppercase fw-bold mb-2 text-white">Ready To Explore {{ slug() }}?</h3>

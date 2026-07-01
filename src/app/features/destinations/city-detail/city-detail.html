@@ -1,1 +1,180 @@
-<p>city-detail works!</p>
+@if (cityData(); as city) {
+
+  <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+  <section class="city-hero" [style.background-image]="'url(' + city.image + ')'">
+    <div class="city-hero__overlay"></div>
+    <div class="city-hero__content container">
+
+      <!-- Breadcrumb -->
+      <nav class="city-hero__breadcrumb" aria-label="Breadcrumb">
+        <a routerLink="/">Home</a>
+        <span>›</span>
+        <a routerLink="/destinations">Destinations</a>
+        <span>›</span>
+        <!-- 🔥 تم التعديل هنا: استخدام slug() بدلاً من country() -->
+        <a [routerLink]="['/destinations', slug()]">{{ countryName() }}</a>
+        <span>›</span>
+        <span>{{ city.name }}</span>
+      </nav>
+
+      <h1 class="city-hero__title">{{ city.name }}</h1>
+      <p class="city-hero__about">{{ city.about }}</p>
+
+      <div class="city-hero__actions">
+        <a routerLink="/tailor-made" class="btn-primary">Plan My Trip</a>
+        <!-- 🔥 تم التعديل هنا أيضاً: استخدام slug() بدلاً من country() -->
+        <a [routerLink]="['/destinations', slug()]" class="btn-outline">
+          Explore {{ countryName() }}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TABS (show only if both types exist) ══════════════════════════════ -->
+  @if (packageCount() > 0 || dayTourCount() > 0) {
+    <section class="city-tabs">
+      <div class="city-tabs__container container">
+
+        <div class="city-tabs__buttons">
+          <!-- Package tab -->
+          <button
+            class="city-tabs__btn"
+            [class.active]="activeTab() === 'package'"
+            (click)="setTab('package')"
+          >
+            <span class="tab-icon">🗺️</span>
+            Tour Packages
+            @if (packageCount() > 0) {
+              <span class="tab-badge">{{ packageCount() }}</span>
+            }
+          </button>
+
+          <!-- Day tour tab -->
+          <button
+            class="city-tabs__btn"
+            [class.active]="activeTab() === 'day-tour'"
+            (click)="setTab('day-tour')"
+          >
+            <span class="tab-icon">☀️</span>
+            Day Tours
+            @if (dayTourCount() > 0) {
+              <span class="tab-badge">{{ dayTourCount() }}</span>
+            }
+          </button>
+        </div>
+
+        <p class="city-tabs__label">
+          Find the perfect {{ activeTab() === 'package' ? 'multi-day package' : 'day tour' }}
+          for {{ city.name }}
+        </p>
+      </div>
+    </section>
+  }
+
+  <!-- ══ TOURS GRID ════════════════════════════════════════════════════════ -->
+  <section class="city-tours">
+    <div class="container">
+
+      @if (filteredTours().length > 0) {
+
+        <div class="city-tours__grid">
+          @for (tour of filteredTours(); track tour.id) {
+            <article class="tour-card">
+
+              <!-- Image -->
+              <div class="tour-card__img-wrap">
+                <img [src]="tour.image" [alt]="tour.title" loading="lazy" />
+                <span class="tour-card__tag">{{ tour.featuredTag }}</span>
+                @if (tour.isFeatured) {
+                  <span class="tour-card__featured">⭐ Featured</span>
+                }
+              </div>
+
+              <!-- Body -->
+              <div class="tour-card__body">
+                <h3 class="tour-card__title">{{ tour.title }}</h3>
+                <p class="tour-card__full-title">{{ tour.fullTitle }}</p>
+
+                <div class="tour-card__meta">
+                  <span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="4" width="18" height="18" rx="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8"  y1="2" x2="8"  y2="6"/>
+                      <line x1="3"  y1="10" x2="21" y2="10"/>
+                    </svg>
+                    {{ tour.duration }}
+                  </span>
+                  <span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    {{ tour.locations }}
+                  </span>
+                </div>
+
+                @if (tour.rating) {
+                  <div class="tour-card__rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-value">{{ tour.rating }}</span>
+                    <span class="review-count">({{ tour.reviewsCount }} reviews)</span>
+                  </div>
+                }
+
+                <div class="tour-card__footer">
+                  <div class="tour-card__price">
+                    <span class="from">From</span>
+                    <span class="amount">${{ tour.price }}</span>
+                  </div>
+                  <a [routerLink]="['/tours', tour.id]" class="tour-card__btn">
+                    View Details
+                  </a>
+                </div>
+              </div>
+
+            </article>
+          }
+        </div>
+
+      } @else {
+
+        <!-- Empty state when no tours for current tab -->
+        <div class="city-tours__empty">
+          <p>
+            No {{ activeTab() === 'package' ? 'packages' : 'day tours' }} available
+            for {{ city.name }} at the moment.
+          </p>
+          <a routerLink="/tailor-made" class="btn-primary">
+            Request a Custom Itinerary
+          </a>
+        </div>
+
+      }
+
+    </div>
+  </section>
+
+  <!-- ══ CTA BANNER ════════════════════════════════════════════════════════ -->
+  <section class="city-cta">
+    <div class="container city-cta__inner">
+      <div class="city-cta__text">
+        <h2>Ready to Explore {{ city.name }}?</h2>
+        <p>Let us create the perfect journey for you.</p>
+      </div>
+      <a routerLink="/tailor-made" class="btn-primary">Plan Your Trip →</a>
+    </div>
+  </section>
+
+} @else {
+
+  <!-- City not found -->
+  <div class="city-not-found container">
+    <h2>Destination not found</h2>
+    <p>The city you are looking for does not exist or has been removed.</p>
+    <a routerLink="/destinations" class="btn-primary">Browse All Destinations</a>
+  </div>
+
+}

@@ -24,7 +24,7 @@ export const routes: Routes = [
   {
     path: 'destinations/:slug/:cityName',
     loadComponent: () => 
-      import('./features/destinations/city-detail/city-detail').then(m => m.CityDetail),
+      import('./features/destinations/city-detail/city-detail').then(m => m.CityDetailComponent),
     title: 'Explore City | Eastbound DMC'
   },
   {

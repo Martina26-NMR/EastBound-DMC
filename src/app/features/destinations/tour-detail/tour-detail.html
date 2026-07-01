@@ -1,13 +1,18 @@
 <div *ngIf="tour" class="tour-detail-page pb-5">
-  <nav class="eb-breadcrumb">
-  <div class="breadcrumb-item"><a href="/home">Home</a></div>
-<div class="breadcrumb-item">
-  <a [routerLink]="['/destinations', tour?.destinationId]">
-    {{ tour?.destinationId || 'Tours' }}
-  </a>
+
+
+<nav class="eb-breadcrumb mx-4">
+<div class="breadcrumb-item"><a href="/home">Home</a></div>
+<div class="breadcrumb-item mx-2">
+<a [routerLink]="['/destinations', tour?.destinationId?.replace('dest-', '')]">
+ Destination
+</a>
 </div>
-  <div class="breadcrumb-item active">10-Day Cairo & Nile Cruise</div>
+<div class="breadcrumb-item active">10-Day Cairo & Nile Cruise</div>
 </nav>
+
+
+
   <!-- 1. Creative Hero Section (Dynamic Floating Image Frame) -->
   <div class="hero-creative-section position-relative py-5">
     <div class="container position-relative z-index-10 px-4">

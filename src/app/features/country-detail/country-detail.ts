@@ -2,6 +2,7 @@ import { Component, inject, input, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TourService, Tour } from '../../core/services/tour.service'; 
+import { DestinationService } from '../../core/services/destination.service';
 
 @Component({
   selector: 'app-country-detail',
@@ -11,56 +12,31 @@ import { TourService, Tour } from '../../core/services/tour.service';
   styleUrls: ['./country-detail.scss']
 })
 export class CountryDetail {
+  private destinationService = inject(DestinationService);
   private tourService = inject(TourService);
+  
   slug = input.required<string>(); 
 
   activeTab = signal<'package' | 'day-tour'>('package');
-  
   selectedCity = signal<string>('all');
-
   isLoading = signal<boolean>(false);
   currentSort = signal<string>('featured');
 
-  // دالة الـ Sort الجديدة المتوافقة مع الـ HTML Dropdown
-  onSortChange(sortBy: string) {
-    this.isLoading.set(true);
-    this.currentSort.set(sortBy);
-
-    setTimeout(() => {
-      this.isLoading.set(false);
-    }, 400);
-  }
-
+  // 1. حساب الـ ID الخاص بالدولة لمطابقة الـ TourService
   private destinationId = computed(() => `dest-${this.slug().toLowerCase()}`);
 
+  // 2. جلب لستة المدن الحقيقية والديناميكية بالكامل من السيرفس (تم حل التكرار وقراءة الـ Interface الموحد)
+  topDestinationsList = computed(() => 
+    this.destinationService.getCitiesByCountry(this.slug())
+  );
+
+  // 3. استخراج خيارات المدن للفلاتر ديناميكياً من نفس بيانات السيرفس بدل الـ Hardcoded arrays
   citiesOptions = computed(() => {
-    if (this.slug().toLowerCase() === 'egypt') {
-      return ['Cairo', 'Luxor', 'Aswan', 'Giza', 'Red Sea'];
-    } else {
-      return ['Amman', 'Petra', 'Wadi Rum', 'Dead Sea'];
-    }
+    const cities = this.topDestinationsList();
+    return cities.map(c => c.name);
   });
 
-  // 👈 إضافة داتا الـ Top Destinations للبلد المفتوح بالوصف المكتوب في الديزاين بالظبط
-  topDestinationsList = computed(() => {
-    if (this.slug().toLowerCase() === 'egypt') {
-      return [
-        { name: 'Cairo', desc: 'The Pyramids, Museums and Old Cairo', img: '/images/destinations/cairo.jpg' },
-        { name: 'Luxor', desc: 'Temples, Tombs and Ancient History', img: '/images/destinations/luxor.jpg' },
-        { name: 'Aswan', desc: 'Nile Beauty and Nubian Culture', img: '/images/destinations/aswan.jpg' },
-        { name: 'Sharm El Sheikh', desc: 'Red Sea Beaches and Water Activities', img: '/images/destinations/sharm.jpg' }
-      ];
-    } else {
-      return [
-        { name: 'Petra', desc: 'The Rose City and UNESCO Wonder', img: '/images/destinations/petra.jpg' },
-        { name: 'Wadi Rum', desc: 'Desert Adventures and Stargazing', img: '/images/destinations/wadi-rum.jpg' },
-        { name: 'Dead Sea', desc: 'Relax, Float and Rejuvenate', img: '/images/destinations/dead-sea.jpg' },
-        { name: 'Amman', desc: 'Culture, History and Modern Life', img: '/images/destinations/amman.jpg' }
-      ];
-    }
-  });
-
-  // 👈 إضافة داتا الـ Testimonial مطابقة للبلد عشان تظهر تحت
+  // 4. التقييمات (Testimonials) بناءً على الدولة الحالية
   testimonial = computed(() => {
     if (this.slug().toLowerCase() === 'egypt') {
       return {
@@ -77,21 +53,45 @@ export class CountryDetail {
     }
   });
 
+  // 5. الفلترة والترتيب الصحيح للرحلات
   filteredTours = computed(() => {
     let tours = this.tourService.getToursByDestinationAndType(this.destinationId(), this.activeTab());
     
     if (this.selectedCity() !== 'all') {
       tours = tours.filter(t => t.locations.toLowerCase().includes(this.selectedCity().toLowerCase()));
     }
+
+    if (this.currentSort() === 'priceLow') {
+      tours = [...tours].sort((a, b) => a.price - b.price);
+    } else if (this.currentSort() === 'priceHigh') {
+      tours = [...tours].sort((a, b) => b.price - a.price);
+    }
     
     return tours;
   });
 
-  setTab(type: 'package' | 'day-tour') {
-    this.activeTab.set(type);
+  // تغيير الـ Sort
+  onSortChange(sortBy: 'featured' | 'priceLow' | 'priceHigh') {
+    this.currentSort.set(sortBy);
   }
 
+  // تشغيل الـ Skeleton loader عند تغيير الـ Tab
+  setTab(type: 'package' | 'day-tour') {
+    this.isLoading.set(true);
+    this.activeTab.set(type);
+    
+    setTimeout(() => {
+      this.isLoading.set(false);
+    }, 500);
+  }
+
+  // تشغيل الـ Skeleton loader عند تغيير المدينة
   setCity(city: string) {
+    this.isLoading.set(true);
     this.selectedCity.set(city);
+
+    setTimeout(() => {
+      this.isLoading.set(false);
+    }, 500);
   }
 }

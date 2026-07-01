@@ -7,9 +7,9 @@ import { Injectable, signal, computed } from '@angular/core';
 /** Single day in a tour itinerary */
 export interface ItineraryDay {
   day: number;
-  title: string;       // e.g. "Giza Pyramids & Egyptian Museum"
-  description: string; // intro line for the day
-  highlights: string[]; // bullet points (places/activities visited)
+  title: string;       
+  description: string; 
+  highlights: string[]; 
 }
 
 /** Main Tour model */
@@ -63,7 +63,7 @@ export class TourService {
       duration: '10 Days / 9 Nights',
       locations: 'Cairo, Aswan, Luxor, Hurghada',
       price: 1450,
-      image: '/images/tours/egypt-cairo-cruise-hurghada.webp',
+      image: '/images/tour-package-egypt/cairo nile cruise.webp',
       isFeatured: true,
       rating: 4.9,
       reviewsCount: 88,
@@ -104,7 +104,7 @@ export class TourService {
       duration: '6 Days / 5 Nights',
       locations: 'Cairo, Luxor',
       price: 1090,
-      image: '/images/tours/egypt-cairo-luxor.webp',
+      image: '/images/tour-package-egypt/classic egypt.webp',
       isFeatured: true,
       rating: 4.8,
       reviewsCount: 76,
@@ -141,7 +141,7 @@ export class TourService {
       duration: '8 Days / 7 Nights',
       locations: 'Cairo, Aswan, Luxor',
       price: 1250,
-      image: '/images/tours/egypt-cairo-cruise-8d.webp',
+      image: '/images/tour-package-egypt/egypt luxery sceape.webp',
       isFeatured: true,
       rating: 4.9,
       reviewsCount: 120,
@@ -180,7 +180,7 @@ export class TourService {
       duration: '7 Days / 6 Nights',
       locations: 'Cairo, Aswan, Luxor',
       price: 1150,
-      image: '/images/tours/egypt-cairo-cruise-7d.webp',
+      image: '/images/tour-package-egypt/family egypt tour.webp',
       isFeatured: false,
       rating: 4.8,
       reviewsCount: 64,
@@ -209,7 +209,7 @@ export class TourService {
     },
 
     // ════════════════════════════════════════
-    //  EGYPT DAY TOURS
+    //  EGYPT DAY TOURS 6 tours
     // ════════════════════════════════════════
 
     {
@@ -222,7 +222,7 @@ export class TourService {
       duration: '1 Day',
       locations: 'Cairo',
       price: 65,
-      image: '/images/tours/egypt-islamic-cairo-day.webp',
+      image: '/images/day-tour-egypt/1 CAIRO.webp',
       isFeatured: true,
       rating: 4.9,
       reviewsCount: 47,
@@ -269,7 +269,7 @@ export class TourService {
       duration: '1 Day',
       locations: 'Giza, Cairo',
       price: 75,
-      image: '/images/tours/egypt-saqqara-dahshur-day.webp',
+      image: '/images/day-tour-egypt/2Giza.webp',
       isFeatured: true,
       rating: 4.8,
       reviewsCount: 33,
@@ -315,7 +315,7 @@ export class TourService {
       duration: '1 Day',
       locations: 'Cairo',
       price: 85,
-      image: '/images/tours/egypt-fayoum-day.webp',
+      image: '/images/day-tour-egypt/3 fayom.webp',
       isFeatured: false,
       rating: 4.8,
       reviewsCount: 28,
@@ -360,7 +360,7 @@ export class TourService {
       duration: '1 Day',
       locations: 'Cairo',
       price: 90,
-      image: '/images/tours/egypt-alexandria-day.webp',
+      image: '/images/day-tour-egypt/4 alex.webp',
       isFeatured: true,
       rating: 4.9,
       reviewsCount: 52,
@@ -406,7 +406,7 @@ export class TourService {
       duration: '1 Day',
       locations: 'Aswan',
       price: 70,
-      image: '/images/tours/egypt-aswan-day.webp',
+      image: '/images/day-tour-egypt/5 aswan.webp',
       isFeatured: false,
       rating: 4.9,
       reviewsCount: 41,
@@ -451,7 +451,7 @@ export class TourService {
       duration: '1 Day',
       locations: 'Luxor',
       price: 75,
-      image: '/images/tours/egypt-luxor-westbank-day.webp',
+      image: '/images/day-tour-egypt/6 LUXAR.webp',
       isFeatured: false,
       rating: 4.9,
       reviewsCount: 38,
@@ -501,7 +501,7 @@ export class TourService {
       duration: '4 Days / 3 Nights',
       locations: 'Amman, Petra, Wadi Rum, Dead Sea',
       price: 750,
-      image: '/images/tours/jordan-petra-wadirum-4d.webp',
+      image: '/images/Tour-package-jordan/1.webp',
       isFeatured: true,
       rating: 4.9,
       reviewsCount: 112,
@@ -536,7 +536,7 @@ export class TourService {
       duration: '3 Days / 2 Nights',
       locations: 'Amman, Petra',
       price: 590,
-      image: '/images/tours/jordan-petra-3d.webp',
+      image: '/images/Tour-package-jordan/2 PETRA.webp',
       isFeatured: false,
       rating: 4.7,
       reviewsCount: 41,
@@ -570,7 +570,7 @@ export class TourService {
       duration: '5 Days / 4 Nights',
       locations: 'Amman, Madaba, Petra, Wadi Rum, Dead Sea',
       price: 890,
-      image: '/images/tours/jordan-best-of-5d.webp',
+      image: '/images/Tour-package-jordan/3 DEAD SEA.webp',
       isFeatured: true,
       rating: 4.8,
       reviewsCount: 98,
@@ -606,7 +606,7 @@ export class TourService {
       duration: '7 Days / 6 Nights',
       locations: 'Amman, Jerash, Ajloun, Madaba, Petra, Wadi Rum, Dead Sea',
       price: 1290,
-      image: '/images/tours/jordan-majestic-7d.webp',
+      image: '/images/Tour-package-jordan/4 AMMAN - Copy.webp',
       isFeatured: false,
       rating: 4.9,
       reviewsCount: 53,
@@ -644,7 +644,7 @@ export class TourService {
       duration: '6 Days / 5 Nights',
       locations: 'Amman, Jerash, Ajloun, Madaba, Petra, Wadi Rum, Dead Sea',
       price: 1150,
-      image: '/images/tours/jordan-timeless-6d.webp',
+      image: '/images/Tour-package-jordan/4 jerash - Copy.webp',
       isFeatured: false,
       rating: 4.7,
       reviewsCount: 39,
@@ -672,7 +672,7 @@ export class TourService {
     },
 
     // ════════════════════════════════════════
-    //  JORDAN DAY TOURS
+    //  JORDAN DAY TOURS 4 tours 
     // ════════════════════════════════════════
     {
       id: 'tour-jo-main-hotsprings-1d',
@@ -684,7 +684,7 @@ export class TourService {
       duration: '1 Day',
       locations: "Amman, Ma'in",
       price: 95,
-      image: '/images/tours/jordan-main-hotsprings.webp',
+      image: '/images/Day-tour-jordan/2wadi rum.webp',
       isFeatured: false,
       rating: 4.6,
       reviewsCount: 27,
@@ -719,7 +719,7 @@ export class TourService {
       duration: '1 Day',
       locations: 'Wadi Rum',
       price: 80,
-      image: '/images/tours/jordan-wadirum-day.webp',
+      image: '/images/Day-tour-jordan/3 jerash.webp',
       isFeatured: true,
       rating: 4.9,
       reviewsCount: 64,
@@ -754,7 +754,7 @@ export class TourService {
       duration: '1 Day',
       locations: 'Jerash',
       price: 70,
-      image: '/images/tours/jordan-jerash-day.webp',
+      image: '/images/Day-tour-jordan/4 aqaba.webp',
       isFeatured: false,
       rating: 4.8,
       reviewsCount: 19,
@@ -788,7 +788,7 @@ export class TourService {
       duration: '1 Day',
       locations: 'Aqaba',
       price: 110,
-      image: '/images/tours/jordan-aqaba-fishing.webp',
+      image: '/images/Day-tour-jordan/amman.webp',
       isFeatured: false,
       rating: 4.7,
       reviewsCount: 14,
