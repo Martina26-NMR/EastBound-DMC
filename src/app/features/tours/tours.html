@@ -1,1 +1,199 @@
-<p>tours works!</p>
+<section class="tours-premium-hero">
+  <div class="hero-blur-overlay"></div>
+  <div class="container hero-wrapper">
+    <div class="hero-text-content">
+      
+      <!-- الـ Breadcrumb المودرن -->
+      <nav class="tours-breadcrumb" aria-label="Breadcrumb">
+        <a routerLink="/">Home</a>
+        <span class="sep">/</span>
+        <span class="active">Tours</span>
+      </nav>
+
+      <!-- العنوان الرئيسي والفرعي بتنسيق مريح للعين -->
+      <h1 class="hero-display-title">Our Tours</h1>
+      <p class="hero-lead-text">
+        Handpicked premium experiences across Egypt and Jordan. Custom-crafted for your ultimate adventure.
+      </p>
+
+    </div>
+  </div>
+</section>
+<section class="tours-main py-5 bg-light">
+  <div class="container">
+    <div class="row g-4">
+      
+      <aside class="col-lg-3">
+        <div class="filter-sidebar p-4 bg-white rounded-4 shadow-sm border">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="fw-bold text-navy mb-0">Filter Tours</h5>
+            <i class="bi bi-sliders text-muted"></i>
+          </div>
+
+          <div class="filter-group mb-4">
+            <h6 class="fw-bold text-navy mb-3">Destination</h6>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="destEgypt" (change)="toggleDestination('egypt')">
+              <label class="form-check-label" for="destEgypt">Egypt</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="destJordan" (change)="toggleDestination('jordan')">
+              <label class="form-check-label" for="destJordan">Jordan</label>
+            </div>
+          </div>
+
+          <div class="filter-group mb-4">
+            <h6 class="fw-bold text-navy mb-3">Tour Type</h6>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="typePkg" (change)="toggleType('package')">
+              <label class="form-check-label" for="typePkg">Multi-day Packages</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="typeDay" (change)="toggleType('day-tour')">
+              <label class="form-check-label" for="typeDay">Day Tours</label>
+            </div>
+          </div>
+
+          <div class="filter-group mb-4">
+            <h6 class="fw-bold text-navy mb-3">Duration</h6>
+            @for (range of ['1-3', '4-7', '8-10', '10+']; track range) {
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" [id]="'dur-' + range" (change)="toggleDuration(range)">
+                <label class="form-check-label" [for]="'dur-' + range">{{ range }} Days</label>
+              </div>
+            }
+          </div>
+
+          <div class="filter-group mb-4">
+            <h6 class="fw-bold text-navy mb-2">Price Range</h6>
+            <input type="range" class="form-range" min="200" max="3000" step="50" 
+                   [ngModel]="maxPrice()" (ngModelChange)="maxPrice.set($event)">
+            <div class="d-flex justify-content-between text-muted small mt-1">
+              <span>$200</span>
+              <span class="fw-bold text-navy">${{ maxPrice() }}</span>
+            </div>
+          </div>
+
+          <button class="btn btn-outline-danger w-100 rounded-pill mt-2" (click)="resetFilters()">
+            Reset Filters
+          </button>
+        </div>
+
+        <div class="need-help-box text-center p-4 bg-white rounded-4 shadow-sm border mt-4">
+          <div class="icon mb-2">📞</div>
+          <h6 class="fw-bold text-navy">Need Help?</h6>
+          <p class="text-muted small">We're here to help you</p>
+          <a href="tel:+2015634767810" class="fw-bold text-danger text-decoration-none">+20 156 3476 7810</a>
+        </div>
+      </aside>
+
+      <main class="col-lg-9">
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+          <div>
+            <h2 class="h4 fw-bold text-navy mb-1">Explore Our Tours</h2>
+            <p class="text-muted small mb-0">Find the perfect tour package for your next adventure.</p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="text-muted small text-nowrap">Sort by:</span>
+            <select class="form-select form-select-sm rounded-3" [ngModel]="sortBy()" (ngModelChange)="sortBy.set($event)">
+              <option value="recommended">Recommended</option>
+              <option value="priceLow">Price: Low to High</option>
+              <option value="priceHigh">Price: High to Low</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          @for (tour of filteredTours(); track tour.id) {
+            <div class="col-md-6 col-xl-4">
+              <article class="tour-card bg-white rounded-4 overflow-hidden border shadow-sm h-100 d-flex flex-column">
+                <div class="position-relative overflow-hidden" style="height: 200px;">
+                  <img [src]="tour.image" [alt]="tour.title" class="w-100 h-100 object-fit-cover tour-img" />
+                  @if (tour.isFeatured) {
+                    <span class="badge bg-danger position-absolute top-3 start-3 rounded-2">Best Seller</span>
+                  }
+                  <button class="btn btn-light btn-sm rounded-circle position-absolute top-3 end-3 shadow-sm">
+                    <i class="bi bi-heart"></i>
+                  </button>
+                </div>
+                
+                <div class="p-3 d-flex flex-column flex-grow-1">
+                  <h3 class="h6 fw-bold text-navy mb-2 text-truncate-2">{{ tour.title }}</h3>
+                  <div class="d-flex align-items-center gap-2 text-muted small mb-2">
+                    <i class="bi bi-geo-alt-fill text-danger small"></i>
+                    <span>{{ tour.locations }}</span>
+                  </div>
+                  <div class="d-flex align-items-center gap-2 text-muted small mb-3">
+                    <i class="bi bi-clock-fill text-warning small"></i>
+                    <span>{{ tour.duration }}</span>
+                  </div>
+                  
+                  <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+                    <div>
+                      <span class="text-muted small d-block lh-1">From</span>
+                      <span class="h5 fw-extrabold text-navy mb-0">${{ tour.price }}</span>
+                    </div>
+                    <a [routerLink]="['/tours', tour.id]" class="btn btn-navy btn-sm rounded-pill px-3">
+                      View details →
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          } @empty {
+            <div class="col-12 text-center py-5">
+              <p class="text-muted fs-5">No tours match your filter selection.</p>
+              <button class="btn btn-navy rounded-pill" (click)="resetFilters()">Clear Filters</button>
+            </div>
+          }
+        </div>
+      </main>
+
+    </div>
+  </div>
+</section>
+
+<section class="features-bar py-4 bg-white border-top border-bottom">
+  <div class="container">
+    <div class="row g-3 text-center text-md-start">
+      <div class="col-sm-6 col-md-3 d-flex align-items-center gap-3 justify-content-center justify-content-md-start">
+        <div class="fs-2 text-danger">🛡️</div>
+        <div>
+          <h6 class="fw-bold text-navy mb-0">Best Price Guarantee</h6>
+          <p class="text-muted small mb-0">We offer the best prices with no hidden fees</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3 d-flex align-items-center gap-3 justify-content-center justify-content-md-start">
+        <div class="fs-2 text-danger">📞</div>
+        <div>
+          <h6 class="fw-bold text-navy mb-0">24/7 Support</h6>
+          <p class="text-muted small mb-0">Our team is available anytime anywhere</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3 d-flex align-items-center gap-3 justify-content-center justify-content-md-start">
+        <div class="fs-2 text-danger">🗺️</div>
+        <div>
+          <h6 class="fw-bold text-navy mb-0">Custom Itineraries</h6>
+          <p class="text-muted small mb-0">Tailor Made tours just for you.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3 d-flex align-items-center gap-3 justify-content-center justify-content-md-start">
+        <div class="fs-2 text-danger">🤠</div>
+        <div>
+          <h6 class="fw-bold text-navy mb-0">Expert Local Guides</h6>
+          <p class="text-muted small mb-0">Professional guides for an authentic experience</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner py-5" style="background: linear-gradient(135deg, #0a192f 0%, #172a45 100%);">
+  <div class="container text-center text-white py-4 position-relative">
+    <h2 class="fw-bold mb-2 h3">Ready to Start Your Journey?</h2>
+    <p class="text-white-50 mb-4">Let us create the perfect itinerary for you.</p>
+    <a routerLink="/tailor-made" class="btn btn-danger btn-lg rounded-pill px-5 fw-bold fs-6 shadow">
+      Get a Free Quote
+    </a>
+  </div>
+</section>

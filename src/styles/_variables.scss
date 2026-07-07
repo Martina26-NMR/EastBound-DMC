@@ -1,23 +1,34 @@
 // ==========================================================================
-// Eastbound DMC - Brand Colors (حسب الـ Guidelines لصفحة 7)
+// Eastbound DMC - Brand Colors (حسب الـ Guidelines صفحة 7)
 // ==========================================================================
-$color-primary-navy: #0f1c3f;      // Deep Navy - اللون الأساسي الملوكي
-$color-secondary-gold: #c5a880;    // Warm Gold/Sand - ألوان الصحراء والفخامة
-$color-accent-yellow: #fdc938;     // Bright Yellow - للإضاءات والـ CTA المهمة
-$color-text-dark: #2b2b2b;         // مريح للعين في القراءة
-$color-text-light: #ffffff;
-$color-bg-light: #f9f9f9;          // خلفية السيكشنز الفاتحة
-$color-bg-white: #ffffff;
+$color-primary-navy:   #0f1c3f;
+$color-secondary-gold: #c5a880;
+$color-accent-yellow:  #fdc938;
+$color-text-dark:      #2b2b2b;
+$color-text-light:     #ffffff;
+$color-bg-light:       #f9f9f9;
+$color-bg-white:       #ffffff;
+
+// ── Aliases (shorthand للاستخدام في الـ components) ──────────────────────
+$navy:     $color-primary-navy;    // #0f1c3f
+$gold:     $color-secondary-gold;  // #c5a880
+$cream:    #FAF8F5;
+$dark-red: #A81B24;
+$red:      #A81B24;
+$white:    $color-text-light;      // #ffffff
 
 // ==========================================================================
-// Typography & Fonts (حسب الـ Guidelines لصفحة 9)
+// Typography (حسب الـ Guidelines صفحة 9)
 // ==========================================================================
-$font-headings: 'Cinzel', serif;            // للـ Headlines الكبيرة والبرستيج
-$font-body: 'Myriad Pro', sans-serif;       // للقراءة والنصوص الطويلة والـ Cards
-$font-arabic: 'Simplified Arabic', sans-serif; // في حال وجود نصوص عربية
+$font-headings: 'Cinzel', serif;
+$font-body:     'Inter', sans-serif;
+$font-arabic:   'Simplified Arabic', sans-serif;
+
+// ── Alias ────────────────────────────────────────────────────────────────
+$font-heading: $font-headings;   // بعض الـ components بتستخدم $font-heading (بدون s)
 
 // ==========================================================================
-// Responsive Breakpoints (Mobile First Approach)
+// Breakpoints
 // ==========================================================================
 $breakpoint-sm: 576px;
 $breakpoint-md: 768px;
@@ -25,12 +36,18 @@ $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 
 // ==========================================================================
-// Mixins (لتوفير السطور وكتابة Clean Code)
+// Mixins
 // ==========================================================================
 @mixin flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 @mixin respond-to($breakpoint) {
@@ -42,4 +59,13 @@ $breakpoint-xl: 1200px;
 
 @mixin transition-smooth {
   transition: all 0.3s ease-in-out;
+}
+
+@mixin overlay-gradient($direction: to top) {
+  background: linear-gradient(
+    #{$direction},
+    rgba(0,0,0,0.75) 0%,
+    rgba(0,0,0,0.2)  60%,
+    transparent      100%
+  );
 }

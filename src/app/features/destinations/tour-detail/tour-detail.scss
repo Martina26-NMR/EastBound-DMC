@@ -47,41 +47,23 @@ $font-arabic:   'Simplified Arabic', serif;
 
 
    // الـ Breadcrumb الفخم المتناسق مع المود الأبيض
-.eb-breadcrumb {
-  padding: 1.5rem 0 0.5rem 0;
-  font-size: 0.8rem;
-  font-family: $font-body;
-  letter-spacing: 0.03em;
+.tour-hero__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 
-  .breadcrumb-item {
-    color: #c5a46d;
-    display: inline-flex;
-    align-items: center;
-
-    a {
+  a, span {
+    display: inline-block;
       color:  #c5a46d;
       text-decoration: none;
       transition: color 0.25s ease;
 
       &:hover {
-        color: $eb-red; // يقلب أحمر البراند المعتمد عند الـ Hover
+        color: $eb-red; 
       }
-    }
-
-    // الفاصل بين العناصر (سهم ناعم وبسيط)
-    &:not(:last-child)::after {
-     // أو يمكنكِ استخدام أيقونة FontAwesome مثل '\f105'
-      margin: 0 10px;
-      color: rgba(0, 0, 0, 0.15);
-    }
-
-    // العنصر الأخير النشط (اسم الرحلة الحالية)
-    &.active {
-      color: $eb-black;
-      font-weight: 500;
-    }
   }
 }
+
 .eb-logo {
     display: inline-block;
     width: 100%;

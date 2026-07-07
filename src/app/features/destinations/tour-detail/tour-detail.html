@@ -1,15 +1,20 @@
 <div *ngIf="tour" class="tour-detail-page pb-5">
 
 
-<nav class="eb-breadcrumb mx-4">
-<div class="breadcrumb-item"><a href="/home">Home</a></div>
-<div class="breadcrumb-item mx-2">
-<a [routerLink]="['/destinations', tour?.destinationId?.replace('dest-', '')]">
- Destination
-</a>
-</div>
-<div class="breadcrumb-item active">10-Day Cairo & Nile Cruise</div>
+<nav class="tour-hero__breadcrumb p-4" aria-label="Breadcrumb">
+  <a routerLink="/">Home</a>
+  <span>›</span>
+
+  @if (router.url.includes('destinations')) {
+    <a routerLink="/destinations">Destinations</a>
+  } @else {
+    <a routerLink="/tours">Tours</a>
+  }
+
+  <span>›</span>
+  <span class="active breadcrumb-item">{{ tour.title }}</span>
 </nav>
+
 
 
 

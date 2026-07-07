@@ -81,7 +81,8 @@
     <div class="row g-4 overflow-hidden px-2">
       @for (city of filteredCities(); track city.id) {
         <div class="col-12 col-md-6 col-lg-3">
-          <div #scrollCard class="destination-card cinematic-card position-relative rounded-4 overflow-hidden shadow-sm" [routerLink]="['/destinations', city.countrySlug]">
+<div #scrollCard class="destination-card cinematic-card position-relative rounded-4 overflow-hidden shadow-sm" 
+     [routerLink]="['/destinations', city.countrySlug, city.slug]">
             <div class="card-img-wrapper h-100 w-100">
               <img [src]="city.image" [alt]="city.name" class="w-100 h-100 object-cover card-img-main" 
                    onerror="this.src='https://images.unsplash.com/photo-1539650116574-8efeb43e2750?w=600'">

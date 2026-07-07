@@ -1,0 +1,319 @@
+// ==========================================================================
+// EASTBOUND - TOURS PAGE PREMIUM STYLES
+// ==========================================================================
+
+// Variables & Palette
+$navy-dark:    #0a192f;
+$navy-light:   #172a45;
+$accent-gold:  #d4af37;
+$accent-red:   #e63946; // اللون الأحمر المميز في اللوجو والأزرار
+$text-main:    #333333;
+$text-muted:   #64748b;
+$transition:   all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+
+
+// الكلاسات العامة المساعدة
+.text-navy { color: $navy-dark; }
+.btn-navy {
+  background-color: $navy-dark;
+  color: #ffffff;
+  border: 1px solid $navy-dark;
+  transition: $transition;
+  &:hover {
+    background-color: $navy-light;
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+}
+
+// ── 1. HERO SECTION ───────────────────────────────────────────────────────
+// .tours-hero {
+//   position: relative;
+//   min-height: 45vh;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   background-image: url('/images/tours-hero-bg.jpg'); // حطي مسار صورة الخلفية المناسبة هنا
+//   background-size: cover;
+//   background-position: center;
+//   color: #ffffff;
+//   padding: 5rem 0 3rem;
+
+//   &__overlay {
+//     position: absolute;
+//     inset: 0;
+//     background: linear-gradient(180deg, rgba($navy-dark, 0.4) 0%, rgba($navy-dark, 0.75) 100%);
+//     z-index: 1;
+//   }
+
+//   &__content {
+//     position: relative;
+//     z-index: 2;
+//   }
+
+//   &__breadcrumb {
+//     font-size: 0.9rem;
+//     text-transform: uppercase;
+//     letter-spacing: 1px;
+//     margin-bottom: 1rem;
+//     a {
+//       color: rgba(255, 255, 255, 0.8);
+//       text-decoration: none;
+//       transition: $transition;
+//       &:hover { color: $accent-gold; }
+//     }
+//     span {
+//       margin: 0 0.5rem;
+//       color: rgba(255, 255, 255, 0.4);
+//       &.active { color: #ffffff; font-weight: 500; }
+//     }
+//   }
+
+//   &__title {
+//     font-size: clamp(2.5rem, 5vw, 3.5rem);
+//     font-weight: 800;
+//     margin-bottom: 0.5rem;
+//   }
+
+//   &__sub {
+//     font-size: 1.1rem;
+//     color: #f1f5f9;
+//     opacity: 0.9;
+//   }
+// }
+
+// ── 1. PREMIUM TOURS HERO SECTION ─────────────────────────────────────────
+.tours-premium-hero {
+  position: relative;
+  // min-height: auto;
+  // height: 100vh;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+ background: url('/images/tours-hero.webp') no-repeat center center;
+background-size: cover;
+
+  background-attachment: fixed; // تأثير Parallax فخم أثناء السكرول
+  padding: 7rem 0 4rem;
+  color: #ffffff;
+
+  .hero-blur-overlay {
+    position: absolute;
+    inset: 0;
+    // تدرج لوني غامق من تحت عشان يربط مع السكشن اللي بعده بسلاسة
+    background: linear-gradient(
+      180deg, 
+      rgba(#0a192f, 0.45) 0%, 
+      rgba(#0a192f, 0.85) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-wrapper {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-text-content {
+    max-width: 650px;
+    animation: fadeInHero 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+}
+
+// تنسيق الـ Breadcrumb
+.tours-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.5rem;
+
+  a {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 500;
+
+    &:hover {
+      color: #d4af37; // ذهبي خفيف عند الهوفر
+    }
+  }
+
+  .sep {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .active {
+    color: #ffffff;
+    font-weight: 600;
+  }
+}
+
+// تيبوغرافيا العناوين
+.hero-display-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero-lead-text {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #f1f5f9;
+  opacity: 0.95;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+// أنيميشن ظهور ناعم وجذاب
+@keyframes fadeInHero {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ── 2. SIDEBAR FILTERS ────────────────────────────────────────────────────
+.filter-sidebar {
+  border-color: #e2e8f0 !important;
+  position: sticky;
+  top: 20px; // بيفضل ثابت مكانه أثناء السكرول
+
+  .filter-group {
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 1.25rem;
+    &:last-of-type { border-bottom: none; padding-bottom: 0; }
+  }
+
+  .form-check-input {
+    cursor: pointer;
+    &:checked {
+      background-color: $accent-red;
+      border-color: $accent-red;
+    }
+  }
+
+  .form-check-label {
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #475569;
+    transition: color 0.2s ease;
+    &:hover { color: $navy-dark; }
+  }
+
+  .form-range {
+    &::-webkit-slider-thumb { background: $accent-red; }
+    &::-moz-range-thumb { background: $accent-red; }
+    &::-ms-thumb { background: $accent-red; }
+  }
+}
+
+.need-help-box {
+  border-color: #e2e8f0 !important;
+  .icon {
+    font-size: 1.5rem;
+  }
+  a:hover {
+    text-decoration: underline !important;
+  }
+}
+
+// ── 3. TOURS GRID & LUXURY CARDS ──────────────────────────────────────────
+.tour-card {
+  transition: $transition;
+  border-color: #e2e8f0 !important;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba($navy-dark, 0.08) !important;
+    
+    .tour-img {
+      transform: scale(1.06);
+    }
+  }
+
+  .tour-img {
+    transition: transform 0.5s ease;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.4rem 0.75rem;
+    z-index: 2;
+  }
+
+  button {
+    z-index: 2;
+    transition: $transition;
+    color: $text-muted;
+    &:hover {
+      color: $accent-red;
+      background-color: #fff0f1;
+    }
+  }
+
+  .text-truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.6rem; // للحفاظ على محاذاة الكروت لو العنوان سطر أو سطرين
+  }
+
+  .fw-extrabold { font-weight: 800; }
+}
+
+// ── 4. FEATURES INFOGRAPHIC BAR ───────────────────────────────────────────
+.features-bar {
+  background: #ffffff;
+  
+  h6 {
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+  
+  p {
+    font-size: 0.8rem;
+    color: $text-muted;
+  }
+}
+
+// ── 5. PREMIUM CTA BANNER ─────────────────────────────────────────────────
+.cta-banner {
+  position: relative;
+  overflow: hidden;
+
+  // إضافة شكل جمالي خفيف في الخلفية (دائرة أوباستي خفيفة)
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 350px;
+    height: 350px;
+    background: rgba($accent-gold, 0.04);
+    border-radius: 50%;
+  }
+
+  .btn-danger {
+    background-color: $accent-red;
+    border-color: $accent-red;
+    transition: $transition;
+    
+    &:hover {
+      background-color: darkmediumred;
+      transform: scale(1.03);
+      box-shadow: 0 10px 20px rgba($accent-red, 0.3) !important;
+    }
+  }
+}
