@@ -27,87 +27,43 @@ $transition:   all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 }
 
-// ── 1. HERO SECTION ───────────────────────────────────────────────────────
-// .tours-hero {
-//   position: relative;
-//   min-height: 45vh;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   background-image: url('/images/tours-hero-bg.jpg'); // حطي مسار صورة الخلفية المناسبة هنا
-//   background-size: cover;
-//   background-position: center;
-//   color: #ffffff;
-//   padding: 5rem 0 3rem;
 
-//   &__overlay {
-//     position: absolute;
-//     inset: 0;
-//     background: linear-gradient(180deg, rgba($navy-dark, 0.4) 0%, rgba($navy-dark, 0.75) 100%);
-//     z-index: 1;
-//   }
+// ── 1. PREMIUM TOURS HERO SECTION (CREATIVE RESPONSIVE DESIGN) ─────────────────
 
-//   &__content {
-//     position: relative;
-//     z-index: 2;
-//   }
 
-//   &__breadcrumb {
-//     font-size: 0.9rem;
-//     text-transform: uppercase;
-//     letter-spacing: 1px;
-//     margin-bottom: 1rem;
-//     a {
-//       color: rgba(255, 255, 255, 0.8);
-//       text-decoration: none;
-//       transition: $transition;
-//       &:hover { color: $accent-gold; }
-//     }
-//     span {
-//       margin: 0 0.5rem;
-//       color: rgba(255, 255, 255, 0.4);
-//       &.active { color: #ffffff; font-weight: 500; }
-//     }
-//   }
-
-//   &__title {
-//     font-size: clamp(2.5rem, 5vw, 3.5rem);
-//     font-weight: 800;
-//     margin-bottom: 0.5rem;
-//   }
-
-//   &__sub {
-//     font-size: 1.1rem;
-//     color: #f1f5f9;
-//     opacity: 0.9;
-//   }
-// }
-
-// ── 1. PREMIUM TOURS HERO SECTION ─────────────────────────────────────────
 .tours-premium-hero {
   position: relative;
-  // min-height: auto;
-  // height: 100vh;
-  min-height: 60vh;
+  min-height: 75vh;
   display: flex;
   align-items: center;
- background: url('/images/tours-hero.webp') no-repeat center center;
-background-size: cover;
-
-  background-attachment: fixed; // تأثير Parallax فخم أثناء السكرول
-  padding: 7rem 0 4rem;
+  background: radial-gradient(circle at 80% 20%, $navy-light 0%, $navy-dark 100%);
+  // padding: 8rem 0 5rem;
   color: #ffffff;
+  overflow: hidden;
 
-  .hero-blur-overlay {
+  // الدوائر المضيئة الكريتيف في الخلفية
+  .bg-circle {
     position: absolute;
-    inset: 0;
-    // تدرج لوني غامق من تحت عشان يربط مع السكشن اللي بعده بسلاسة
-    background: linear-gradient(
-      180deg, 
-      rgba(#0a192f, 0.45) 0%, 
-      rgba(#0a192f, 0.85) 100%
-    );
+    border-radius: 50%;
+    filter: blur(80px);
     z-index: 1;
+    opacity: 0.15;
+    mix-blend-mode: screen;
+
+    &.circle-1 {
+      top: -10%;
+      right: 10%;
+      width: 400px;
+      height: 400px;
+      background: $accent-gold;
+    }
+    &.circle-2 {
+      bottom: -5%;
+      left: 5%;
+      width: 300px;
+      height: 300px;
+      background: $accent-red;
+    }
   }
 
   .hero-wrapper {
@@ -115,66 +71,133 @@ background-size: cover;
     z-index: 2;
   }
 
-  .hero-text-content {
-    max-width: 650px;
+  // الكارت الزجاجي الإبداعي للمحتوى
+  .hero-glass-card {
+    background: rgba(23, 42, 69, 0.4); // استخدام الـ $navy-light بشفافية
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     animation: fadeInHero 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-}
 
-// تنسيق الـ Breadcrumb
-.tours-breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 1.5rem;
-
-  a {
-    color: rgba(255, 255, 255, 0.75);
-    text-decoration: none;
-    transition: color 0.2s ease;
-    font-weight: 500;
-
-    &:hover {
-      color: #d4af37; // ذهبي خفيف عند الهوفر
+    // ستايل الكارت على الموبايل ليكون مريح جداً وبدون حواف ضخمة
+    @media (max-width: 576px) {
+      padding: 2rem 1.5rem;
+      background: rgba(23, 42, 69, 0.6); // زيادة الأوباستي قليلاً على الموبايل لسهولة القراءة
+      border-radius: 16px;
     }
   }
+}
 
-  .sep {
-    color: rgba(255, 255, 255, 0.3);
-  }
-
-  .active {
-    color: #ffffff;
-    font-weight: 600;
+// كلمة ملونة كـ Accent ناعم داخل العنوان
+.highlight-text {
+  color: $accent-gold;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba($accent-red, 0.4);
+    border-radius: 2px;
   }
 }
 
-// تيبوغرافيا العناوين
+// تيبوغرافيا العناوين مع سلاسة الحجم (Responsive Typography)
 .hero-display-title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
   font-weight: 800;
   letter-spacing: -1px;
-  line-height: 1.1;
-  margin-bottom: 1rem;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: #ffffff !important;
 }
 
 .hero-lead-text {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: #f1f5f9;
-  opacity: 0.95;
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: #e2e8f0;
   line-height: 1.6;
   font-weight: 400;
+  margin-bottom: 2rem;
 }
 
-// أنيميشن ظهور ناعم وجذاب
+// الإحصائيات الصغيرة السفلية في الهيرو
+.hero-mini-stats {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    
+    .stat-num {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: $accent-gold;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+// كارت الصورة الجانبي الإبداعي (الشاشات الكبيرة فقط)
+.hero-image-wrapper {
+  position: relative;
+  padding: 10px;
+  
+  .image-border-glow {
+    position: absolute;
+    inset: 0;
+    border: 2px dashed rgba($accent-gold, 0.25);
+    border-radius: 32px;
+    transform: rotate(-2deg);
+    animation: rotateGlow 20s linear infinite;
+  }
+
+  .hero-creative-img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 24px;
+    transform: rotate(1deg);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    transition: $transition;
+
+    &:hover {
+      transform: scale(1.02) rotate(0deg);
+    }
+  }
+}
+
+// أنيميشن حركة التوهج الخفيفة الخلفية
+@keyframes rotateGlow {
+  100% { transform: rotate(358deg); }
+}
+
 @keyframes fadeInHero {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -182,7 +205,16 @@ background-size: cover;
   }
 }
 
+// الباك جراوند فيكسد لابد أن يتم إلغاؤه في الموبايل لتجنب الـ glitches والتهنيج
+@media (max-width: 991px) {
+  .tours-premium-hero {
+    background-attachment: scroll !important;
+    min-height: auto;
+  }
+}
+
 // ── 2. SIDEBAR FILTERS ────────────────────────────────────────────────────
+
 .filter-sidebar {
   border-color: #e2e8f0 !important;
   position: sticky;
@@ -224,6 +256,56 @@ background-size: cover;
   }
   a:hover {
     text-decoration: underline !important;
+  }
+}
+
+// ── تعديل مخصص للموبايل فقط بدون تغيير الـ HTML ─────────────────
+@media (max-width: 991px) {
+  
+  // تحويل الفلتر لـ لسان أو تاب جانبي عايم يخرج كاملاً عند اللمس
+  .filter-sidebar {
+    position: fixed !important;
+    top: 20% !important; 
+    left: auto !important; // إلغاء الـ left تماماً
+    right: 0 !important;   // التثبيت أقصى اليمين
+    width: 300px !important; // عرض مناسب ومريح لشاشات الموبايل
+    height: auto !important;
+    max-height: 65vh !important; 
+    overflow-y: auto !important;
+    overflow-x: visible !important; 
+    z-index: 9999 !important;
+    background: #ffffff !important;
+    box-shadow: -5px 5px 25px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 16px 0 0 16px !important; // حواف دائرية جهة اليسار (الداخل)
+    
+    // إخفاء الفلتر جهة اليمين مع ترك جزء بسيط جداً آمن
+    transform: translateX(92%) !important; 
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    padding: 1.5rem !important;
+
+    // اللسان (التاب) الممسوك في الشاشة من اليمين
+    &::after {
+      content: "Filters 🔍" !important;
+      position: absolute !important;
+      top: 20px !important;
+      left: -81px !important; // يخرج بره الفلتر تماماً جهة اليسار ليبان جوه الشاشة
+      right: auto !important;
+      background-color: #0a192f !important; // لون النيفي الفخم بتاعك
+      color: #ffffff !important;
+      padding: 10px 14px !important;
+      font-size: 0.85rem !important;
+      font-weight: bold !important;
+      border-radius: 10px 0 0 10px !important; // الحواف الدائرية تكون جهة اليسار لتناسب التصميم
+      box-shadow: -3px 2px 10px rgba(0, 0, 0, 0.2) !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
+    }
+
+    // [التعديل السحري] - يرجع الفلتر لمكانه كاملاً 100% بدون ترحيل أو قطع
+    &:hover, &:focus-within {
+      left: auto !important; 
+      transform: translateX(0) !important; // إلغاء الإزاحة تماماً فيظهر الكارت كاملاً
+    }
   }
 }
 

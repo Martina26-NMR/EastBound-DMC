@@ -39,13 +39,12 @@ $transition:   all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
   min-height: 90vh;
   display: flex;
   align-items: center;
-  padding: 7rem 0 4rem;
   overflow: hidden;
 
   .tm-hero-bg {
     position: absolute;
     inset: 0;
-    background-image: url('/assets/images/tailor-made-hero.jpg'); 
+    background-image: url('/images/hero-tailormade.webp'); 
     background-size: cover;
     background-position: center 30%;
     z-index: 1;
@@ -57,7 +56,7 @@ $transition:   all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
     background: linear-gradient(90deg, rgba(#ffffff, 0.92) 30%, rgba(#ffffff, 0.6) 60%, rgba(#ffffff, 0) 100%);
     z-index: 2;
     @media (max-width: 991px) {
-      background: linear-gradient(180deg, rgba(#ffffff, 0.95) 40%, rgba(#ffffff, 0.8) 100%);
+      background: linear-gradient(180deg, rgba(#ffffff, 0.95) 20%, rgba(#ffffff, 0.8) 100%);
     }
   }
 
@@ -307,74 +306,40 @@ $transition:   all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 // ── 3. HOW IT WORKS ────────────────────────────────────────────────────────
-.tm-how-it-works {
-  .steps-flow-wrapper {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1.5rem;
-    position: relative;
-    margin-top: 3.5rem;
+$brand-red: #a6192e;
 
-    @media (max-width: 991px) { grid-template-columns: repeat(3, 1fr); gap: 2.5rem 1.5rem; }
-    @media (max-width: 767px) { grid-template-columns: 1fr; }
+.tm-how-it-works {
+  .section-title::after {
+    content: ''; display: block; width: 35px; height: 3px; background-color: $brand-red; margin: 0.75rem auto 0;
   }
 
-  .step-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  // ── الحالة الابتدائية (مخفي ومزاح للأسفل) ──
+  .reveal-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: transform, opacity; // يخلي المتصفح يشغل الـ GPU لسرعة الأنيميشن في الموبايل
 
-    &:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      top: 18px;
-      left: 60%;
-      width: 90%;
-      height: 1px;
-      border-top: 2px dashed lighten($border-color, 5%);
-      z-index: 1;
-      @media (max-width: 991px) { display: none; }
+    // ── الحالة بعد ظهور الكارت في السكرول ──
+    &.active {
+      opacity: 1;
+      transform: translateY(0);
     }
+  }
 
-    .step-number-badge {
-      width: 36px;
-      height: 36px;
-      border: 1px solid rgba($brand-red, 0.2);
-      color: $brand-red;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      font-weight: 700;
-      background: #ffffff;
-      margin-bottom: 1.25rem;
-      position: relative;
-      z-index: 2;
-    }
+  // تنسيق الدوائر والأيقونات
+  .step-number-badge {
+    width: 36px; height: 36px; border: 1px solid rgba($brand-red, 0.2); color: $brand-red;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; font-weight: 700; background: #ffffff; transition: all 0.3s ease;
+  }
 
-    .step-icon-box {
-      font-size: 2.2rem;
-      color: $brand-red;
-      margin-bottom: 1rem;
-      line-height: 1;
-    }
+  .step-icon-box { font-size: 2.2rem; color: $brand-red; transition: transform 0.3s ease; }
 
-    h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: $navy-dark;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      font-size: 0.88rem;
-      color: $text-muted;
-      line-height: 1.5;
-      margin: 0;
-      max-width: 180px;
-    }
+  // Hover Effect
+  .col:hover {
+    .step-icon-box { transform: scale(1.1); }
+    .step-number-badge { background-color: $brand-red; color: #ffffff; }
   }
 }
 

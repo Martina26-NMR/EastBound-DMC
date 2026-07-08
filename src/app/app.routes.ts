@@ -63,10 +63,10 @@ export const routes: Routes = [
     title: 'Tour Details | Eastbound DMC'
   },
   {
-    path: 'magazine',
+    path: 'blog',
     loadComponent: () =>
-      import('./features/magazine/magazine')
-        .then(m => m.Magazine)
+      import('./features/blog/blog')
+        .then(m => m.Blog)
   },
   {
     path: '**',

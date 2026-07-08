@@ -238,7 +238,7 @@ $red:  #a81c24;
 
 // ── Quiz banner ───────────────────────────────────────────────────────────
 .quiz-banner-wrapper {
-  background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200') center/cover;
+  background: url('/images/top-jordan/aqaba.webp') center/cover;
   box-shadow: 0 15px 35px rgba($navy,.15);
   .banner-overlay { background: linear-gradient(135deg, rgba($navy,.9) 30%, rgba($red,.7) 100%); }
   .btn-gold { background: $gold; color: $navy; border: none; transition: .3s; &:hover { background: lighten($gold,10%); transform: scale(1.05); } }

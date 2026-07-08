@@ -1,13 +1,19 @@
 <!-- ── 1. HERO SECTION WITH BREADCRUMB ── -->
-<section class="about-creative-hero mt-0">
-  <!-- الخلفية الداكنة الفخمة وعناصر الـ Shapes -->
+<section class="about-creative-hero p-4 ">
+
   <div class="hero-bg-layer"></div>
   <div class="hero-shape-circle"></div>
   
   <div class="container hero-grid-wrapper">
 
-    
-    <!-- الجزء الشمال: المحتوى والتيبوغرافيا داخل كارت زجاجي عائم -->
+       
+    <div class="hero-right-visual">
+      <div class="image-mask-wrapper">
+        <img src="/images/hero about.webp" alt="Petra Adventure" class="masked-hero-img">
+        <div class="gold-ring-deco"></div>
+      </div>
+    </div>
+   
     <div class="hero-left-card">
       <nav class="about-breadcrumb" aria-label="Breadcrumb">
         <a routerLink="/">Home</a>
@@ -27,14 +33,9 @@
       </p>
     </div>
 
-    <!-- الجزء اليمين: الـ Masked Circle Image المعمولة بالـ CSS -->
-    <div class="hero-right-visual">
-      <div class="image-mask-wrapper">
-        <img src="assets/images/petra-about-hero.jpg" alt="Petra Adventure" class="masked-hero-img">
-        <!-- إطار ذهبي رفيع بيلف حول الدائرة لإعطاء مظهر Luxury -->
-        <div class="gold-ring-deco"></div>
-      </div>
-    </div>
+
+
+
   </div>
 </section>
 
@@ -42,9 +43,9 @@
 <section class="concept-section container section-padding">
   <div class="concept-grid">
     <div class="concept-img-box">
-      <img src="assets/images/pyramids-about.jpg" alt="Egypt Pyramids" class="main-img">
+      <img src="/images/about.webp" alt="Egypt Pyramids" class="main-img">
     </div>
-    <div class="concept-text-box">
+    <div class="concept-text-box container">
       <span class="section-tag">CHANGING THE CONCEPT OF TRAVEL</span>
       <h2 class="section-title">From Destinations To Real Experiences</h2>
       <p class="highlight-p">Tourism has always been about destinations, but we believe it should be about experiences.</p>
@@ -78,7 +79,7 @@
       </p>
       <div class="different-badge">
         <div class="badge-icon">
-          <i class="bi bi-compass-fill"></i>
+       <i class="fa-solid fa-compass"></i>
         </div>
         <p class="badge-text">Your trip with us won't just be good, it will be different—for the better.</p>
       </div>
@@ -88,25 +89,25 @@
     <div class="features-cards-grid">
       <!-- Card 1 -->
       <div class="feature-card">
-        <div class="card-icon"><i class="bi bi-people"></i></div>
+        <div class="card-icon"><i class="fa-solid fa-users"></i></div>
         <h3>We are partners, not agents.</h3>
         <p>We don't just sell you a package and then leave. We work with you, we think with you, and we travel with you. Got a question at 11 p.m. before your trip? We're here.</p>
       </div>
       <!-- Card 2 -->
       <div class="feature-card">
-        <div class="card-icon"><i class="bi bi-globe"></i></div>
+        <div class="card-icon"><i class="fa-solid fa-globe"></i></div>
         <h3>Designed for the world.</h3>
         <p>Our goal is to reach travelers from all corners of the globe. Whether you're coming from London, New York, Tokyo, or anywhere nearby, Eastbound is designed to meet your needs wherever you are.</p>
       </div>
       <!-- Card 3 -->
       <div class="feature-card">
-        <div class="card-icon"><i class="bi bi-car-front"></i></div>
+        <div class="card-icon"><i class="fa-solid fa-car-side"></i></div>
         <h3>Details that matter.</h3>
         <p>Modern and comfortable transportation. Carefully selected tour guides who truly love their work. Itineraries that respect your time and curiosity. We take care of everything.</p>
       </div>
       <!-- Card 4 -->
       <div class="feature-card">
-        <div class="card-icon"><i class="bi bi-heart"></i></div>
+        <div class="card-icon"><i class="fa-solid fa-heart"></i></div>
         <h3>Why Eastbound?</h3>
         <p>Your ideal travel partner from start to finish. Specializing in travel to Egypt and Jordan with full customized support and passion layout.</p>
       </div>
@@ -135,27 +136,27 @@
 <section class="stats-bar container">
   <div class="stats-wrapper">
     <div class="stat-item">
-      <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
-      <div class="stat-num">10+</div>
+      <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+      <div class="stat-num">15+</div>
       <div class="stat-label">Years of Experience</div>
     </div>
-    <div class="stat-item">
-      <div class="stat-icon"><i class="bi bi-globe-europe-africa"></i></div>
+    <!-- <div class="stat-item">
+      <div class="stat-icon"><i class="fa-solid fa-globe"></i></div>
       <div class="stat-num">2</div>
       <div class="stat-label">Amazing Countries</div>
-    </div>
+    </div> -->
     <div class="stat-item">
-      <div class="stat-icon"><i class="bi bi-suitcase-lg-fill"></i></div>
-      <div class="stat-num">1000+</div>
+      <div class="stat-icon"><i class="fa-solid fa-suitcase"></i></div>
+      <div class="stat-num">45k+</div>
       <div class="stat-label">Happy Travelers</div>
     </div>
     <div class="stat-item">
-      <div class="stat-icon"><i class="bi bi-map-fill"></i></div>
+      <div class="stat-icon"><i class="fa-solid fa-map"></i></div>
       <div class="stat-num">Custom</div>
       <div class="stat-label">Tailor-Made Journeys</div>
     </div>
     <div class="stat-item">
-      <div class="stat-icon"><i class="bi bi-telephone-inbound-fill"></i></div>
+      <div class="stat-icon"><i class="fa-solid fa-phone"></i></div>
       <div class="stat-num">7/7</div>
       <div class="stat-label">Support</div>
     </div>
@@ -166,12 +167,12 @@
 <section class="container cta-start-block">
   <div class="cta-flex-box">
     <div class="cta-left">
-      <div class="cta-round-icon"><i class="bi bi-airplane-fill"></i></div>
+      <div class="cta-round-icon"><i class="fa-solid fa-plane"></i></div>
       <div class="cta-texts">
         <h3>Ready To Start Your Journey?</h3>
         <p>Let us create a unique experience just for you.</p>
       </div>
     </div>
-    <a href="#" class="btn-premium-danger">LET'S PLAN YOUR TRIP <i class="bi bi-arrow-right"></i></a>
+    <a href="/tailor-made" class="btn-premium-danger">LET'S PLAN YOUR TRIP <i class="fa-solid fa-arrow-right"></i></a>
   </div>
 </section>

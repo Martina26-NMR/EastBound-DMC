@@ -96,4 +96,13 @@ export class Tours {
     this.maxPrice.set(3000);
     this.sortBy.set('recommended');
   }
+
+  // ضيفيها جوه الكلاس مع بقية الـ Signals
+// 1. ضيفي السينيال دي جوه الكلاس
+isFilterOpen = signal<boolean>(false);
+
+// 2. ضيفي الفانكشن دي تحتها علشان تغير الحالة من true لـ false والعكس
+toggleFilter() {
+  this.isFilterOpen.set(!this.isFilterOpen());
+}
 }
