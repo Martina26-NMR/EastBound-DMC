@@ -2,6 +2,7 @@ import { Component, inject, signal, computed, AfterViewInit, ElementRef, viewChi
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { DestinationService, CityDetail } from '../../core/services/destination.service';
+import { TourService, Tour } from '../../core/services/tour.service';
 
 @Component({
   selector: 'app-destinations',
@@ -121,5 +122,29 @@ export class Destinations implements AfterViewInit {
       this.observer.unobserve(card.nativeElement);
       this.observer.observe(card.nativeElement);
     });
+  }
+
+  // الـ Injection الذكي والحديث للسيرفس
+  private tourService = inject(TourService);
+  
+  // المصفوفة التي ستعرض في الـ HTML وتحتوي على 4 رحلات فقط
+  featuredTours: Tour[] = [];
+
+  ngOnInit(): void {
+    // 1. جلب كل الرحلات المميزة من السيرفس
+    const allFeatured = this.tourService.getFeaturedTours();
+
+    // 2. فلترة أول رحلتين فقط لـ مصر (dest-egypt)
+    const egyptTours = allFeatured
+      .filter(tour => tour.destinationId === 'dest-egypt')
+      .slice(0, 2);
+
+    // 3. فلترة أول رحلتين فقط لـ الأردن (dest-jordan)
+    const jordanTours = allFeatured
+      .filter(tour => tour.destinationId === 'dest-jordan')
+      .slice(0, 2);
+
+    // 4. دمج الرحلات معاً ليكون الإجمالي 4 كروت بالظبط (2 مصر و 2 أردن)
+    this.featuredTours = [...egyptTours, ...jordanTours];
   }
 }

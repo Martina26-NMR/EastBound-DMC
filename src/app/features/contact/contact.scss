@@ -1,0 +1,194 @@
+// ── VARIABLES SYSTEM ───────────────────────────────────────────────────
+$brand-red:    #a6192e; 
+$navy-dark:    #0a192f;
+$text-secondary: #5a6e7f;
+$border-color: #f1f4f8;
+$transition:   all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+// Helper Utilities
+.text-navy { color: $navy-dark; }
+.text-brand { color: $brand-red; }
+.fw-black { font-weight: 900; }
+.max-w-450 { max-width: 450px; }
+.tracking-wide { letter-spacing: 1px; }
+.inset-0 { top: 0; left: 0; right: 0; bottom: 0; }
+
+// Title Line Under Titles
+.title-line {
+  width: 45px;
+  height: 3px;
+  background-color: $brand-red;
+}
+
+// ── 1. HERO SECTION ────────────────────────────────────────────────────
+.contact-hero {
+  min-height: 60vh;
+  background-color: #fcfdfe;
+
+  .hero-bg {
+    background-image: url('/images/contact-hero.webp'); // حطي الصورة الخاصة بالبتراء هنا
+    background-size: cover;
+    background-position: center right;
+    z-index: 1;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(90deg, rgba(#ffffff, 0.96) 35%, rgba(#ffffff, 0.8) 60%, rgba(#ffffff, 0.1) 100%);
+    z-index: 2;
+    @media (max-width: 991px) {
+      background: linear-gradient(180deg, rgba(#ffffff, 0.98) 50%, rgba(#ffffff, 0.85) 100%);
+    }
+  }
+
+  .quick-contact-list i {
+    width: 24px;
+    text-align: center;
+  }
+}
+
+// ── 2. FORM & INFO STYLES ──────────────────────────────────────────────
+.section-subtitle::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 2px;
+  background-color: $brand-red;
+  margin-top: 0.5rem;
+}
+
+.contact-form {
+  .form-control {
+    background-color: #fafbfc;
+    border: 1px solid #e8ecf0;
+    padding: 0.85rem 1.2rem;
+    font-size: 0.92rem;
+    border-radius: 6px;
+    color: $navy-dark;
+    transition: $transition;
+
+    &:focus {
+      background-color: #ffffff;
+      border-color: rgba($brand-red, 0.4);
+      box-shadow: 0 0 0 4px rgba($brand-red, 0.06);
+      outline: none;
+    }
+  }
+  textarea.form-control { resize: none; }
+}
+
+.btn-brand-submit {
+  background-color: $brand-red;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  letter-spacing: 0.5px;
+  transition: $transition;
+  box-shadow: 0 6px 15px rgba($brand-red, 0.2);
+
+  &:hover {
+    background-color: darken($brand-red, 6%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba($brand-red, 0.3);
+  }
+}
+
+// Right Side Circle Icons
+.info-icon-circle {
+  width: 48px;
+  height: 48px;
+  background-color: $brand-red;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 10px rgba($brand-red, 0.25);
+}
+
+// ── 3. MAP BANNER ──────────────────────────────────────────────────────
+.map-banner {
+  height: 380px;
+  background-color: #e5e9f0;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+
+  iframe { filter: grayscale(1) contrast(1.1) opacity(0.85); } // ستايل مودرن هادي للخريطة ليتماشى مع الهوية التنافسية
+  
+  .map-marker-badge {
+    z-index: 4;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+}
+
+// ── 4. VALUES / WHY US INFOGRAPHIC ─────────────────────────────────────
+.values-section {
+  background-color: #f7fafc;
+
+  .values-bg-overlay {
+    background-image: url('/assets/images/balloons-pattern-bg.jpg'); // صورة المنطاد الخفيفة في الخلفية
+    background-size: cover;
+    background-position: center;
+    opacity: 0.06; // شفافة جداً عشان تعطي عمق شيك من غير زحمة
+    z-index: 1;
+  }
+
+  .value-card-creative {
+    transition: $transition;
+    
+    .value-icon {
+      font-size: 2.2rem;
+      color: $brand-red;
+      line-height: 1;
+      transition: $transition;
+    }
+
+    &:hover {
+      transform: translateY(-5px);
+      .value-icon { transform: scale(1.1); }
+    }
+  }
+
+  
+}
+
+
+.contact-link{
+    color:#0a192f;
+    font-weight:600;
+    position:relative;
+    transition:.35s ease;
+    cursor:pointer;
+
+    i{
+        color:#a6192e;
+        transition:.35s ease;
+        font-size:1rem;
+    }
+
+    span{
+        transition:.35s ease;
+    }
+
+    &::after{
+        content:'';
+        position:absolute;
+        left:0;
+        bottom:-4px;
+        width:0;
+        height:2px;
+        background:#a6192e;
+        transition:.35s ease;
+    }
+
+    &:hover{
+
+        color:#a6192e !important;
+        transform:translateX(8px);
+
+        i{
+            transform:scale(1.25) rotate(-12deg);
+        }
+
+        &::after{
+            width:100%;
+        }
+    }
+}

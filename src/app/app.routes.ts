@@ -69,6 +69,12 @@ export const routes: Routes = [
         .then(m => m.Blog)
   },
   {
+    path: 'FAQ',
+    loadComponent: () =>
+      import('./features/faq/faq')
+        .then(m => m.FaqComponent)
+  },
+  {
     path: '**',
     redirectTo: '',
     pathMatch: 'full'

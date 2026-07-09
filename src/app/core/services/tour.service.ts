@@ -844,4 +844,9 @@ export class TourService {
   getTourById(tourId: string): Tour | undefined {
     return this.toursData().find(tour => tour.id === tourId);
   }
+
+  // فانكشن بترجع الرحلات المميزة فقط من الـ Signal
+getFeaturedTours() {
+  return this.toursData().filter(tour => tour.isFeatured === true);
+}
 }

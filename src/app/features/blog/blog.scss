@@ -1,0 +1,56 @@
+$navy: #0d233a;
+$dark-red: #ae1c24;
+
+.text-navy { color: $navy; }
+.text-dark-red { color: $dark-red; }
+.bg-dark-red { background-color: $dark-red !important; }
+.bg-light-gray { background-color: #fbfbfc; }
+.super-small { font-size: 0.7rem; }
+.max-w-500 { max-width: 500px; }
+
+// تجميل شريط الـ Categories السفلي
+.cat-nav-link {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  
+  &:hover, &.active-cat {
+    opacity: 1;
+    color: $dark-red !important;
+  }
+  
+  &.active-cat::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: $dark-red;
+  }
+}
+
+// إخفاء الـ Scrollbar للشاشات الصغيرة في شريط الـ Categories
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+// حركات الـ Cards الـ Premium والـ Image Zoom
+.main-featured-card, .small-list-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  .card-zoom-img { transition: transform 0.5s ease; }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 1rem 2rem rgba($navy, 0.06) !important;
+    
+    .card-zoom-img { transform: scale(1.03); }
+    .hover-red-text { color: $dark-red !important; }
+  }
+}
+
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}

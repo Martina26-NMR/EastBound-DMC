@@ -9,6 +9,7 @@ $accent-gold:  #d4af37;
 $accent-red:   #e63946; // اللون الأحمر المميز في اللوجو والأزرار
 $text-main:    #333333;
 $text-muted:   #64748b;
+$text-dark-red:#b22222;
 $transition:   all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
 
@@ -16,12 +17,13 @@ $transition:   all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 // الكلاسات العامة المساعدة
 .text-navy { color: $navy-dark; }
 .btn-navy {
-  background-color: $navy-dark;
+  background-color: $text-dark-red;
   color: #ffffff;
-  border: 1px solid $navy-dark;
+  border: 1px solid $accent-red;
   transition: $transition;
   &:hover {
-    background-color: $navy-light;
+    background-color:  $navy-dark;
+  border: 1px solid $navy-light;
     color: #ffffff;
     transform: translateY(-1px);
   }
@@ -55,7 +57,7 @@ $transition:   all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       right: 10%;
       width: 400px;
       height: 400px;
-      background: $accent-gold;
+      background: $accent-red;
     }
     &.circle-2 {
       bottom: -5%;
@@ -93,7 +95,7 @@ $transition:   all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
 // كلمة ملونة كـ Accent ناعم داخل العنوان
 .highlight-text {
-  color: $accent-gold;
+  color: $accent-red;
   position: relative;
   display: inline-block;
   
@@ -143,7 +145,7 @@ $transition:   all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     .stat-num {
       font-size: 1.4rem;
       font-weight: 700;
-      color: $accent-gold;
+      color: $accent-red;
     }
     .stat-label {
       font-size: 0.8rem;
@@ -168,7 +170,7 @@ $transition:   all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   .image-border-glow {
     position: absolute;
     inset: 0;
-    border: 2px dashed rgba($accent-gold, 0.25);
+    border: 2px dashed rgba($accent-red, 0.25);
     border-radius: 32px;
     transform: rotate(-2deg);
     animation: rotateGlow 20s linear infinite;
@@ -383,7 +385,7 @@ $transition:   all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     right: -10%;
     width: 350px;
     height: 350px;
-    background: rgba($accent-gold, 0.04);
+    background: rgba($accent-red, 0.04);
     border-radius: 50%;
   }
 

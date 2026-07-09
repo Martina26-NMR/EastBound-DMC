@@ -206,19 +206,62 @@
 <!-- ======= 5. FEATURED EXPERIENCES (Placeholder for Tour Cards Loop) ======= -->
 <section class="featured-experiences py-5 bg-white">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-end mb-4">
+    
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-end mb-4 gap-3">
       <div>
         <span class="text-uppercase tracking-wider text-dark-red small fw-bold d-block mb-1">FEATURED JOURNEYS</span>
         <h2 class="fw-bold text-navy font-heading h3 mb-0">Trips You'll Love</h2>
       </div>
+      <a routerLink="/tours" class="btn btn-outline-danger rounded-pill px-4 fw-bold text-uppercase btn-sm shadow-sm transition-all">
+        View All Tours <i class="fa-solid fa-arrow-right ms-2"></i>
+      </a>
     </div>
     
-    <!-- هنا هتحطي الـ Loop بتاعة كروت الرحلات app-tour-card لما تجهز معاكي -->
     <div class="row g-4">
-      <div class="col-12 text-center text-muted py-4">
-        <p class="small"><i class="fa-solid fa-sparkles text-gold me-2"></i>Featured tours loop will dynamically inject here matching your active filters.</p>
-      </div>
+      @for (tour of featuredTours; track tour.id) {
+        <div class="col-xl-3 col-lg-4 col-md-6">
+<a [routerLink]="['/tours', tour.id]" class="card h-100 border-0 shadow-premium rounded-4 overflow-hidden luxury-tour-card text-decoration-none">
+          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden custom-tour-card transition-all">
+            
+            <div class="position-relative overflow-hidden" style="height: 200px;">
+              @if (tour.image) {
+                <img [src]="tour.image" class="w-100 h-100 object-fit-cover card-img-top" [alt]="tour.title" />
+              }
+              <span class="position-absolute top-0 start-0 m-3 badge rounded-pill bg-dark bg-opacity-75 text-uppercase small px-2 py-1">
+                {{ tour.destinationId === 'dest-egypt' ? 'Egypt' : 'Jordan' }}
+              </span>
+            </div>
+            
+            <div class="card-body d-flex flex-column p-3">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="badge bg-danger-subtle text-danger text-uppercase super-small fw-bold">{{ tour.featuredTag }}</span>
+                <span class="small text-muted"><i class="fas fa-star text-warning me-1"></i>{{ tour.rating || 4.8 }}</span>
+              </div>
+
+              <h3 class="h6 fw-bold text-navy mb-2 text-truncate-2">{{ tour.title }}</h3>
+              
+              <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-light">
+                <div>
+                  <span class="d-block text-muted super-small text-uppercase">From</span>
+                  <span class="fw-bold text-navy h5 mb-0">${{ tour.price }}</span>
+                </div>
+                <span class="badge bg-light text-dark rounded-pill px-2 py-1 small">
+                  <i class="far fa-clock me-1 text-danger"></i>{{ tour.durationDays }} Days
+                </span>
+              </div>
+
+            </div>
+          </div>
+          </a>
+        </div>
+
+      } @empty {
+        <div class="col-12 text-center text-muted py-5">
+          <p>No featured tours available at the moment.</p>
+        </div>
+      }
     </div>
+
   </div>
 </section>
 
