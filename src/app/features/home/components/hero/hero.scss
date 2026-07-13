@@ -1,113 +1,162 @@
-@use 'variables' as *;
+$black: #000000;
+$white: #ffffff;
+$custom-red: #d52027;
+$gold: #fdc938;
+$font-heading: var(--font-heading, 'Playfair Display', serif);
 
-.hero-section {
-  position: relative;
-  min-height: 85vh;
-  background-color: #fcfbfa;
-  overflow: hidden;
+.bg-custom-red { background-color: $custom-red !important; }
+.text-shadow { text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); }
 
-  .hero-image-container {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
+.home-luxury-hero {
+  font-family: $font-heading;
+  // الخلفية عبارة عن صورة كاملة ومدمج معها تدرج أسود فخم لضمان وضوح النص الأبيض
+  background: linear-gradient(180deg, rgba($black, 0.75) 0%, rgba($black, 0.4) 50%, rgba($black, 0.8) 100%), 
+              url('/images/cover-hero.webp') center/cover no-repeat;
+
+  .quote-line {
+    border-left: 2px solid $gold;
+    padding-left: 15px;
   }
 
-  .hero-image-bg {
-    width: 100%;
-    height: 100%;
-    background-image: url('/images/cover-hero.webp');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    opacity: .88;
-    animation: kenBurnsContinuous 16s ease-in-out infinite alternate;
-  }
-
-  .hero-light-overlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, rgba(252, 251, 250, .78) 0%, rgba(252, 251, 250, .45) 35%, transparent 75%);
+  // الضوء الأحمر الصريح في الجنب يسار فوق الصورة الخلفية
+  .bg-red-glow {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba($custom-red, 0.3) 0%, transparent 70%);
+    top: -10%;
+    left: -10%;
+    filter: blur(90px);
     z-index: 2;
+    pointer-events: none;
   }
 
-  .container {
-    position: relative;
-    z-index: 10;
+  .bg-dotted-pattern {
+    background-image: radial-gradient(rgba($custom-red, 0.2) 1.5px, transparent 1.5px);
+    background-size: 26px 26px;
+    z-index: 2;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
   }
 
-  .discover-text {
-    font-family: 'Alex Brush', 'Dancing Script', cursive;
-    color: #a81c24;
-    font-size: 3.5rem;
+  // الكارت الأبيض العائم وتنسيقه المتجاوب (مكان الفورم)
+.glass-float-wrapper {
+  aspect-ratio: 16 / 8.5;
+  animation: gentleFloat 5s ease-in-out infinite;
+
+  .main-float-img {
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .hero-title {
-    font-family: $font-headings;
-    color: $color-primary-navy;
-    font-size: 4rem;
-    letter-spacing: 2px;
-  }
-
-  .separator-container {
-    .line { width: 50px; height: 1px; background-color: $color-secondary-gold; }
-    .gold-star { color: $color-secondary-gold; font-size: .7rem; }
-  }
-
-  .hero-subtitle {
-    font-family: $font-body;
-    font-size: 1.3rem;
-    color: $color-text-dark !important;
-    max-width: 400px;
-  }
-
-  .btn-dark-red {
-    background-color: #a81c24;
-    border: 1px solid #a81c24;
-    &:hover { background-color: $color-primary-navy; border-color: $color-primary-navy; }
-  }
-
-  .btn-outline-dark-red {
-    color: #a81c24;
-    border: 1px solid #a81c24;
-    &:hover { background-color: #a81c24; color: $color-primary-navy; }
-  }
-
-  .tiny-icon { font-size: .7rem; }
-
-  // 👈 ميديا كويري الموبايل المتظبطة بالـ margin السالب بالملي
-  @media (max-width: 768px) {
-    min-height: 90vh;
-    display: block !important;
-    padding-top: 0 !important;
-
-    .hero-image-bg {
-      background-size: contain;
-      background-position: center top;
-      animation: none;
-    }
-
-    .container {
-      margin-top: -210px !important;
-      position: relative;
-      z-index: 10;
-      text-shadow: 0px 2px 8px rgba(252, 251, 250, 0.9);
-    }
-
-    .discover-text { font-size: 2.6rem; }
-    .hero-title { font-size: 2.4rem; line-height: 1.2; }
-    .hero-subtitle { font-size: 1.05rem; max-width: 280px; }
-  }
-
-  @media (max-width: 576px) {
-    .hero-title { font-size: 2rem; }
-    .discover-text { font-size: 2.2rem; }
-    .hero-subtitle { font-size: 1rem; }
-    .d-flex.flex-row { flex-wrap: wrap; gap: 12px !important; }
-    .btn { min-width: 160px; }
+  .glass-overlay-label {
+    bottom: -20px;
+    left: 30px;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
 
-@keyframes kenBurnsContinuous {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.04); }
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(0.5deg); }
+}
+  // أنيميشن الستارة المبتكر لكشف الصورة الداخلية (Image Reveal Animation)
+  .reveal-image-wrapper {
+    .reveal-curtain {
+      z-index: 2;
+      transform: scaleX(1);
+      transform-origin: left;
+      animation: revealSlide 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+      animation-delay: 0.6s; // يبدأ الكشف بعد دخول الكلام
+    }
+
+    .inner-hero-img {
+      transform: scale(1.1);
+      transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+  }
+
+  // عند فتح الصفحة بالكامل يتم عمل زووم خفيف وتتحرك الستارة
+  .animate-fade-in-right {
+    animation: homeFadeIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    
+    &.floating-white-card .inner-hero-img {
+      animation: imgZoomIn 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+      animation-delay: 0.6s;
+    }
+  }
+
+  @keyframes revealSlide {
+    0% { transform: scaleX(1); transform-origin: left; }
+    50% { transform: scaleX(1); transform-origin: right; }
+    100% { transform: scaleX(0); transform-origin: right; }
+  }
+
+  @keyframes imgZoomIn {
+    to { transform: scale(1); }
+  }
+
+  /* =========================================
+     أنيميشن دخول الكلام التتابعي (Fade-Up)
+     ========================================= */
+  .animate-fade-up-1 { animation: homeFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
+  .animate-fade-up-2 { animation: homeFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; animation-delay: 0.15s; opacity: 0; }
+  .animate-fade-up-3 { animation: homeFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; animation-delay: 0.3s; opacity: 0; }
+  .animate-fade-up-4 { animation: homeFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; animation-delay: 0.45s; opacity: 0; }
+
+  @keyframes homeFadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes homeFadeIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  // أزرار التحكم والكبسولة الفخمة بالألوان الجديدة
+  .btn-luxury-capsule {
+    background: rgba($black, 0.4);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba($custom-red, 0.5);
+    color: $white;
+    padding: 6px 6px 6px 24px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+
+    .icon-circle {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: .4s ease;
+    }
+    
+    &:hover {
+      background: $white; color: $black; border-color: $white;
+      .icon-circle { background: $black; color: $white; }
+    }
+  }
+
+  .btn-outline-quote {
+    color: $white;
+    border: 1px solid rgba($white, 0.4);
+    background: rgba($black, 0.2);
+    backdrop-filter: blur(4px);
+    padding: 11px 28px;
+    font-weight: bold;
+    font-size: 14px;
+    text-uppercase: true;
+    &:hover {
+      background: rgba($custom-red, 0.15);
+      border-color: $custom-red;
+      color: $gold;
+    }
+  }
 }

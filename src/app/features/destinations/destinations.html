@@ -1,36 +1,59 @@
-<!-- ======= 1. HERO SECTION ======= -->
-<section class="destinations-hero position-relative d-flex align-items-center justify-content-center overflow-hidden">
-  <div class="hero-parallax-bg hero-zoom-in position-absolute inset-0"></div>
-  <div class="hero-premium-overlay position-absolute inset-0"></div>
+<!-- ======= CREATIVE DESTINATIONS HERO ======= -->
+<section class="destinations-hero position-relative py-3 bg-navy text-white overflow-hidden d-flex align-items-center">
   
-  <div class="container position-relative z-3 px-3">
-    <div class="row justify-content">
-      <div class="col-12 col-lg-10">
-        <div class="premium-hero-content text-center text-lg-start d-flex flex-column align-items-center align-items-lg-start">
-          
-          <nav class="creative-breadcrumb mb-3 text-uppercase tracking-widest small fade-up-item">
-            <span class="home-link text-gold" routerLink="/">Home</span>
-            <span class="mx-2 text-gold-premium">&bull;</span>
-            <span class="text-black-50 fw-light">All Destinations</span>
-          </nav>
+  <!-- الإضاءة الحمراء الصريحة في أول الهيرو على الجنب (فوق يسار) -->
+  <div class="bg-red-glow position-absolute rounded-circle"></div>
+  <div class="bg-dotted-pattern position-absolute w-100 h-100 top-0 start-0"></div>
+  
+  <!-- إضاءة ذهبية خفيفة في الجنب التاني للتوازن -->
+  <div class="bg-gold-glow position-absolute rounded-circle opacity-15"></div>
+  
+  <div class="container position-relative z-3 my-lg-5">
+    <div class="row align-items-center g-5">
+      
+      <!-- الجانب الأيسر: أنيميشن دخول الكلام بالتتابع -->
+      <div class="col-lg-6 order-2 order-lg-1 text-center text-lg-start">
+        
+        <nav class="mb-3 text-uppercase tracking-widest small animate-fade-up-1">
+          <span class="text-gold cursor-pointer" routerLink="/">Home</span>
+          <span class="mx-2 text-gold">&bull;</span>
+          <span class="text-white-50 fw-light">All Destinations</span>
+        </nav>
 
-          <h1 class="fw-bold  luxury-main-title mb-3 fade-up-item">
-            Explore Destinations <br>
-            <span class="gold-gradient-text">That Feel Different</span>
-          </h1>
-          
-          <div class="hero-action-group d-flex flex-row gap-3 align-items-center justify-content-center justify-content-lg-start w-100 fade-up-item">
-            <a href="#destinations-listing" class="btn btn-luxury-capsule shadow-lg">
-              <span class="country-name">Explore Trips</span>
-              <span class="icon-circle"><i class="fa-solid fa-arrow-down"></i></span>
-            </a>
-            <button class="btn btn-luxury-link" routerLink="/tailor-made">
-              Plan Your Trip <i class="fa-solid fa-arrow-right-long ms-2"></i>
-            </button>
-          </div>
-
+        <h1 class="fw-bold display-4 font-heading mb-4 text-white lh-sm animate-fade-up-2">
+          Explore Destinations <br>
+          <span class="gold-gradient-text">That Feel Different</span>
+        </h1>
+        
+        <div class="d-flex flex-column flex-sm-row gap-3 align-items-center justify-content-center justify-content-lg-start mt-2 animate-fade-up-3">
+          <a href="#destinations-listing" class="btn btn-luxury-capsule shadow">
+            <span class="country-name">Explore Trips</span>
+            <span class="icon-circle bg-red text-white"><i class="fa-solid fa-arrow-down"></i></span>
+          </a>
+          <button class="btn text-white border-0 p-0 hover-gold-text transition-all d-inline-flex align-items-center" routerLink="/tailor-made">
+            Plan Your Trip <i class="fa-solid fa-arrow-right-long ms-2"></i>
+          </button>
         </div>
       </div>
+
+      <!-- الجانب الأيمن: ديزاين الصورة الهندسي المشطوف الجديد -->
+  <!-- الجانب الأيمن: ديزاين الإطار العائم المنفصل التفاعلي -->
+<div class="col-lg-6 order-1 order-lg-2 d-flex justify-content-center">
+  <div class="minimal-frame-wrapper position-relative animate-fade-in-right">
+    
+    <!-- الإطار الخارجي الرفيع المنفصل -->
+    <div class="outer-luxury-border position-absolute w-100 h-100 rounded-4"></div>
+    
+    <!-- حاوية الصورة الأساسية -->
+    <div class="inner-image-block overflow-hidden rounded-4 shadow-lg w-100 h-100 position-relative">
+      <img src="/images/hero section-destinations.webp" class="w-100 h-100 object-fit-cover" alt="Explore Destinations">
+      <!-- طبقة فلتر ناعمة فوق الصورة لدمج الألوان مع الكحلي والأحمر -->
+      <div class="image-overlay-blend position-absolute top-0 start-0 w-100 h-100"></div>
+    </div>
+
+  </div>
+</div>
+
     </div>
   </div>
 </section>

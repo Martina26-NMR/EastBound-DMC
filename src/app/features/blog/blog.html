@@ -1,19 +1,46 @@
-<!-- 1. Hero Section الفخم الممتد بكامل العرض -->
-<section class="blog-hero position-relative d-flex align-items-center text-white py-6" style="background: linear-gradient(180deg, rgba(13,35,58,0.3) 0%, rgba(13,35,58,0.6) 100%), url('assets/images/magazine-hero.jpg') center/cover no-repeat; min-height: 480px;">
-  <div class="container position-relative z-2 text-start">
-    <span class="text-uppercase tracking-widest text-white fw-bold d-block mb-2 super-small">THE MAGAZINE</span>
-    <h1 class="fw-bold display-4 font-heading mb-3">Stories That<br>Inspire Your Journey</h1>
-    <p class="lead opacity-90 fs-6 max-w-500 mb-4 lh-base">Travel inspiration, local insights and expert guides to help you experience Egypt and Jordan differently.</p>
-    <button class="btn btn-dark-red rounded-pill px-4 py-2 fw-bold text-uppercase super-small">Explore Stories <i class="fa-solid fa-arrow-right-long ms-2"></i></button>
+<!-- 1. Hero Section الكحلي التقليدي -->
+<!-- Creative Split Hero Section -->
+<section class="creative-blog-hero position-relative overflow-hidden bg-navy text-white">
+  <!-- طبقة نقش خفيفة في الخلفية لزيادة الفخامة -->
+  <div class="hero-pattern-overlay"></div>
+  
+  <div class="container position-relative z-2">
+    <div class="row align-items-center min-vh-60 py-5">
+      
+      <!-- النصف الأيسر: الكلام والتفاعل -->
+      <div class="col-lg-6 text-start hero-text-block">
+        <span class="badge bg-dark-red text-uppercase tracking-widest px-3 py-2 rounded-pill super-small mb-3">THE MAGAZINE</span>
+        <h1 class="fw-bold display-4 font-heading mb-3 text-white lh-sm">
+          Stories That<br><span class="text-gradient-red">Inspire Your Journey</span>
+        </h1>
+        <p class="lead opacity-80 fs-6 max-w-500 mb-4 lh-base">
+          Travel inspiration, local insights and expert guides to help you experience Egypt and Jordan differently.
+        </p>
+      </div>
+
+      <!-- النصف الأيمن: الصورة المقطوعة بشكل كريتيف -->
+      <div class="col-lg-6 mt-4 mt-lg-0">
+        <div class="hero-image-wrapper position-relative">
+          <div class="hero-shape-decorator"></div>
+          <div class="hero-image-mask">
+            <img src="/images/EXPERIENCE.webp" class="w-100 h-100 object-fit-cover" alt="Magazine Journey">
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<!-- 2. شريط الـ Categories الفخم تحت الهيرو مباشرة -->
+<!-- 2. شريط الـ Categories بالكحلي والأحمر الداكن -->
 <div class="bg-white border-bottom sticky-top shadow-xs" style="z-index: 10;">
   <div class="container">
     <div class="d-flex justify-content-start justify-content-md-center align-items-center gap-4 py-3 overflow-auto text-nowrap no-scrollbar">
       @for (cat of categories; track cat) {
-        <button class="btn border-0 fw-semibold text-navy p-0 position-relative cat-nav-link" [class.active-cat]="cat === 'All Articles'">
+        <button 
+          class="btn border-0 fw-semibold text-navy p-0 position-relative cat-nav-link" 
+          [class.active-cat]="cat === activeCategory()"
+          (click)="selectCategory(cat)">
           {{ cat }}
         </button>
       }
@@ -21,32 +48,38 @@
   </div>
 </div>
 
-<!-- 3. الـ Main Body (Featured + Sidebar Grid) -->
+<!-- 3. كروت وجسم المدونة المفلتر ديناميكياً -->
 <section class="py-5 bg-light-gray">
   <div class="container">
     <div class="row g-4">
       
-      <!-- العمود الأيسر: الكارت الكبير الخاص بـ Cairo Events 2026 -->
+      <!-- العمود الأيسر: الكارت الكبير المميز -->
       <div class="col-lg-8">
-        <a [routerLink]="['/magazine', featured().id]" class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden text-decoration-none bg-white p-3 main-featured-card">
-          <div class="position-relative overflow-hidden rounded-3 mb-3" style="height: 420px;">
-            <img [src]="featured().image" class="w-100 h-100 object-fit-cover card-zoom-img" alt="Featured Story">
-          </div>
-          <div class="px-2 pb-2">
-            <span class="text-dark-red text-uppercase fw-bold super-small tracking-wider d-block mb-1">FEATURED STORY</span>
-            <h2 class="h4 fw-bold text-navy font-heading mb-2 hover-red-text">{{ featured().title }}</h2>
-            <p class="small text-muted mb-4 lh-base">{{ featured().summary }}</p>
-            <div class="d-flex align-items-center gap-2 text-muted super-small border-top pt-3">
-              <span class="fw-bold text-navy">By {{ featured().author }}</span> • <span>{{ featured().date }}</span> • <span>{{ featured().readTime }}</span>
+        @if (featured(); as featuredPost) {
+          <a [routerLink]="['/blog', featuredPost.id]" class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden text-decoration-none bg-white p-3 main-featured-card">
+            <div class="position-relative overflow-hidden rounded-3 mb-3" style="height: 420px;">
+              <img [src]="featuredPost.image" class="w-100 h-100 object-fit-cover card-zoom-img" alt="Featured Story">
             </div>
+            <div class="px-2 pb-2">
+              <span class="text-dark-red text-uppercase fw-bold super-small tracking-wider d-block mb-1">FEATURED STORY</span>
+              <h2 class="h4 fw-bold text-navy font-heading mb-2 hover-red-text">{{ featuredPost.title }}</h2>
+              <p class="small text-muted mb-4 lh-base">{{ featuredPost.summary }}</p>
+              <!-- <div class="d-flex align-items-center gap-2 text-muted super-small border-top pt-3">
+                <span class="fw-bold text-navy">By {{ featuredPost.author }}</span> • <span>{{ featuredPost.date }}</span> • <span>{{ featuredPost.readTime }}</span>
+              </div> -->
+            </div>
+          </a>
+        } @else {
+          <div class="d-flex align-items-center justify-content-center h-100 border border-dashed rounded-4 p-5 bg-white text-muted">
+            <p class="mb-0">Check out our recent articles in this category!</p>
           </div>
-        </a>
+        }
       </div>
 
-      <!-- العمود الأيمن: القائمة الجانبية الصغيرة (Recent Articles) -->
+      <!-- العمود الأيمن: قائمة المقالات الجانبية المفلترة -->
       <div class="col-lg-4 d-flex flex-column gap-3">
         @for (post of recents(); track post.id) {
-          <a [routerLink]="['/magazine', post.id]" class="card border-0 shadow-sm rounded-3 overflow-hidden text-decoration-none bg-white p-2 small-list-card">
+          <a [routerLink]="['/blog', post.id]" class="card border-0 shadow-sm rounded-3 overflow-hidden text-decoration-none bg-white p-2 small-list-card">
             <div class="d-flex gap-3 align-items-center">
               <div class="flex-shrink-0 overflow-hidden rounded-2" style="width: 100px; height: 85px;">
                 <img [src]="post.image" class="w-100 h-100 object-fit-cover card-zoom-img" alt="Thumbnail">
@@ -58,6 +91,10 @@
               </div>
             </div>
           </a>
+        } @empty {
+          <div class="text-center py-5 text-muted bg-white rounded-3 shadow-sm w-100">
+            <p class="mb-0 small">No articles found in this category yet.</p>
+          </div>
         }
       </div>
 

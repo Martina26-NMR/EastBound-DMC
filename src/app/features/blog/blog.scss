@@ -1,13 +1,114 @@
 $navy: #0d233a;
 $dark-red: #ae1c24;
 
-.text-navy { color: $navy; }
-.text-dark-red { color: $dark-red; }
+.text-navy { color: $navy !important; }
+.text-dark-red { color: $dark-red !important; }
 .bg-dark-red { background-color: $dark-red !important; }
-.bg-light-gray { background-color: #fbfbfc; }
+.bg-light-gray { background-color: #fbfbfc !important; }
 .super-small { font-size: 0.7rem; }
 .max-w-500 { max-width: 500px; }
 
+// hero-button 
+.btn-dark-red {
+  color: #ffffff;
+  background-color: $dark-red;
+  border: 1px solid $dark-red;
+  transition: all 0.2s ease;
+  &:hover {
+    background-color: darken($dark-red, 10%);
+    border-color: darken($dark-red, 10%);
+  }
+}
+$navy: #0d233a;
+$dark-red: #ae1c24;
+
+.bg-navy { background-color: $navy !important; }
+.super-small { font-size: 0.7rem; letter-spacing: 1.5px; }
+.max-w-500 { max-width: 500px; }
+
+// الهيرو الكريتيف الجديد
+.creative-blog-hero {
+  min-height: 480px;
+  background: radial-gradient(circle at 20% 30%, lighten($navy, 5%) 0%, $navy 70%);
+  
+  .hero-pattern-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0.03;
+    background-image: radial-gradient(#ffffff 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+// نص متدرج بالأحمر الداكن ليعطي لمسة مضيئة
+.text-gradient-red {
+  background: linear-gradient(45deg, #ffffff, $dark-red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// غلاف الصورة الكريتيف المنحني
+.hero-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  // الإطار المائل الخلفي الزخرفي
+  .hero-shape-decorator {
+    position: absolute;
+    width: 85%;
+    height: 100%;
+    border: 2px solid $dark-red;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; // كيرف عشوائي هندسي فخم
+    transform: rotate(-6deg);
+    z-index: 1;
+  }
+
+  // قناع الصورة المنحني الديناميكي
+  .hero-image-mask {
+    width: 85%;
+    height: 380px;
+    overflow: hidden;
+    z-index: 2;
+    border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%; // كيرف كريتيف عكس الديكور الخلفي
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+      border-radius: 50%; // تتحول لشكل دائري ناعم جداً عند الـ Hover
+      transform: scale(1.02);
+    }
+  }
+}
+
+// زرار الأكشن المطور بحركة سهم تفاعلية
+.btn-creative-dark-red {
+  color: #ffffff;
+  background-color: $dark-red;
+  border: 1px solid $dark-red;
+  box-shadow: 0 4px 15px rgba($dark-red, 0.4);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: lighten($dark-red, 5%);
+    box-shadow: 0 6px 20px rgba($dark-red, 0.6);
+    transform: translateY(-2px);
+
+    .arrow-animate {
+      transform: translateX(5px);
+    }
+  }
+
+  .arrow-animate {
+    transition: transform 0.3s ease;
+  }
+}
+
+// الارتفاع المتجاوب للهيرو
+.min-vh-60 {
+  min-height: 60vh;
+}
 // تجميل شريط الـ Categories السفلي
 .cat-nav-link {
   font-size: 0.85rem;
@@ -30,13 +131,14 @@ $dark-red: #ae1c24;
   }
 }
 
-// إخفاء الـ Scrollbar للشاشات الصغيرة في شريط الـ Categories
+// إخفاء الـ Scrollbar للشاشات الصغيرة
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-// حركات الـ Cards الـ Premium والـ Image Zoom
+// حركات الـ Cards الـ Premium والـ Image Zoom على الـ Navy القديم
 .main-featured-card, .small-list-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none !important;
   .card-zoom-img { transition: transform 0.5s ease; }
 
   &:hover {
@@ -51,6 +153,12 @@ $dark-red: #ae1c24;
 .text-truncate-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+.text-truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;  
   overflow: hidden;
 }

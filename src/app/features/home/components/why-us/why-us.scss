@@ -1,0 +1,101 @@
+$black: #000000;
+$white: #ffffff;
+$custom-red: #d52027;
+$font-heading: var(--font-heading, 'Playfair Display', serif);
+
+.why-us {
+  font-family: $font-heading;
+
+  .bg-light-glow {
+    background: radial-gradient(circle, rgba($custom-red, 0.06) 0%, rgba($white, 0) 70%);
+    pointer-events: none;
+  }
+
+  // ستايل الكروت الفاخرة
+  .creative-value-card {
+    border: 1px solid rgba($black, 0.05);
+    background-color: $white;
+    box-shadow: 0 12px 35px rgba($black, 0.015);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.4s ease, 
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+
+    .icon-box-asymmetric {
+      width: 55px;
+      height: 55px;
+      background-color: rgba($custom-red, 0.05);
+      border-radius: 16px;
+      transition: all 0.4s ease;
+    }
+
+    .card-line-effect {
+      height: 2px;
+      width: 25px;
+      background-color: rgba($black, 0.1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    &:hover {
+      transform: translateY(-6px);
+      border-color: rgba($custom-red, 0.3);
+      box-shadow: 0 20px 40px rgba($black, 0.06) !important;
+
+      .icon-box-asymmetric {
+        background-color: $custom-red;
+        transform: scale(1.05);
+        i { color: $white !important; }
+      }
+
+      .card-line-effect {
+        width: 100%;
+        background-color: $custom-red;
+      }
+    }
+  }
+
+  /* =======================================================
+     تعديل مظهر الـ 2×2 على الموبايل ليصبح قمة في التناسق
+     ======================================================= */
+  @media (max-width: 767.98px) {
+    .creative-value-card {
+      min-height: 210px; // توحيد الارتفاع عشان الكروت تطلع مرصوصة بالملي
+      
+      .icon-box-asymmetric {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+      }
+
+      h3 {
+        font-size: 1.1rem !important; // تصغير حجم العناوين لتناسب العمودين
+      }
+
+      p {
+        font-size: 0.78rem !important; // تصغير خط الوصف ليقرأ بالكامل بدون تداخل
+        line-height: 1.4;
+      }
+    }
+  }
+
+  /* =======================================================
+     أنيميشن السكرول التتابعي (Scroll Trigger)
+     ======================================================= */
+  .scroll-trigger {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &.animate-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    // تأثير تتابع الظهور الممتع (يتناسب جداً مع ظهور كارتين كارتين)
+    &.delay-1 { transition-delay: 0.1s; }
+    &.delay-2 { transition-delay: 0.22s; }
+    &.delay-3 { transition-delay: 0.34s; }
+    &.delay-4 { transition-delay: 0.46s; }
+  }
+}

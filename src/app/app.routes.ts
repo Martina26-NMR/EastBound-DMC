@@ -68,6 +68,10 @@ export const routes: Routes = [
       import('./features/blog/blog')
         .then(m => m.Blog)
   },
+  { 
+  path: 'blog/:id', 
+  loadComponent: () => import('./features/blog/blog-details/blog-details').then(m => m.BlogDetails) 
+},
   {
     path: 'FAQ',
     loadComponent: () =>

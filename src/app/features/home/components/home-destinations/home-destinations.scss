@@ -1,0 +1,102 @@
+$black: #000000;
+$white: #ffffff;
+$custom-red: #d52027;
+$gold: #fdc938;
+$font-heading: var(--font-heading, 'Playfair Display', serif);
+
+.featured-destinations {
+  font-family: $font-heading;
+
+  .bg-dotted-pattern {
+    background-image: radial-gradient(rgba($custom-red, 0.12) 1.5px, transparent 1.5px);
+    background-size: 26px 26px;
+    pointer-events: none;
+  }
+
+  .destination-wrapper {
+    // التنسيق الجديد لصندوق العناوين تحت الصورة
+    .card-info-box {
+      transition: transform 0.4s ease;
+      h3 {
+        transition: color 0.3s ease;
+      }
+    }
+
+    &:hover {
+      .destination-luxury-card {
+        transform: translateY(-6px);
+        border-color: rgba($custom-red, 0.3);
+        box-shadow: 0 15px 30px rgba($black, 0.08) !important;
+        
+        .card-img-effect {
+          transform: scale(1.04);
+        }
+      }
+      // حركة خفيفة للعنوان عند الهوفر
+      .card-info-box h3 {
+        color: $custom-red;
+      }
+    }
+  }
+
+  .destination-luxury-card {
+    min-height: 200px;
+    border: 1px solid rgba($black, 0.05);
+    background-color: #fdfdfd;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+
+    &.tall-card {
+      min-height: 440px; 
+    }
+
+    .card-img-effect {
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  }
+
+  /* أنيميشن الـ CSS المضمون */
+.card-appear {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .7s ease, transform .7s ease;
+
+  &.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.delay-1.show { transition-delay: .1s; }
+  &.delay-2.show { transition-delay: .2s; }
+  &.delay-3.show { transition-delay: .3s; }
+  &.delay-4.show { transition-delay: .4s; }
+}
+
+  @keyframes smoothSlideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .btn-view-all {
+    color: $custom-red;
+    border: $custom-red;
+    background:  rgba($custom-red, 0.05);
+    padding: 10px 24px;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: rgba($custom-red, 0.05);
+      border-color: $custom-red;
+      color: $custom-red;
+      transform: translateX(3px);
+    }
+  }
+
+      .text-red {
+  color: $custom-red !important;
+}
+
+}

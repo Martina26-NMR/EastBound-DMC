@@ -1,11 +1,53 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  ElementRef,
+  QueryList,
+  ViewChildren,
+  Inject,
+  PLATFORM_ID
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home-destinations',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './home-destinations.html',
   styleUrl: './home-destinations.scss',
 })
-export class HomeDestinations {
+export class HomeDestinations implements AfterViewInit {
 
+  @ViewChildren('card')
+  cards!: QueryList<ElementRef>;
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
+  ngAfterViewInit(): void {
+
+    // يمنع تشغيل الكود أثناء الـ SSR
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    this.cards.forEach((card) => {
+      observer.observe(card.nativeElement);
+    });
+  }
 }

@@ -1,0 +1,95 @@
+@if (currentPost(); as post) {
+  <div class="blog-details-wrapper py-5 bg-light-cream">
+    <div class="container">
+      
+      <!-- Breadcrumbs (نفس ستايل صفحة الرحلة) -->
+      <nav class="blog-breadcrumbs mb-4" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 flex-nowrap overflow-auto">
+          <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+          <li class="breadcrumb-item"><a routerLink="/blog">Magazine</a></li>
+          <li class="breadcrumb-item active text-truncate" aria-current="page">{{ post.title }}</li>
+        </ol>
+      </nav>
+
+      <!-- Main Layout (Split Content & Image) -->
+      <div class="row g-5 align-items-center mb-5">
+        
+        <!-- العمود الأيسر: بيانات المقال والعنوان -->
+        <div class="col-lg-7 text-start">
+          <!-- الـ Badge المماثل لـ Best Seller -->
+          <span class="badge bg-light-red text-dark-red text-uppercase tracking-wider px-3 py-2 rounded-2 mb-3 fw-bold super-small">
+            {{ post.tag }}
+          </span>
+          
+          <!-- عنوان المقال -->
+          <h1 class="fw-bold text-navy font-heading display-5 mb-4 lh-sm text-uppercase">
+            {{ post.title }}
+          </h1>
+          
+          <!-- الـ Meta Info المماثلة لصفحة الرحلة (تقييم ثابت شكلياً، مدة، كاتب) -->
+          <div class="d-flex flex-wrap align-items-center gap-3 text-muted fs-7 mb-4 py-3 border-top border-bottom border-light-subtle">
+            <div class="d-flex align-items-center gap-1 text-gold fw-bold">
+              <i class="fa-solid fa-star"></i> 4.9 <span class="text-muted fw-normal">(88 reviews)</span>
+            </div>
+            <span class="text-separator">•</span>
+            <div class="d-flex align-items-center gap-1 fw-semibold text-navy">
+              <i class="fa-regular fa-clock me-1"></i> {{ post.readTime }}
+            </div>
+            <span class="text-separator">•</span>
+            <div class="d-flex align-items-center gap-1 text-muted">
+               <i class="fa-regular fa-calendar me-1"></i> {{ post.date }}
+            </div>
+            <span class="text-separator">•</span>
+            <!-- <div class="d-flex align-items-center gap-1 fw-bold text-navy">
+              By {{ post.author }}
+            </div> -->
+          </div>
+
+          <!-- ملخص سريع للمقال -->
+          <p class="lead text-muted fs-6 lh-base max-w-600">
+            {{ post.summary }}
+          </p>
+        </div>
+
+  
+        <div class="col-lg-5">
+          <div class="blog-detail-image-card position-relative overflow-hidden shadow-sm">
+            <img [src]="post.image" class="w-100 h-100 object-fit-cover" [alt]="post.title">
+            
+            <!-- الكارت البيج المدمج أسفل الصورة -->
+<div class="image-action-card p-3 position-absolute bottom-0 start-0 end-0 m-3 rounded-3 d-flex align-items-center justify-content-between" routerLink="/tours" style="cursor: pointer;">
+  <span class="fw-bold text-navy">Book This Experience</span>
+  <span class="arrow-indicator"><i class="fa-solid fa-arrow-trend-up text-dark-red"></i></span>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- محتوى المقال السفلي -->
+  <section class="py-5 bg-white">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-9 text-start">
+          <div class="article-content font-sans text-brand-black fs-6 lh-lg">
+            <!-- عرض محتوى المقالة بالكامل -->
+            <div [innerHTML]="post.content"></div>
+          </div>
+
+          <!-- زرار العودة للمجلة -->
+          <div class="mt-5 pt-4 border-top">
+            <a routerLink="/blog" class="btn btn-dark-red rounded-pill px-4 btn-sm fw-bold">
+              <i class="fa-solid fa-arrow-left me-2"></i> Back to Magazine
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+} @else {
+  <div class="text-center py-5 my-5 text-muted">
+    <p class="fs-4">Article not found.</p>
+    <a routerLink="/blog" class="btn btn-dark-red rounded-pill px-4">Return to Magazine</a>
+  </div>
+}
