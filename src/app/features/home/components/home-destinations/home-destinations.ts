@@ -1,11 +1,10 @@
-import {
-  Component,
-  AfterViewInit,
-  ElementRef,
-  QueryList,
-  ViewChildren,
-  Inject,
-  PLATFORM_ID
+import { 
+  Component, 
+  AfterViewInit, 
+  ElementRef, 
+  inject, 
+  PLATFORM_ID, 
+  viewChildren 
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -18,19 +17,14 @@ import { RouterLink } from '@angular/router';
 })
 export class HomeDestinations implements AfterViewInit {
 
-  @ViewChildren('card')
-  cards!: QueryList<ElementRef>;
+  readonly cards = viewChildren<ElementRef>('card');
+  
 
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  private readonly platformId = inject(PLATFORM_ID);
 
   ngAfterViewInit(): void {
 
-    // يمنع تشغيل الكود أثناء الـ SSR
-    if (!isPlatformBrowser(this.platformId)) {
-      return;
-    }
+    if (!isPlatformBrowser(this.platformId)) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -41,12 +35,10 @@ export class HomeDestinations implements AfterViewInit {
           }
         });
       },
-      {
-        threshold: 0.2,
-      }
+      { threshold: 0.2 }
     );
 
-    this.cards.forEach((card) => {
+    this.cards().forEach((card) => {
       observer.observe(card.nativeElement);
     });
   }

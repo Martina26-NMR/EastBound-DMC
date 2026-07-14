@@ -1,1 +1,107 @@
-<p>home-tailor-made works!</p>
+<!-- ======= TAILOR MADE SECTION (BOARDING PASS) ======= -->
+<section class="tailor-made-section py-2 position-relative overflow-hidden bg-white">
+  <div class="abstract-bg position-absolute w-100 h-100 top-0 start-0"></div>
+  
+  <div class="container position-relative z-3 py-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        
+        <div class="boarding-pass-card position-relative overflow-hidden d-flex flex-column flex-md-row" 
+             (mousemove)="onMouseMove($event)" 
+             (mouseleave)="onMouseLeave()"
+             [style.transform]="cardTransform">
+          
+          <div class="pass-main p-4 p-md-5 d-flex flex-column justify-content-between flex-grow-1">
+            
+            <div class="pass-header d-flex justify-content-between align-items-center mb-4">
+              <span class="pass-badge text-uppercase tracking-widest fw-bold small">Special Service</span>
+              <div class="flight-route d-flex align-items-center gap-2">
+                <span class="fw-bold font-sans text-black">YOU</span>
+                <i class="fa-solid fa-plane text-custom-red animate-plane"></i>
+                <span class="fw-bold font-sans text-black">DREAM</span>
+              </div>
+            </div>
+
+            <div class="pass-body my-auto">
+              <h2 class="display-4 font-heading fw-bold text-black mb-3">
+                Tailor Made <br><span class="text-gradient">Just For You</span>
+              </h2>
+              <p class="text-muted font-sans lead mb-0 max-w-500">
+                Tell us your travel plans and we'll create the perfect itinerary for you.
+              </p>
+            </div>
+
+            <div class="pass-footer mt-4 pt-4 border-top border-light d-none d-md-flex justify-content-between align-items-center">
+              <div class="footer-item">
+                <span class="text-muted d-block small-label text-uppercase">Class</span>
+                <span class="fw-bold text-black font-sans">First Class / Luxury</span>
+              </div>
+              <div class="footer-item">
+                <span class="text-muted d-block small-label text-uppercase">Gate</span>
+                <span class="fw-bold text-black font-sans">EASTBOUND DMC</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="ticket-divider d-flex flex-row flex-md-column justify-content-between align-items-center">
+            <span class="notch top"></span>
+            <div class="dashed-line"></div>
+            <span class="notch bottom"></span>
+          </div>
+
+          <!-- الجزء المقتطع: فورمة التخطيط -->
+          <div class="pass-stub p-4 p-md-5 d-flex flex-column justify-content-center">
+            <h4 class="h6 text-uppercase tracking-wider fw-bold text-black mb-3 text-center text-md-start">Start Planning</h4>
+            
+            <form (ngSubmit)="submitPlan()" class="quick-plan-form d-flex flex-column gap-2-5">
+              
+              <!-- 1. Destination -->
+              <div class="form-group position-relative">
+                <input type="text" [(ngModel)]="planData.destination" name="destination" class="form-control custom-input" placeholder="Where do you want to go?" required>
+                <i class="fa-solid fa-location-dot input-icon"></i>
+              </div>
+
+              <!-- 2. Travel Dates -->
+              <div class="form-group position-relative">
+                <input #travelDate type="date" [(ngModel)]="planData.travelDates" name="travelDates" class="form-control custom-input" (click)="travelDate.showPicker()" required>
+                <i class="fa-regular fa-calendar-days input-icon"></i>
+              </div>
+
+              <!-- 3. Number of Travelers -->
+              <div class="form-group position-relative">
+                <input type="number" [(ngModel)]="planData.travelersCount" name="travelersCount" class="form-control custom-input" placeholder="Number of Travelers" min="1" required>
+                <i class="fa-solid fa-user-group input-icon"></i>
+              </div>
+
+              <!-- 4. Travel Style (Dropdown) -->
+              <div class="form-group position-relative">
+                <select [(ngModel)]="planData.travelStyle" name="travelStyle" class="form-select custom-input select-input" required>
+                  <option value="" disabled selected hidden>Travel Style</option>
+                  <option value="luxury">Luxury / Premium</option>
+                  <option value="classic">Classic Culture</option>
+                  <option value="adventure">Adventure & Active</option>
+                  <option value="family">Family Friendly</option>
+                </select>
+                <i class="fa-regular fa-compass input-icon"></i>
+              </div>
+
+              <!-- 5. Interests & Preferences -->
+              <div class="form-group position-relative">
+                <textarea [(ngModel)]="planData.interests" name="interests" class="form-control custom-input text-area" placeholder="Tell us about your interests, preferences, and must-see places..." rows="2"></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-plan-trip rounded-pill py-2-5 text-uppercase small fw-bold w-100 position-relative overflow-hidden mt-2">
+                <span class="btn-text">Plan My Trip</span>
+                <div class="btn-glow-effect"></div>
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

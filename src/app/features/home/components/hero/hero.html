@@ -1,14 +1,14 @@
 <!-- ======= HOME HERO SECTION ======= -->
-<section class="home-luxury-hero position-relative d-flex align-items-center min-vh-100">
+<section class="home-luxury-hero position-relative d-flex align-items-center">
   
-  <!-- الإضاءة الحمراء الصريحة في أول الهيرو على الجنب فوق الخلفية -->
+
   <div class="bg-red-glow position-absolute rounded-circle"></div>
   <div class="bg-dotted-pattern position-absolute w-100 h-100 top-0 start-0"></div>
 
-  <div class="container position-relative z-3   ">
+  <div class="container position-relative z-3">
     <div class="row align-items-center g-5">
       
-      <!-- الجانب الأيسر: المحتوى فوق الصورة الخلفية بأنيميشن تتابعي -->
+  
       <div class="col-lg-6 text-center text-lg-start">
         <span class="badge bg-custom-red text-white text-uppercase tracking-widest px-3 py-2 rounded-pill small mb-3 animate-fade-up-1">
           Discover
@@ -18,32 +18,33 @@
           Egypt & Jordan
         </h1>
 
-        <p class="lead text-white font-sans mb-5 font-style-italic animate-fade-up-3 text-shadow quote-line">
+        <p class="lead text-white font-sans mb-5 font-style-italic animate-fade-up-3 text-shadow quote-line border-start">
           “Tailor-made journeys across the Middle East”
         </p>
         
         <div class="d-flex flex-column flex-sm-row gap-3 align-items-center justify-content-center justify-content-lg-start animate-fade-up-4">
-       <a routerLink="/tours" class="btn btn-luxury-capsule shadow-lg">
+          <a routerLink="/tours" class="btn btn-luxury-capsule shadow-lg text-decoration-none">
             <span class="action-text">Explore Tours</span>
             <span class="icon-circle bg-custom-red text-white"><i class="fa-solid fa-compass"></i></span>
           </a>
-          <button class="btn btn-outline-quote rounded-pill px-4 transition-all" routerLink="/tailor-made">
+          <button class="btn btn-outline-quote rounded-pill px-4" routerLink="/tailor-made">
             Get a Quote <i class="fa-solid fa-arrow-right-long ms-2"></i>
           </button>
         </div>
       </div>
-<!-- الجانب الأيمن: كارت سينمائي عريض متناسق تماماً مع أبعاد الصورة البانورامية -->
-<div class="col-lg-6 d-flex justify-content-center">
-  <div class="glass-float-wrapper position-relative w-100">
-    <!-- لوح الزجاج الجمالي المتداخل من الأسفل -->
-    <div class="glass-overlay-label position-absolute p-3 rounded-3 shadow">
-      <small class="text-gold tracking-widest text-uppercase d-block mb-1">Luxury Itineraries</small>
-      <span class="text-white fs-6 fw-bold">Cairo to Petra</span>
-    </div>
-    
-    <img src="/images/cover-hero.webp" class="w-100 h-100 object-fit-cover rounded-4 shadow-lg main-float-img" alt="Panoramic Journey">
-  </div>
-</div>
+
+  
+      <div class="col-lg-6 d-flex justify-content-center">
+        <div class="glass-float-wrapper position-relative w-100">
+   
+          <div class="glass-overlay-label position-absolute p-3 rounded-3 shadow">
+            <small class="text-gold tracking-widest text-uppercase d-block mb-1 fs-xs">Luxury Itineraries</small>
+            <span class="text-white fs-6 fw-bold">Cairo to Petra</span>
+          </div>
+          
+          <img src="/images/cover-hero.webp" loading="eager" fetchpriority="high" decoding="async" class="w-100 h-100 object-fit-cover rounded-4 shadow-lg main-float-img" alt="Panoramic Journey">
+        </div>
+      </div>
 
     </div>
   </div>

@@ -1,0 +1,96 @@
+@use 'variables' as *;
+
+.cta-banner-section {
+  background-color: transparent; 
+}
+
+.cta-banner {
+  background-color: $red-bright;
+  min-height: 180px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba($black, 0.08);
+
+  .banner-bg {
+    width: 35%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.45;
+    mix-blend-mode: luminosity; 
+    z-index: 1;
+
+    &.bg-pyramids {
+      background-image: url('/images/hero-section-egyot.webp');
+      background-position: left center;
+      mask-image: linear-gradient(to right, $black 50%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, $black 50%, transparent 100%);
+    }
+
+    &.bg-petra {
+      background-image: url('/images/hero-section-jordan.webp');
+      background-position: right center;
+      mask-image: linear-gradient(to left, $black 50%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to left, $black 50%, transparent 100%);
+    }
+
+    @media (max-width: 767.98px) {
+      width: 50%;
+      opacity: 0.25; 
+    }
+  }
+
+  .banner-blend-overlay {
+    background: linear-gradient(to right, rgba($red-bright, 0.1) 0%, $red-bright 30%, $red-bright 70%, rgba($red-bright, 0.1) 100%);
+    z-index: 2;
+
+    @media (max-width: 767.98px) {
+      background: $red-bright;
+      opacity: 0.60;
+    }
+  }
+}
+
+.cta-subtitle {
+  color: rgba($white, 0.8);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+}
+
+.cta-title {
+  font-family: $font-heading; 
+  font-size: 2.2rem;
+  letter-spacing: -0.01em;
+  
+  @media (max-width: 767.98px) {
+    font-size: 1.6rem;
+  }
+}
+
+.cta-desc {
+  font-size: 0.95rem;
+  color: rgba($white, 0.75);
+}
+
+.btn-white-pill {
+  background-color: $white;
+  color: $red-bright;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  border: 1px solid $white;
+  transition: all 0.3s ease;
+
+  .extra-small {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background-color: transparent;
+    color: $white;
+    border-color: rgba($white, 0.6);
+    transform: translateY(-2px);
+
+    .extra-small {
+      transform: translateX(4px); 
+    }
+  }
+}

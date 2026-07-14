@@ -1,6 +1,4 @@
-// ==========================================================================
-// Eastbound DMC - Brand Colors (حسب الـ Guidelines صفحة 7)
-// ==========================================================================
+
 $color-primary-navy:   #0f1c3f;
 $color-secondary-gold: #c5a880;
 $color-accent-yellow:  #fdc938;
@@ -9,23 +7,26 @@ $color-text-light:     #ffffff;
 $color-bg-light:       #f9f9f9;
 $color-bg-white:       #ffffff;
 
-// ── Aliases (shorthand للاستخدام في الـ components) ──────────────────────
+
+$black:       #000000;
+$white:       $color-text-light;      // #ffffff
+$red-bright:  #d52027;              
+$yellow-gold: $color-accent-yellow;  // (#fdc938) 
+
+
 $navy:     $color-primary-navy;    // #0f1c3f
 $gold:     $color-secondary-gold;  // #c5a880
 $cream:    #FAF8F5;
 $dark-red: #A81B24;
 $red:      #A81B24;
-$white:    $color-text-light;      // #ffffff
 
-// ==========================================================================
-// Typography (حسب الـ Guidelines صفحة 9)
-// ==========================================================================
+
 $font-headings: 'Cinzel', serif;
 $font-body:     'Inter', sans-serif;
 $font-arabic:   'Simplified Arabic', sans-serif;
 
 // ── Alias ────────────────────────────────────────────────────────────────
-$font-heading: $font-headings;   // بعض الـ components بتستخدم $font-heading (بدون s)
+$font-heading: $font-headings;   
 
 // ==========================================================================
 // Breakpoints

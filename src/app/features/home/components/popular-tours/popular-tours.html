@@ -1,17 +1,17 @@
-<!-- ======= PREMIUM POPULAR TOURS (SERVICE BASED) ======= -->
-<section class="popular-tours py-5 bg-white text-dark position-relative overflow-hidden">
+<!-- ======= PREMIUM POPULAR TOURS ======= -->
+<section class="popular-tours bg-white py-2 text-dark position-relative overflow-hidden">
   <div class="bg-light-glow position-absolute w-100 h-100 top-0 start-0 opacity-5"></div>
 
-  <div class="container position-relative z-3 py-5">
-    
+  <div class="container position-relative z-3 py-4">
+
     <!-- Header -->
     <div class="row mb-4 align-items-end justify-content-between gap-4">
       <div class="col-12 col-lg-6 text-center text-lg-start">
-        <span class="text-custom-red text-uppercase tracking-widest fw-bold small d-block mb-2">Top Packages</span>
+        <span class="text-danger text-uppercase tracking-widest fw-bold small d-block mb-2">Top Packages</span>
         <h2 class="display-5 font-heading fw-bold text-black mb-0">Popular Tours</h2>
       </div>
       <div class="col-12 col-lg-auto d-none d-lg-block">
-        <a href="/tours" class="btn btn-view-all rounded-pill px-4 py-2-5 text-uppercase small fw-bold">
+        <a routerLink="/tours" class="btn btn-view-all rounded-pill px-4 py-2-5 text-uppercase small fw-bold">
           View all Tours <i class="fa-solid fa-arrow-right ms-2"></i>
         </a>
       </div>
@@ -20,45 +20,76 @@
     <!-- Filter Tabs -->
     <div class="row mb-5">
       <div class="col-12">
-        <div class="filter-tabs-wrapper d-flex align-items-center justify-content-start gap-2 pb-2">
-          <button class="btn filter-tab rounded-pill" [class.active]="activeTab === 'all'" (click)="setTab('all')">All Tours</button>
-          <button class="btn filter-tab rounded-pill" [class.active]="activeTab === 'egypt'" (click)="setTab('egypt')">Egypt Tours</button>
-          <button class="btn filter-tab rounded-pill" [class.active]="activeTab === 'jordan'" (click)="setTab('jordan')">Jordan Tours</button>
+        <!-- استخدمنا كلاسات بوتستراب للتنسيق ودمجنا الحدود السفلى border-bottom مباشرة -->
+        <div class="filter-tabs-wrapper border-bottom border-light-subtle d-flex align-items-center justify-content-start gap-2 pb-2">
+          <button class="btn filter-tab rounded-pill"
+                  [class.active]="activeTab() === 'all'"
+                  (click)="setTab('all')">All Tours</button>
+          <button class="btn filter-tab rounded-pill"
+                  [class.active]="activeTab() === 'egypt'"
+                  (click)="setTab('egypt')">Egypt Tours</button>
+          <button class="btn filter-tab rounded-pill"
+                  [class.active]="activeTab() === 'jordan'"
+                  (click)="setTab('jordan')">Jordan Tours</button>
         </div>
       </div>
     </div>
 
-    <!-- شبكة الكروت المربوطة ببيانات السيرفس -->
+    <!-- Tours Grid -->
     <div class="row g-3 g-md-4 tours-grid">
-      
-      <div class="col-6 col-lg-4 scroll-trigger delay-1" 
-           *ngFor="let tour of toursList"
-           [class.d-none]="activeTab !== 'all' && activeTab !== tour.category">
-        
-        <div class="tour-luxury-card rounded-4 bg-white overflow-hidden d-flex flex-column h-100">
-          <div class="img-wrapper position-relative overflow-hidden">
-            <img [src]="tour.image" class="w-100 object-fit-cover tour-img" loading="lazy" [alt]="tour.title">
-            <span class="badge-category position-absolute top-3 start-3 rounded-pill text-capitalize">{{ tour.category }}</span>
-          </div>
-          <div class="tour-info p-3 p-md-4 d-flex flex-column flex-grow-1">
-            <h3 class="h5 font-heading fw-bold text-black mb-2">{{ tour.title }}</h3>
-            <p class="text-muted font-sans small mb-0 flex-grow-1">{{ tour.description }}</p>
-            <div class="tour-footer mt-3 pt-3 border-top d-flex justify-content-between align-items-center">
-              <span class="text-custom-red fw-bold font-sans">{{ tour.duration }}</span>
-              <i class="fa-solid fa-arrow-right text-muted arrow-icon"></i>
-            </div>
-          </div>
-          <a href="/tours/{{ tour.id }}" class="stretched-link"></a>
-        </div>
 
-      </div>
+      @for (tour of filteredTours; track tour.id; let i = $index) {
+        <div class="col-6 col-lg-3 scroll-trigger"
+             [style.transition-delay]="(i * 120) + 'ms'">
+
+          <!-- استخدمنا كلاسات بوتستراب border و shadow-sm هنا بدلاً من كتابتها في الـ SCSS -->
+          <div class="tour-luxury-card border border-light-subtle shadow-sm rounded-4 bg-white overflow-hidden d-flex flex-column h-100">
+
+            <!-- Image -->
+            <div class="img-wrapper position-relative overflow-hidden">
+              <img [src]="tour.image"
+                   class="w-100 h-100 object-fit-cover tour-img"
+                   loading="lazy"
+                   [alt]="tour.title">
+
+              <!-- Badge: Egypt / Jordan -->
+              <span class="badge-category position-absolute top-3 start-3 rounded-pill text-capitalize">
+                {{ getCountryLabel(tour) }}
+              </span>
+
+              <!-- Featured tag -->
+              @if (tour.featuredTag) {
+                <span class="badge-tag position-absolute bottom-3 start-3 rounded-pill">
+                  {{ tour.featuredTag }}
+                </span>
+              }
+            </div>
+
+            <!-- Info -->
+            <div class="tour-info p-3 p-md-4 d-flex flex-column flex-grow-1">
+              <h3 class="h5 font-heading fw-bold text-black mb-1">{{ tour.title }}</h3>
+              <p class="text-muted small mb-0 flex-grow-1">{{ tour.fullTitle }}</p>
+
+              <!-- استخدمنا border-top وبوتستراب هنا للفصل المباشر -->
+              <div class="tour-footer mt-3 pt-3 border-top border-light-subtle d-flex justify-content-between align-items-center">
+                <span class="text-danger fw-bold small">{{ tour.duration }}</span>
+                <span class="fw-bold small">From ${{ tour.price }}</span>
+              </div>
+            </div>
+
+            <!-- Stretched link -->
+            <a [routerLink]="['/tours', tour.id]" class="stretched-link"></a>
+
+          </div>
+        </div>
+      }
 
     </div>
 
-    <!-- زر الموبايل -->
+    <!-- Mobile CTA -->
     <div class="row mt-5 d-lg-none text-center">
       <div class="col-12">
-        <a href="/tours" class="btn btn-view-all rounded-pill px-5 py-2-5 text-uppercase small fw-bold w-100">
+        <a routerLink="/tours" class="btn btn-view-all rounded-pill px-5 py-2-5 text-uppercase small fw-bold w-100">
           View all Tours <i class="fa-solid fa-arrow-right ms-2"></i>
         </a>
       </div>

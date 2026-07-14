@@ -1,1 +1,92 @@
-<p>testimonials works!</p>
+<!-- ======= PREMIUM POSTCARD TESTIMONIALS ======= -->
+<section class="testimonials-postcard-section py-2 position-relative overflow-hidden">
+  <div class="travel-map-bg position-absolute w-100 h-100 top-0 start-0 opacity-5"></div>
+
+  <div class="container position-relative z-3 py-5">
+    
+    <!-- الهيدر السياحي الأنيق -->
+    <div class="row align-items-end mb-5 justify-content-between">
+      <div class="col-12 col-md-7 text-center text-md-start mb-4 mb-md-0">
+        <span class="text-custom-red text-uppercase tracking-widest fw-bold small d-block mb-2">Testimonials</span>
+        <h2 class="display-5 font-heading fw-bold text-black mb-0">What Our Travelers Say</h2>
+      </div>
+      <!-- أزرار الانتقال المخفية على الموبايل لأن الموبايل شغال Swipe طبيعي -->
+      <div class="col-auto d-none d-md-flex gap-2">
+        <button class="nav-arrow-btn" (click)="scrollPrev()">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="nav-arrow-btn" (click)="scrollNext()">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- حاوية الكروت البريدية السحابة (Swipeable Wrapper) -->
+    <div class="postcard-scroll-wrapper" #postcardWrapper>
+      <div class="postcard-track">
+        
+        <!-- الكارت البريدي المبتكر -->
+        <div class="travel-postcard" *ngFor="let item of testimonials; let i = index">
+          
+          <!-- النصف الأيسر: الصورة والختم -->
+          <div class="postcard-visual position-relative">
+            <img [src]="item.locationPhoto" class="w-100 h-100 object-fit-cover" [alt]="item.destination" loading="lazy">
+            <div class="image-overlay"></div>
+            
+            <!-- ختم بريد دائري فاخر (Postmark) -->
+            <div class="postmark-seal">
+              <span class="seal-text">EASTBOUND DMC</span>
+              <span class="seal-date">{{ item.dateSent }}</span>
+            </div>
+
+            <span class="destination-tag"><i class="fa-solid fa-location-dot me-1"></i> {{ item.destination }}</span>
+          </div>
+
+          <!-- خط الفصل البريدي التقليدي (Postcard Divider) -->
+          <div class="postcard-center-divider d-none d-md-block"></div>
+
+          <!-- النصف الأيمن: الرسالة المكتوبة والطابع -->
+          <div class="postcard-content p-4 p-lg-5 d-flex flex-column justify-content-between">
+            
+            <!-- الهيدر البريدي وطابع البريد (Traveler Avatar Stamp) -->
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="stamp-post-label">
+                <span class="d-block text-uppercase fw-bold text-muted small tracking-wider">Air Mail</span>
+                <div class="rating-stars mt-1 d-flex gap-1 text-warning">
+                  <i class="fa-solid fa-star" *ngFor="let s of [].constructor(item.rating)"></i>
+                </div>
+              </div>
+
+              <!-- طابع البريد الفخم متعرج الأطراف وبداخله صورة العميل -->
+              <div class="postage-stamp">
+                <img [src]="item.avatar" [alt]="item.name" loading="lazy">
+              </div>
+            </div>
+
+            <!-- نص التقييم (مكتوب بخط مائل أنيق يشبه خط اليد) -->
+            <div class="postcard-message my-4">
+              <p class="feedback-text">"{{ item.feedback }}"</p>
+            </div>
+
+            <!-- الفوتر البريدي (المرسل والمستقبل) -->
+            <div class="postcard-address mt-auto pt-3 border-top border-light">
+              <div class="row align-items-center justify-content-between">
+                <div class="col-8">
+                  <h4 class="h6 fw-bold text-black mb-0">{{ item.name }}</h4>
+                  <span class="text-muted text-uppercase tracking-wider extra-small">{{ item.role }}</span>
+                </div>
+                <div class="col-auto">
+                  <span class="verified-badge"><i class="fa-solid fa-circle-check text-success me-1"></i> Verified</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,104 @@
+@use 'variables' as *;
+
+$brand-dark: #0f141c; 
+$whatsapp-green: #25d366;
+$transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+.main-footer {
+  background-color: $brand-dark;
+  border-top: 1px solid rgba($white, 0.05);
+
+  .text-brand-red {
+    color: $red-bright;
+  }
+
+  .small-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    max-width: 320px;
+  }
+}
+
+.footer-title {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  border-bottom: 2px solid rgba($red-bright, 0.2);
+  padding-bottom: 6px;
+  display: inline-block;
+}
+
+.transition-smooth {
+  transition: $transition-smooth;
+  &:hover {
+    color: $white !important;
+  }
+}
+
+.footer-links {
+  li {
+    margin-bottom: 10px;
+    
+    a {
+      color: rgba($white, 0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: $transition-smooth;
+
+      &:hover {
+        color: $red-bright;
+        padding-left: 5px; }
+    }
+  }
+}
+
+.footer-contact {
+  li a {
+    transition: $transition-smooth;
+    &:hover {
+      color: $red-bright !important;
+    }
+  }
+}
+
+.social-links {
+  .social-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba($white, 0.03);
+    border: 1px solid rgba($white, 0.08);
+    color: rgba($white, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    transition: $transition-smooth;
+    text-decoration: none;
+
+    &:hover {
+      background: $red-bright;
+      color: $white;
+      border-color: $red-bright;
+      transform: translateY(-3px);
+    }
+  }
+}
+
+// زر الواتساب
+.btn-whatsapp-footer {
+  background: rgba($whatsapp-green, 0.1);
+  border: 1px solid rgba($whatsapp-green, 0.3);
+  color: $whatsapp-green;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  transition: $transition-smooth;
+  text-decoration: none;
+
+  &:hover {
+    background: $whatsapp-green;
+    color: $white;
+    border-color: $whatsapp-green;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba($whatsapp-green, 0.3);
+  }
+}

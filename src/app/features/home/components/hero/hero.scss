@@ -1,145 +1,105 @@
-$black: #000000;
-$white: #ffffff;
-$custom-red: #d52027;
-$gold: #fdc938;
-$font-heading: var(--font-heading, 'Playfair Display', serif);
+@use 'variables' as *;
 
-.bg-custom-red { background-color: $custom-red !important; }
-.text-shadow { text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); }
+.bg-custom-red { background-color: $red-bright !important; }
+
+
+.text-shadow { text-shadow: 0 4px 12px rgba($black, 0.6); }
 
 .home-luxury-hero {
-  font-family: $font-heading;
-  // الخلفية عبارة عن صورة كاملة ومدمج معها تدرج أسود فخم لضمان وضوح النص الأبيض
+  font-family: $font-heading; 
   background: linear-gradient(180deg, rgba($black, 0.75) 0%, rgba($black, 0.4) 50%, rgba($black, 0.8) 100%), 
-              url('/images/cover-hero.webp') center/cover no-repeat;
+              url('/images/cover-hero-hero.webp') center/cover no-repeat;
+  min-height: 100svh;
 
   .quote-line {
-    border-left: 2px solid $gold;
+    border-color: $yellow-gold !important; 
+    border-width: 2px !important;
     padding-left: 15px;
   }
 
-  // الضوء الأحمر الصريح في الجنب يسار فوق الصورة الخلفية
   .bg-red-glow {
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba($custom-red, 0.3) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba($red-bright, 0.3) 0%, transparent 70%);
     top: -10%;
     left: -10%;
-    filter: blur(90px);
+    filter: blur(40px);
     z-index: 2;
     pointer-events: none;
   }
 
   .bg-dotted-pattern {
-    background-image: radial-gradient(rgba($custom-red, 0.2) 1.5px, transparent 1.5px);
+    background-image: radial-gradient(rgba($red-bright, 0.2) 1.5px, transparent 1.5px);
     background-size: 26px 26px;
     z-index: 2;
     pointer-events: none;
-    mask-image: linear-gradient(to bottom right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
   }
 
-  // الكارت الأبيض العائم وتنسيقه المتجاوب (مكان الفورم)
-.glass-float-wrapper {
-  aspect-ratio: 16 / 8.5;
-  animation: gentleFloat 5s ease-in-out infinite;
+  .glass-float-wrapper {
+    aspect-ratio: 16 / 8.5;
+    animation: gentleFloat 5s ease-in-out infinite;
 
-  .main-float-img {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .glass-overlay-label {
-    bottom: -20px;
-    left: 30px;
-    z-index: 3;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-}
-
-@keyframes gentleFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(0.5deg); }
-}
-  // أنيميشن الستارة المبتكر لكشف الصورة الداخلية (Image Reveal Animation)
-  .reveal-image-wrapper {
-    .reveal-curtain {
-      z-index: 2;
-      transform: scaleX(1);
-      transform-origin: left;
-      animation: revealSlide 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-      animation-delay: 0.6s; // يبدأ الكشف بعد دخول الكلام
+    .main-float-img {
+      border: 1px solid rgba($white, 0.1);
     }
 
-    .inner-hero-img {
-      transform: scale(1.1);
-      transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    .glass-overlay-label {
+      bottom: -20px;
+      left: 30px;
+      z-index: 3;
+      background: rgba($black, 0.4);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba($white, 0.1);
+
+      .fs-xs { font-size: 0.75rem; }
     }
   }
 
-  // عند فتح الصفحة بالكامل يتم عمل زووم خفيف وتتحرك الستارة
-  .animate-fade-in-right {
-    animation: homeFadeIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    
-    &.floating-white-card .inner-hero-img {
-      animation: imgZoomIn 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-      animation-delay: 0.6s;
+
+  @for $i from 1 through 4 {
+    .animate-fade-up-#{$i} {
+      animation: homeFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      animation-delay: ($i - 1) * 0.15s;
+      opacity: 0;
     }
   }
-
-  @keyframes revealSlide {
-    0% { transform: scaleX(1); transform-origin: left; }
-    50% { transform: scaleX(1); transform-origin: right; }
-    100% { transform: scaleX(0); transform-origin: right; }
-  }
-
-  @keyframes imgZoomIn {
-    to { transform: scale(1); }
-  }
-
-  /* =========================================
-     أنيميشن دخول الكلام التتابعي (Fade-Up)
-     ========================================= */
-  .animate-fade-up-1 { animation: homeFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
-  .animate-fade-up-2 { animation: homeFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; animation-delay: 0.15s; opacity: 0; }
-  .animate-fade-up-3 { animation: homeFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; animation-delay: 0.3s; opacity: 0; }
-  .animate-fade-up-4 { animation: homeFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; animation-delay: 0.45s; opacity: 0; }
 
   @keyframes homeFadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  @keyframes homeFadeIn {
-    from { opacity: 0; transform: translateX(30px); }
-    to { opacity: 1; transform: translateX(0); }
+  @keyframes gentleFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(0.5deg); }
   }
 
-  // أزرار التحكم والكبسولة الفخمة بالألوان الجديدة
   .btn-luxury-capsule {
     background: rgba($black, 0.4);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba($custom-red, 0.5);
+    border: 1px solid rgba($red-bright, 0.5);
     color: $white;
     padding: 6px 6px 6px 24px;
     border-radius: 50px;
     display: inline-flex;
     align-items: center;
     gap: 15px;
-    text-decoration: none;
-    transition: all 0.4s ease;
+    @include transition-smooth;
 
     .icon-circle {
-      width: 38px; height: 38px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      transition: .4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include transition-smooth;
     }
     
     &:hover {
-      background: $white; color: $black; border-color: $white;
+      background: $white;
+      color: $black;
+      border-color: $white;
       .icon-circle { background: $black; color: $white; }
     }
   }
@@ -148,15 +108,16 @@ $font-heading: var(--font-heading, 'Playfair Display', serif);
     color: $white;
     border: 1px solid rgba($white, 0.4);
     background: rgba($black, 0.2);
-    backdrop-filter: blur(4px);
     padding: 11px 28px;
     font-weight: bold;
     font-size: 14px;
-    text-uppercase: true;
+    text-transform: uppercase;
+    @include transition-smooth;
+
     &:hover {
-      background: rgba($custom-red, 0.15);
-      border-color: $custom-red;
-      color: $gold;
+      background: rgba($red-bright, 0.15);
+      border-color: $red-bright;
+      color: $yellow-gold;
     }
   }
 }
