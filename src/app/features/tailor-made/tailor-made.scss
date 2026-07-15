@@ -1,182 +1,132 @@
-// ── VARIABLES & DESIGN SYSTEM ──────────────────────────────────────────────
-$brand-red:    #a6192e; 
-$navy-dark:    #0a192f;
-$text-main:    #2d3748;
-$text-muted:   #718096;
-$border-color: #e2e8f0;
-$transition:   all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+@use 'variables' as *;
 
-// Global overrides & titles
-.section-title {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: $navy-dark;
-  position: relative;
-  &::after {
-    content: '';
-    display: block;
-    width: 35px;
-    height: 3px;
-    background-color: $brand-red;
-    margin: 0.75rem auto 0;
-  }
-}
-
-// ── 1. HERO SECTION ────────────────────────────────────────────────────────
+// ── Hero ──────────────────────────────────────────────────────────────────
 .tm-hero-section {
-  position: relative;
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
+  position: relative; min-height: 90vh;
+  display: flex; align-items: center; overflow: hidden;
 
   .tm-hero-bg {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0; z-index: 1;
     background: url('/images/hero-tailormade.webp') center 30% / cover;
-    z-index: 1;
   }
-
   .tm-hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba(#fff, 0.92) 30%, rgba(#fff, 0.6) 60%, rgba(#fff, 0) 100%);
-    z-index: 2;
-    @media (max-width: 991px) {
-      background: linear-gradient(180deg, rgba(#fff, 0.95) 20%, rgba(#fff, 0.8) 100%);
-    }
+    position: absolute; inset: 0; z-index: 2;
+    background: linear-gradient(90deg, rgba(#fff,.92) 30%, rgba(#fff,.6) 60%, rgba(#fff,0));
+    @media (max-width: 991px) { background: linear-gradient(180deg, rgba(#fff,.95) 20%, rgba(#fff,.8)); }
   }
-
   .tm-hero-container {
-    position: relative;
-    z-index: 3;
+    display: grid; grid-template-columns: 1.1fr .9fr;
+    gap: 3rem; align-items: center; position: relative; z-index: 3;
+    @media (max-width: 991px) { grid-template-columns: 1fr; gap: 3.5rem; }
   }
 }
 
-.tm-hero-left {
-  .tm-tag { color: $brand-red; letter-spacing: 1.5px; }
-  .tm-main-title { font-size: clamp(2.5rem, 5vw, 4rem); .highlight { color: $brand-red; } }
-  .tm-hero-features li i { color: $brand-red; }
+.tm-tag { color: $red; font-size: .85rem; font-weight: 700; letter-spacing: 1.5px; }
+.tm-main-title { font-size: clamp(2.5rem,5vw,4rem); font-weight: 900; color: $navy; line-height: 1.1; }
+.tm-hero-desc  { font-size: 1.15rem; color: #4a5568; max-width: 520px; line-height: 1.6; }
+
+.tm-hero-features {
+  list-style: none; padding: 0;
+  li { display: flex; align-items: center; gap: .75rem; margin-bottom: .85rem; font-weight: 600; color: $navy; }
+  i  { color: $red; }
 }
 
-// Glass Card & Dynamic Form Inputs
 .tm-form-card {
-  background: rgba(#fff, 0.85);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(#fff, 0.6);
-  border-radius: 16px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-  h3 { color: $navy-dark; }
+  background: rgba(255,255,255,.85); backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,.6); border-radius: 16px;
+  width: 100%; max-width: 480px; box-shadow: 0 25px 50px -12px rgba(0,0,0,.15);
 }
 
-.tm-interactive-form {
-  .tm-input-group {
-    border: 1px solid $border-color;
-    border-radius: 8px;
-    transition: $transition;
-    &:focus-within {
-      border-color: rgba($brand-red, 0.4);
-      box-shadow: 0 0 0 3px rgba($brand-red, 0.08);
-    }
-    input, select, textarea {
-      color: $text-main;
-      &::placeholder { color: lighten($text-muted, 15%); }
-    }
-    select {
-      cursor: pointer;
-      appearance: none;
-      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23718096' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") no-repeat right center;
-    }
+// ── Form ──────────────────────────────────────────────────────────────────
+.tm-input-group {
+  display: flex; align-items: center; background: #fff;
+  border: 1px solid #e2e8f0; border-radius: 8px; padding: .75rem 1rem; gap: .75rem;
+  transition: all .3s ease;
+  &:focus-within { border-color: rgba($red,.4); box-shadow: 0 0 0 3px rgba($red,.08); }
+  i { color: #718096; }
+  input, select, textarea {
+    border: none; outline: none; width: 100%; font-size: .9rem;
+    color: #2d3748; background: transparent;
+    &::placeholder { color: #b0bec5; }
   }
-
-  .btn-submit-form {
-    background-color: $brand-red;
-    box-shadow: 0 10px 15px -3px rgba($brand-red, 0.2);
-    transition: $transition;
-    &:hover {
-      background-color: darken($brand-red, 5%);
-      transform: translateY(-1px);
-      box-shadow: 0 15px 20px -3px rgba($brand-red, 0.3);
-    }
+  select {
+    appearance: none; cursor: pointer; padding-right: 1.5rem;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23718096' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") no-repeat right center transparent;
   }
+  textarea { height: 80px; resize: none; }
 }
 
-// ── 2. VALUE PROPOSITION INFOGRAPHICS BAR ─────────────────────────────────
-.tm-values-bar {
-  .value-item:hover .value-icon-circle {
-    transform: scale(1.08);
-    background-color: rgba($brand-red, 0.1);
-  }
-  .value-icon-circle {
-    width: 50px;
-    height: 50px;
-    background-color: rgba($brand-red, 0.05);
-    transition: $transition;
-    i { color: $brand-red; font-size: 1.35rem; }
-  }
+.btn-submit-form {
+  background: $red; color: #fff; border: none; padding: 1rem; border-radius: 8px;
+  font-weight: 700; width: 100%; letter-spacing: .5px; cursor: pointer;
+  transition: all .3s ease; box-shadow: 0 10px 15px -3px rgba($red,.2);
+  &:hover { background: darken($red,5%); transform: translateY(-1px); }
 }
 
-// ── 3. HOW IT WORKS ────────────────────────────────────────────────────────
-.tm-how-it-works {
-  .reveal-card {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    will-change: transform, opacity;
-    &.active { opacity: 1; transform: translateY(0); }
-  }
-  .step-number-badge {
-    width: 36px; height: 36px;
-    border: 1px solid rgba($brand-red, 0.2);
-    color: $brand-red;
-    background: #ffffff;
-    transition: $transition;
-  }
-  .step-icon-box { color: $brand-red; transition: transform 0.3s ease; }
-  .col:hover {
-    .step-icon-box { transform: scale(1.1); }
-    .step-number-badge { background-color: $brand-red; color: #ffffff; }
-  }
+// ── Values bar ────────────────────────────────────────────────────────────
+.value-icon-circle {
+  width: 50px; height: 50px; min-width: 50px; background: #fff0f1;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  transition: all .3s ease; i { color: $red; font-size: 1.35rem; }
+}
+.value-item:hover .value-icon-circle { transform: scale(1.08); background: rgba($red,.1); }
+.value-text {
+  h4 { font-size: .95rem; font-weight: 700; color: $navy; letter-spacing: .5px; margin-bottom: .35rem; }
+  p  { font-size: .85rem; color: #718096; margin: 0; line-height: 1.4; }
 }
 
-// ── 4. GET INSPIRED / SAMPLE ITINERARIES ───────────────────────────────────
+// ── How it works ──────────────────────────────────────────────────────────
+.reveal-card {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity .6s ease-out, transform .6s ease-out;
+  &.active { opacity: 1; transform: translateY(0); }
+}
+.step-number-badge {
+  width: 36px; height: 36px; border: 1px solid rgba($red,.2); color: $red;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: .85rem; font-weight: 700; background: #fff; transition: .3s;
+}
+.step-icon-box { font-size: 2.2rem; color: $red; transition: transform .3s; }
+.col:hover {
+  .step-icon-box     { transform: scale(1.1); }
+  .step-number-badge { background: $red; color: #fff; }
+}
+
+// ── Inspiration cards ─────────────────────────────────────────────────────
 .inspiration-card {
-  transition: $transition;
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.08);
-    img { transform: scale(1.05); }
-  }
-  img { transition: $transition; }
+  background: #fff; border-radius: 12px; overflow: hidden;
+  border: 1px solid #e2e8f0; transition: all .3s ease;
+  &:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,.08); img { transform: scale(1.05); } }
+  .card-img-holder { height: 190px; overflow: hidden; img { width: 100%; height: 100%; object-fit: cover; transition: .3s; } }
+  h3 { font-size: 1.15rem; font-weight: 700; color: $navy; }
+  p  { font-size: .88rem; color: #718096; }
   .btn-sample-link {
-    color: $brand-red;
-    transition: gap 0.2s ease;
-    &:hover { gap: 0.75rem; }
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .78rem; font-weight: 700; color: $red; letter-spacing: .5px; transition: gap .2s;
+    &:hover { gap: .75rem; }
   }
 }
 
-// ── 5. BOTTOM CHAT CTA BANNER ──────────────────────────────────────────────
-.tm-chat-cta {
-  .cta-banner-inner {
-    background: url('/assets/images/cta-pattern-bg.jpg') right center / cover #ffffff;
-    border-radius: 100px;
-    @media (max-width: 991px) { border-radius: 24px; }
-  }
-  .cta-round-icon {
-    background: rgba($brand-red, 0.05);
-    color: $brand-red;
-    border: 1px solid rgba($brand-red, 0.1);
-  }
-  .btn-chat-trigger {
-    background-color: $brand-red;
-    transition: $transition;
-    border-radius: 50px;
-    box-shadow: 0 10px 20px rgba($brand-red, 0.1);
-    &:hover {
-      background-color: darken($brand-red, 5%);
-      transform: translateY(-2px);
-      box-shadow: 0 15px 25px rgba($brand-red, 0.2);
-    }
-  }
+// ── CTA ───────────────────────────────────────────────────────────────────
+.cta-banner-inner {
+  background: #fff; border: 1px solid #e2e8f0;
+  border-radius: 100px;
+  @media (max-width: 991px) { border-radius: 24px; }
+}
+.cta-round-icon {
+  min-width: 55px; width: 55px; height: 55px;
+  background: rgba($red,.05); border: 1px solid rgba($red,.1);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: $red; font-size: 1.4rem;
+}
+.cta-texts {
+  h3 { font-size: 1.35rem; font-weight: 800; color: $navy; margin: 0; }
+  p  { color: #718096; margin: .35rem 0 0; font-size: .92rem; }
+}
+.btn-chat-trigger {
+  background: $red; color: #fff; font-weight: 700; font-size: .85rem;
+  padding: 1rem 2rem; border-radius: 50px; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: .75rem;
+  transition: all .3s ease; box-shadow: 0 10px 20px rgba($red,.1);
+  &:hover { background: darken($red,5%); transform: translateY(-2px); }
 }

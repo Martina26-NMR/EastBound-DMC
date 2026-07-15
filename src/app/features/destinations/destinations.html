@@ -1,26 +1,20 @@
 <!-- ======= CREATIVE DESTINATIONS HERO ======= -->
 <section class="destinations-hero position-relative py-3 bg-navy text-white overflow-hidden d-flex align-items-center">
-  
-  <!-- الإضاءة الحمراء الصريحة في أول الهيرو على الجنب (فوق يسار) -->
   <div class="bg-red-glow position-absolute rounded-circle"></div>
   <div class="bg-dotted-pattern position-absolute w-100 h-100 top-0 start-0"></div>
-  
-  <!-- إضاءة ذهبية خفيفة في الجنب التاني للتوازن -->
   <div class="bg-gold-glow position-absolute rounded-circle opacity-15"></div>
   
   <div class="container position-relative z-3 my-lg-5">
     <div class="row align-items-center g-5">
-      
-      <!-- الجانب الأيسر: أنيميشن دخول الكلام بالتتابع -->
+      <!-- الجانب الأيسر -->
       <div class="col-lg-6 order-2 order-lg-1 text-center text-lg-start">
-        
         <nav class="mb-3 text-uppercase tracking-widest small animate-fade-up-1">
           <span class="text-gold cursor-pointer" routerLink="/">Home</span>
           <span class="mx-2 text-gold">&bull;</span>
           <span class="text-white-50 fw-light">All Destinations</span>
         </nav>
 
-        <h1 class="fw-bold display-4 font-heading mb-4 text-white lh-sm animate-fade-up-2">
+        <h1 class="fw-bold display-4 mb-4 text-white lh-sm animate-fade-up-2">
           Explore Destinations <br>
           <span class="gold-gradient-text">That Feel Different</span>
         </h1>
@@ -30,57 +24,47 @@
             <span class="country-name">Explore Trips</span>
             <span class="icon-circle bg-red text-white"><i class="fa-solid fa-arrow-down"></i></span>
           </a>
-          <button class="btn text-white border-0 p-0 hover-gold-text transition-all d-inline-flex align-items-center" routerLink="/tailor-made">
+          <button class="btn text-white border-0 p-0 hover-gold-text d-inline-flex align-items-center transition-all" routerLink="/tailor-made">
             Plan Your Trip <i class="fa-solid fa-arrow-right-long ms-2"></i>
           </button>
         </div>
       </div>
 
-      <!-- الجانب الأيمن: ديزاين الصورة الهندسي المشطوف الجديد -->
-  <!-- الجانب الأيمن: ديزاين الإطار العائم المنفصل التفاعلي -->
-<div class="col-lg-6 order-1 order-lg-2 d-flex justify-content-center">
-  <div class="minimal-frame-wrapper position-relative animate-fade-in-right">
-    
-    <!-- الإطار الخارجي الرفيع المنفصل -->
-    <div class="outer-luxury-border position-absolute w-100 h-100 rounded-4"></div>
-    
-    <!-- حاوية الصورة الأساسية -->
-    <div class="inner-image-block overflow-hidden rounded-4 shadow-lg w-100 h-100 position-relative">
-      <img src="/images/hero section-destinations.webp" class="w-100 h-100 object-fit-cover" alt="Explore Destinations">
-      <!-- طبقة فلتر ناعمة فوق الصورة لدمج الألوان مع الكحلي والأحمر -->
-      <div class="image-overlay-blend position-absolute top-0 start-0 w-100 h-100"></div>
-    </div>
-
-  </div>
-</div>
-
+      <!-- الجانب الأيمن -->
+      <div class="col-lg-6 order-1 order-lg-2 d-flex justify-content-center">
+        <div class="minimal-frame-wrapper position-relative animate-fade-in-right">
+          <div class="outer-luxury-border position-absolute w-100 h-100 rounded-4"></div>
+          <div class="inner-image-block overflow-hidden rounded-4 shadow-lg w-100 h-100 position-relative">
+            <img src="/images/hero section-destinations.webp" class="w-100 h-100 object-fit-cover" alt="Explore Destinations">
+            <div class="image-overlay-blend position-absolute top-0 start-0 w-100 h-100"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ======= 2. LISTING & FILTER SECTION ======= -->
-<section id="destinations-listing" class="destinations-listing py-5 bg-light-cream">
+<section id="destinations-listing" class="py-5 bg-light-cream">
   <div class="container">
-    
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
       <div>
-        <span class="text-uppercase tracking-wider text-dark-red small fw-bold d-block mb-1">CHOOSE YOUR DESTINATION</span>
-        <h2 class="fw-bold text-navy heading-size mb-0">Where Will You Go Next?</h2>
+        <span class="text-uppercase tracking-wider text-danger small fw-bold d-block mb-1">CHOOSE YOUR DESTINATION</span>
+        <h2 class="fw-bold text-navy display-6 mb-0 font-heading">Where Will You Go Next?</h2>
       </div>
       
-      <!-- زرار فتح الـ Sidebar الإبداعي للموبايل والـ Desktop -->
       <button class="btn btn-filter-trigger d-flex align-items-center gap-2" (click)="toggleSidebar(true)">
-        <i class="fa-solid fa-sliders text-dark-red"></i>
+        <i class="fa-solid fa-sliders text-danger"></i>
         <span class="fw-bold small text-uppercase tracking-wider">Filter Experience</span>
         @if (selectedCategory() !== 'All') {
-          <span class="badge bg-dark-red rounded-circle p-1 ms-1" style="width:8px; height:8px;"></span>
+          <span class="badge bg-danger rounded-circle p-1 ms-1" style="width: 8px; height: 8px; font-size: 0;"></span>
         }
       </button>
     </div>
 
-    <!-- التابس العلوية السريعة للبلاد -->
+    <!-- التابس العلوية -->
     <div class="interactive-tabs-wrapper">
-      <div class="filters-scroll-container no-scrollbar">
+      <div class="filters-scroll-container">
         @for (filter of countryFilters; track filter) {
           <button 
             class="btn filter-pill"
@@ -92,22 +76,21 @@
       </div>
 
       @if (selectedCountry() === 'Egypt' || selectedCountry() === 'Jordan') {
-       <button class="btn btn-outline-dark-red rounded-pill px-4"
+        <button class="btn btn-outline-danger rounded-pill px-4 my-3"
                 [routerLink]="['/destinations', selectedCountry().toLowerCase()]">
-         <i class="fa-solid fa-location-dot me-2"></i>  Go to {{ selectedCountry() }} Page  
+          <i class="fa-solid fa-location-dot me-2"></i> Go to {{ selectedCountry() }} Page  
         </button>
       }
     </div>
 
-
-    <!-- شبكة عرض كروت المدن والوجهات -->
+    <!-- شبكة عرض كروت المدن -->
     <div class="row g-4 overflow-hidden px-2">
       @for (city of filteredCities(); track city.id) {
         <div class="col-12 col-md-6 col-lg-3">
-<div #scrollCard class="destination-card cinematic-card position-relative rounded-4 overflow-hidden shadow-sm" 
-     [routerLink]="['/destinations', city.countrySlug, city.id.toLowerCase()]">
+          <div #scrollCard class="cinematic-card position-relative rounded-4 overflow-hidden shadow-sm" 
+               [routerLink]="['/destinations', city.countrySlug, city.id.toLowerCase()]">
             <div class="card-img-wrapper h-100 w-100">
-              <img [src]="city.image" [alt]="city.name" class="w-100 h-100 object-cover card-img-main" 
+              <img [src]="city.image" [alt]="city.name" class="w-100 h-100 object-fit-cover card-img-main" 
                    onerror="this.src='https://images.unsplash.com/photo-1539650116574-8efeb43e2750?w=600'">
               <div class="card-gradient-overlay position-absolute inset-0"></div>
             </div>
@@ -115,7 +98,7 @@
             <div class="card-content position-absolute bottom-0 start-0 w-100 p-4 text-white z-3">
               <h3 class="h4 fw-bold mb-1">{{ city.name }}</h3>
               <p class="small opacity-90 mb-0 card-desc-text">{{ city.description }}</p>
-              <span class="arrow-circle-btn position-absolute bottom-4 end-4 d-flex align-items-center justify-content-center rounded-circle">
+              <span class="arrow-circle-btn position-absolute bottom-0 end-0 m-4 d-flex align-items-center justify-content-center rounded-circle">
                 <i class="fa-solid fa-arrow-right small"></i>
               </span>
             </div>
@@ -128,30 +111,29 @@
         </div>
       }
     </div>
-
   </div>
 </section>
 
-<!-- ======= 3. SIDEBAR COMPONENT (Glassmorphic Drawer) ======= -->
+<!-- ======= 3. SIDEBAR COMPONENT ======= -->
 <div class="glass-sidebar-overlay" [class.active]="isSidebarOpen()" (click)="toggleSidebar(false)"></div>
 <aside class="glass-category-sidebar p-4 d-flex flex-column" [class.open]="isSidebarOpen()">
-  <div class="sidebar-header d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+  <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
     <h3 class="h5 fw-bold text-navy mb-0 font-heading">Filter Experiences</h3>
-    <button class="btn-close-sidebar bg-transparent border-0 text-muted" (click)="toggleSidebar(false)">
+    <button class="bg-transparent border-0 text-muted" (click)="toggleSidebar(false)">
       <i class="fa-solid fa-xmark fs-4"></i>
     </button>
   </div>
 
-  <div class="sidebar-body flex-grow-1">
+  <div class="flex-grow-1">
     <p class="small text-muted text-uppercase tracking-wider fw-bold mb-3">Travel Style</p>
     <div class="d-flex flex-column gap-2">
       @for (cat of categoryFilters; track cat) {
-        <button class="btn sidebar-filter-option text-start d-flex justify-content-between align-items-center px-3 py-2.5 rounded-3 transition-all"
+        <button class="btn sidebar-filter-option text-start d-flex justify-content-between align-items-center px-3 py-2 rounded-3 transition-all"
                 [class.active-opt]="selectedCategory() === cat"
                 (click)="setCategoryFilter(cat)">
           <span>{{ cat }}</span>
           @if (selectedCategory() === cat) {
-            <i class="fa-solid fa-check small text-dark-red"></i>
+            <i class="fa-solid fa-check small text-danger"></i>
           }
         </button>
       }
@@ -159,8 +141,8 @@
   </div>
 
   @if (selectedCategory() !== 'All' || selectedCountry() !== 'All') {
-    <div class="sidebar-footer pt-3 border-top">
-      <button class="btn btn-outline-dark-red w-100 rounded-pill btn-sm py-2" (click)="resetAllFilters()">
+    <div class="pt-3 border-top">
+      <button class="btn btn-outline-danger w-100 rounded-pill btn-sm py-2" (click)="resetAllFilters()">
         Reset Active Filters
       </button>
     </div>
@@ -168,22 +150,22 @@
 </aside>
 
 <!-- ======= 4. WHY TRAVEL WITH EAST BOUND ======= -->
-<section class="why-travel-us py-6 position-relative overflow-hidden">
-  <div class="container position-relative z-2">
-    <div class="luxury-text-center mb-5">
-      <span class="luxury-subtitle">WHY TRAVEL WITH THE EAST BOUND?</span>
-      <h2 class="luxury-creative-title">
+<section class="why-travel-us py-5 bg-light">
+  <div class="container text-center">
+    <div class="max-width-540 mx-auto mb-5">
+      <span class="text-uppercase tracking-widest text-danger small fw-bold d-block mb-2">WHY TRAVEL WITH THE EAST BOUND?</span>
+      <h2 class="display-5 fw-bold text-navy mb-3 font-heading">
         More Than Places, <br>
         <span class="gold-gradient-text">Real Experiences.</span>
       </h2>
-      <p class="luxury-description">
+      <p class="text-muted leading-relaxed">
         We don’t just show you places, we connect you with the soul of each destination.
       </p>
     </div>
 
     <div class="row g-4 justify-content-center">
       <div class="col-6 col-lg-3">
-        <div class="feature-glass-card text-center p-4 h-100 transition-all">
+        <div class="feature-glass-card p-4 h-100 transition-all bg-white border rounded-4 shadow-sm">
           <div class="icon-wrapper mb-3 d-inline-flex align-items-center justify-content-center rounded-circle">
             <i class="fa-solid fa-map-location-dot"></i>
           </div>
@@ -192,7 +174,7 @@
         </div>
       </div>
       <div class="col-6 col-lg-3">
-        <div class="feature-glass-card text-center p-4 h-100 transition-all">
+        <div class="feature-glass-card p-4 h-100 transition-all bg-white border rounded-4 shadow-sm">
           <div class="icon-wrapper mb-3 d-inline-flex align-items-center justify-content-center rounded-circle">
             <i class="fa-solid fa-user-shield"></i>
           </div>
@@ -201,7 +183,7 @@
         </div>
       </div>
       <div class="col-6 col-lg-3">
-        <div class="feature-glass-card text-center p-4 h-100 transition-all">
+        <div class="feature-glass-card p-4 h-100 transition-all bg-white border rounded-4 shadow-sm">
           <div class="icon-wrapper mb-3 d-inline-flex align-items-center justify-content-center rounded-circle">
             <i class="fa-solid fa-id-badge"></i>
           </div>
@@ -210,7 +192,7 @@
         </div>
       </div>
       <div class="col-6 col-lg-3">
-        <div class="feature-glass-card text-center p-4 h-100 transition-all">
+        <div class="feature-glass-card p-4 h-100 transition-all bg-white border rounded-4 shadow-sm">
           <div class="icon-wrapper mb-3 d-inline-flex align-items-center justify-content-center rounded-circle">
             <i class="fa-solid fa-hand-holding-heart"></i>
           </div>
@@ -220,19 +202,16 @@
       </div>
     </div>
 
-    <div class="text-center mt-5">
-      <button class="btn btn-dark-red rounded-pill px-4 py-2 text-white shadow-sm mb-3" routerLink="/experiences">Discover Experiences</button>
-    </div>
+    <button class="btn btn-danger rounded-pill px-4 py-2 mt-5 text-white shadow-sm" routerLink="/experiences">Discover Experiences</button>
   </div>
 </section>
 
-<!-- ======= 5. FEATURED EXPERIENCES (Placeholder for Tour Cards Loop) ======= -->
-<section class="featured-experiences py-5 bg-white">
+<!-- ======= 5. FEATURED EXPERIENCES ======= -->
+<section class="py-5 bg-white">
   <div class="container">
-    
     <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-end mb-4 gap-3">
       <div>
-        <span class="text-uppercase tracking-wider text-dark-red small fw-bold d-block mb-1">FEATURED JOURNEYS</span>
+        <span class="text-uppercase tracking-wider text-danger small fw-bold d-block mb-1">FEATURED JOURNEYS</span>
         <h2 class="fw-bold text-navy font-heading h3 mb-0">Trips You'll Love</h2>
       </div>
       <a routerLink="/tours" class="btn btn-outline-danger rounded-pill px-4 fw-bold text-uppercase btn-sm shadow-sm transition-all">
@@ -243,9 +222,7 @@
     <div class="row g-4">
       @for (tour of featuredTours; track tour.id) {
         <div class="col-xl-3 col-lg-4 col-md-6">
-<a [routerLink]="['/tours', tour.id]" class="card h-100 border-0 shadow-premium rounded-4 overflow-hidden luxury-tour-card text-decoration-none">
-          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden custom-tour-card transition-all">
-            
+          <a [routerLink]="['/tours', tour.id]" class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden text-decoration-none custom-tour-card transition-all">
             <div class="position-relative overflow-hidden" style="height: 200px;">
               @if (tour.image) {
                 <img [src]="tour.image" class="w-100 h-100 object-fit-cover card-img-top" [alt]="tour.title" />
@@ -257,34 +234,30 @@
             
             <div class="card-body d-flex flex-column p-3">
               <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="badge bg-danger-subtle text-danger text-uppercase super-small fw-bold">{{ tour.featuredTag }}</span>
+                <span class="badge bg-danger-subtle text-danger text-uppercase fs-smaller fw-bold">{{ tour.featuredTag }}</span>
                 <span class="small text-muted"><i class="fas fa-star text-warning me-1"></i>{{ tour.rating || 4.8 }}</span>
               </div>
 
-              <h3 class="h6 fw-bold text-navy mb-2 text-truncate-2">{{ tour.title }}</h3>
+              <h3 class="h6 fw-bold text-navy mb-2 line-clamp-2">{{ tour.title }}</h3>
               
               <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-light">
                 <div>
-                  <span class="d-block text-muted super-small text-uppercase">From</span>
+                  <span class="d-block text-muted fs-smaller text-uppercase">From</span>
                   <span class="fw-bold text-navy h5 mb-0">${{ tour.price }}</span>
                 </div>
                 <span class="badge bg-light text-dark rounded-pill px-2 py-1 small">
                   <i class="far fa-clock me-1 text-danger"></i>{{ tour.durationDays }} Days
                 </span>
               </div>
-
             </div>
-          </div>
           </a>
         </div>
-
       } @empty {
         <div class="col-12 text-center text-muted py-5">
           <p>No featured tours available at the moment.</p>
         </div>
       }
     </div>
-
   </div>
 </section>
 
@@ -295,18 +268,18 @@
     <div class="row w-100 position-relative z-3 align-items-center">
       <div class="col-12 col-md-8 text-white text-center text-md-start">
         <div class="d-flex flex-column flex-md-row align-items-center gap-3">
-          <div class="compass-animated mb-2 mb-md-0">
-            <i class="fa-solid fa-compass display-4 text-gold animate-spin-slow"></i>
+          <div class="mb-2 mb-md-0">
+            <i class="fa-solid fa-compass display-4 text-gold animate-spin-slow d-block"></i>
           </div>
           <div>
             <h3 class="fw-bold mb-1 font-heading">Not sure where to go?</h3>
-            <p class="mb-0 opacity-90 small-text-p">Take our quick Quiz and we’ll suggest the perfect trip for you.</p>
+            <p class="mb-0 opacity-90 small">Take our quick Quiz and we’ll suggest the perfect trip for you.</p>
           </div>
         </div>
       </div>
       <div class="col-12 col-md-4 text-center text-md-end mt-3 mt-md-0">
-        <button class="btn btn-gold rounded-pill px-4 py-2.5 fw-bold transition-all pulse-animation">
-          Take the Quick
+        <button class="btn btn-gold rounded-pill px-4 py-2.5 fw-bold transition-all">
+          Take the Quick Quiz
         </button>
       </div>
     </div>
@@ -314,11 +287,11 @@
 </section>
 
 <!-- ======= 7. CTA BOTTOM BANNER ======= -->
-<section class="cta-bottom-banner py-5 bg-navy text-white position-relative overflow-hidden">
+<section class="py-5 bg-navy text-white position-relative overflow-hidden">
   <div class="container text-center position-relative z-2">
-    <h3 class="fw-bold mb-2 font-heading h2">Ready to Start Your Journey?</h3>
-    <p class="text-white-50 mb-4 small-text-p">Let us plan your perfect trip</p>
-    <button class="btn btn-dark-red  rounded-pill px-5 py-3 fw-bold shadow mb-4" routerLink="/tailor-made">
+    <h2 class="fw-bold mb-2 font-heading display-6">Ready to Start Your Journey?</h2>
+    <p class="text-white-50 mb-4 small">Let us plan your perfect trip</p>
+    <button class="btn btn-danger rounded-pill px-5 py-3 fw-bold shadow mb-4" routerLink="/tailor-made">
       Plan Your Trip Now
     </button>
     <div class="d-flex flex-wrap justify-content-center gap-4 text-uppercase tracking-wider small opacity-80 pt-3 border-top border-secondary border-opacity-25">

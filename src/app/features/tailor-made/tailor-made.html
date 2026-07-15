@@ -1,286 +1,139 @@
-<!-- ── HERO SECTION WITH FLOATING FORM ── -->
-<section class="tm-hero-section p-4">
+<!-- HERO -->
+<section class="tm-hero-section">
   <div class="tm-hero-bg"></div>
   <div class="tm-hero-overlay"></div>
+  <div class="container tm-hero-container py-5">
 
-  <div class="container tm-hero-container">
-    <!-- Grid System بديل للتنسيق اليدوي -->
-    <div class="row align-items-center gy-5">
-      <!-- Left content -->
-      <div class="col-lg-7 tm-hero-left">
-        <span class="tm-tag d-inline-block mb-3 fw-bold text-uppercase">Tailor Made Experiences</span>
-        <h1 class="tm-main-title fw-black mb-3 text-dark">Your Journey.<br><span class="highlight">Your Way.</span></h1>
-        <p class="tm-hero-desc text-muted mb-4 fs-5" style="max-width: 520px; line-height: 1.6;">
-          Design a personalized trip to Egypt or Jordan that matches your style, interests, and budget.
-        </p>
+    <div class="tm-hero-left">
+      <span class="tm-tag text-uppercase d-block mb-3">Tailor Made Experiences</span>
+      <h1 class="tm-main-title mb-3">Your Journey.<br><span class="highlight">Your Way.</span></h1>
+      <p class="tm-hero-desc mb-4">Design a personalized trip to Egypt or Jordan that matches your style, interests, and budget.</p>
+      <ul class="tm-hero-features mb-0">
+        <li><i class="fas fa-check-circle"></i><span>100% Personalized Itineraries</span></li>
+        <li><i class="fas fa-check-circle"></i><span>Local Experts at Every Step</span></li>
+        <li><i class="fas fa-check-circle"></i><span>Unique & Authentic Experiences</span></li>
+      </ul>
+    </div>
 
-        <ul class="tm-hero-features list-unstyled m-0 d-flex flex-column gap-3">
-          <li class="d-flex align-items-center gap-2 fw-semibold text-dark fs-5">
-            <i class="fas fa-check-circle"></i>
-            <span>100% Personalized Itineraries</span>
-          </li>
-          <li class="d-flex align-items-center gap-2 fw-semibold text-dark fs-5">
-            <i class="fas fa-check-circle"></i>
-            <span>Local Experts at Every Step</span>
-          </li>
-          <li class="d-flex align-items-center gap-2 fw-semibold text-dark fs-5">
-            <i class="fas fa-check-circle"></i>
-            <span>Unique & Authentic Experiences</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Right Glass Card -->
-      <div class="col-lg-5 d-flex justify-content-center justify-content-lg-end">
-        <div class="tm-form-card p-4 p-md-5">
-          <h3 class="fw-extrabold mb-1">Start Your Tailor Made Journey</h3>
-          <p class="form-subtitle text-muted mb-4 small">Tell us about your dream trip and we'll craft it just for you.</p>
-
-          <form class="tm-interactive-form d-flex flex-column gap-3">
-            <div class="tm-input-group d-flex align-items-center gap-2 p-2 px-3">
-              <i class="fas fa-map-marker-alt text-muted"></i>
-              <input type="text" class="form-control border-0 p-0 shadow-none bg-transparent" placeholder="Where do you want to go?">
-            </div>
-
-            <div class="tm-input-group d-flex align-items-center gap-2 p-2 px-3">
-              <i class="far fa-calendar-alt text-muted"></i>
-              <input type="text" class="form-control border-0 p-0 shadow-none bg-transparent" placeholder="Travel Dates">
-            </div>
-
-            <div class="tm-input-group d-flex align-items-center gap-2 p-2 px-3">
-              <i class="fas fa-users text-muted"></i>
-              <input type="number" class="form-control border-0 p-0 shadow-none bg-transparent" placeholder="Number of Travelers">
-            </div>
-
-            <div class="tm-input-group d-flex align-items-center gap-2 p-2 px-3">
-              <i class="fas fa-compass text-muted"></i>
-              <select class="form-select border-0 p-0 shadow-none bg-transparent">
-                <option value="" disabled selected>Travel Style</option>
-                <option value="cultural">Cultural Explorer</option>
-                <option value="adventure">Adventure Seeker</option>
-                <option value="luxury">Luxury Escape</option>
-                <option value="family">Family Getaway</option>
-              </select>
-            </div>
-
-            <div class="tm-input-group d-flex align-items-center gap-2 p-2 px-3">
-              <textarea class="form-control border-0 p-0 shadow-none bg-transparent" style="height: 80px; resize: none;" placeholder="Tell us about your interests, preferences..."></textarea>
-            </div>
-
-            <button type="submit" class="btn-submit-form btn text-white w-100 fw-bold p-3 d-flex align-items-center justify-content-center gap-2">
-              <span>CREATE MY TRIP</span>
-              <i class="fas fa-arrow-right"></i>
-            </button>
-          </form>
-        </div>
+    <div class="d-flex justify-content-lg-end justify-content-center">
+      <div class="tm-form-card p-4 p-md-5">
+        <h3 class="fw-bold text-navy mb-1">Start Your Tailor Made Journey</h3>
+        <p class="small text-muted mb-4">Tell us about your dream trip and we'll craft it just for you.</p>
+        <form class="d-flex flex-column gap-3">
+          <div class="tm-input-group">
+            <i class="fas fa-map-marker-alt"></i>
+            <input type="text" placeholder="Where do you want to go?">
+          </div>
+          <div class="tm-input-group">
+            <i class="far fa-calendar-alt"></i>
+            <input type="text" placeholder="Travel Dates">
+          </div>
+          <div class="tm-input-group">
+            <i class="fas fa-users"></i>
+            <input type="number" placeholder="Number of Travelers">
+          </div>
+          <div class="tm-input-group">
+            <i class="fas fa-compass"></i>
+            <select>
+              <option value="" disabled selected>Travel Style</option>
+              <option value="cultural">Cultural Explorer</option>
+              <option value="adventure">Adventure Seeker</option>
+              <option value="luxury">Luxury Escape</option>
+              <option value="family">Family Getaway</option>
+            </select>
+          </div>
+          <div class="tm-input-group">
+            <textarea placeholder="Tell us about your interests..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit-form d-flex align-items-center justify-content-center gap-2">
+            <span>CREATE MY TRIP</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </form>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- ── VALUE PROPOSITION INFOGRAPHICS BAR ── -->
-<section class="tm-values-bar py-5 bg-white border-bottom">
+<!-- VALUES BAR -->
+<section class="py-5 border-bottom">
   <div class="container">
-    <!-- استخدام الـ Grid والبوتستراب بدلاً من السيس المخصص للتوزيع -->
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-4">
-      
-      <div class="col">
-        <div class="value-item d-flex align-items-center gap-3">
-          <div class="value-icon-circle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
-            <i class="fas fa-sliders-h"></i>
-          </div>
-          <div>
-            <h4 class="fw-bold mb-1 text-uppercase small letter-spacing-1">Tailor Made for You</h4>
-            <p class="text-muted mb-0 small lh-sm">Fully customized itineraries based on your preferences.</p>
+    <div class="row g-4">
+      @for (item of values; track item.icon) {
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="value-item d-flex align-items-center gap-3">
+            <div class="value-icon-circle"><i [class]="'fas ' + item.icon"></i></div>
+            <div class="value-text">
+              <h4>{{ item.title }}</h4>
+              <p>{{ item.desc }}</p>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="col">
-        <div class="value-item d-flex align-items-center gap-3">
-          <div class="value-icon-circle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
-            <i class="fas fa-user-tie"></i>
-          </div>
-          <div>
-            <h4 class="fw-bold mb-1 text-uppercase small letter-spacing-1">Expert Local Support</h4>
-            <p class="text-muted mb-0 small lh-sm">Our travel experts are with you from planning to your return.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="value-item d-flex align-items-center gap-3">
-          <div class="value-icon-circle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
-            <i class="fas fa-magic"></i>
-          </div>
-          <div>
-            <h4 class="fw-bold mb-1 text-uppercase small letter-spacing-1">Authentic Experiences</h4>
-            <p class="text-muted mb-0 small lh-sm">Discover hidden gems and live like a local.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="value-item d-flex align-items-center gap-3">
-          <div class="value-icon-circle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
-            <i class="fas fa-user-shield"></i>
-          </div>
-          <div>
-            <h4 class="fw-bold mb-1 text-uppercase small letter-spacing-1">Flexible & Hassle-Free</h4>
-            <p class="text-muted mb-0 small lh-sm">We handle the details so you can enjoy your journey.</p>
-          </div>
-        </div>
-      </div>
-
+      }
     </div>
   </div>
 </section>
 
-<!-- ── HOW IT WORKS SECTION ── -->
+<!-- HOW IT WORKS -->
 <section class="tm-how-it-works py-5">
-  <div class="container text-center py-4">
-    <h2 class="section-title text-dark fw-bold mb-5 d-inline-block">How It Works</h2>
-    
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 justify-content-center">
-      <div class="col reveal-card">
-        <div class="d-flex flex-column align-items-center text-center">
-          <div class="step-number-badge mb-3 rounded-circle d-flex align-items-center justify-content-center fw-bold">1</div>
-          <div class="step-icon-box mb-2 fs-1"><i class="far fa-comments"></i></div>
-          <h3 class="fw-bold fs-6 text-dark mb-1">Share Your Ideas</h3>
-          <p class="text-muted small px-3 mb-0">Tell us about your dream trip and what you love.</p>
+  <div class="container text-center">
+    <h2 class="fw-bold text-navy mb-5">How It Works</h2>
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4 justify-content-center">
+      @for (step of steps; track step.num) {
+        <div class="col reveal-card">
+          <div class="d-flex flex-column align-items-center">
+            <div class="step-number-badge mb-3">{{ step.num }}</div>
+            <div class="step-icon-box mb-2"><i [class]="step.icon"></i></div>
+            <h3 class="fw-bold fs-6 text-navy">{{ step.title }}</h3>
+            <p class="text-muted small px-2">{{ step.desc }}</p>
+          </div>
         </div>
-      </div>
-
-      <div class="col reveal-card">
-        <div class="d-flex flex-column align-items-center text-center">
-          <div class="step-number-badge mb-3 rounded-circle d-flex align-items-center justify-content-center fw-bold">2</div>
-          <div class="step-icon-box mb-2 fs-1"><i class="fas fa-map-marked-alt"></i></div>
-          <h3 class="fw-bold fs-6 text-dark mb-1">We Plan for You</h3>
-          <p class="text-muted small px-3 mb-0">Our experts design a personalized itinerary just for you.</p>
-        </div>
-      </div>
-
-      <div class="col reveal-card">
-        <div class="d-flex flex-column align-items-center text-center">
-          <div class="step-number-badge mb-3 rounded-circle d-flex align-items-center justify-content-center fw-bold">3</div>
-          <div class="step-icon-box mb-2 fs-1"><i class="far fa-envelope-open"></i></div>
-          <h3 class="fw-bold fs-6 text-dark mb-1">Review & Confirm</h3>
-          <p class="text-muted small px-3 mb-0">Review your itinerary and make any changes.</p>
-        </div>
-      </div>
-
-      <div class="col reveal-card">
-        <div class="d-flex flex-column align-items-center text-center">
-          <div class="step-number-badge mb-3 rounded-circle d-flex align-items-center justify-content-center fw-bold">4</div>
-          <div class="step-icon-box mb-2 fs-1"><i class="fas fa-luggage-cart"></i></div>
-          <h3 class="fw-bold fs-6 text-dark mb-1">Enjoy Your Journey</h3>
-          <p class="text-muted small px-3 mb-0">We take care of everything while you enjoy every moment.</p>
-        </div>
-      </div>
-
-      <div class="col reveal-card">
-        <div class="d-flex flex-column align-items-center text-center">
-          <div class="step-number-badge mb-3 rounded-circle d-flex align-items-center justify-content-center fw-bold">5</div>
-          <div class="step-icon-box mb-2 fs-1"><i class="fas fa-camera-retro"></i></div>
-          <h3 class="fw-bold fs-6 text-dark mb-1">Create Memories</h3>
-          <p class="text-muted small px-3 mb-0">Unforgettable experiences that last a lifetime.</p>
-        </div>
-      </div>
+      }
     </div>
   </div>
 </section>
 
-<!-- ── GET INSPIRED / SAMPLE ITINERARIES ── -->
-<section class="tm-inspiration py-5 bg-light">
-  <div class="container py-4">
-    <h2 class="section-title mb-5">Get Inspired</h2>
-
-    <!-- تحويل Grid الكروت إلى كلاسات بوتستراب مدمجة لحذف الميديا كويري بالكامل -->
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
-      <div class="col">
-        <div class="inspiration-card h-100 rounded-3 overflow-hidden bg-white border">
-          <div class="card-img-holder overflow-hidden" style="height: 190px;">
-            <img src="/images/cultueral.webp" class="w-100 h-100 object-fit-cover" alt="Cultural Explorer">
-          </div>
-          <div class="card-body p-4">
-            <h3 class="fw-bold fs-6 mb-1 text-dark">Cultural Explorer</h3>
-            <p class="text-muted small mb-4">History, culture & iconic landmarks</p>
-            <a href="#" class="btn-sample-link d-inline-flex align-items-center gap-2 fw-bold text-decoration-none">
-              <span>VIEW SAMPLE ITINERARY</span>
-              <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="inspiration-card h-100 rounded-3 overflow-hidden bg-white border">
-          <div class="card-img-holder overflow-hidden" style="height: 190px;">
-            <img src="/images/adven seek.webp" class="w-100 h-100 object-fit-cover" alt="Adventure Seeker">
-          </div>
-          <div class="card-body p-4">
-            <h3 class="fw-bold fs-6 mb-1 text-dark">Adventure Seeker</h3>
-            <p class="text-muted small mb-4">Adventure, nature & off the beaten path</p>
-            <a href="#" class="btn-sample-link d-inline-flex align-items-center gap-2 fw-bold text-decoration-none">
-              <span>VIEW SAMPLE ITINERARY</span>
-              <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="inspiration-card h-100 rounded-3 overflow-hidden bg-white border">
-          <div class="card-img-holder overflow-hidden" style="height: 190px;">
-            <img src="/images/luxury.webp" class="w-100 h-100 object-fit-cover" alt="Luxury Escape">
-          </div>
-          <div class="card-body p-4">
-            <h3 class="fw-bold fs-6 mb-1 text-dark">Luxury Escape</h3>
-            <p class="text-muted small mb-4">Luxury stays & premium experiences</p>
-            <a href="#" class="btn-sample-link d-inline-flex align-items-center gap-2 fw-bold text-decoration-none">
-              <span>VIEW SAMPLE ITINERARY</span>
-              <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="inspiration-card h-100 rounded-3 overflow-hidden bg-white border">
-          <div class="card-img-holder overflow-hidden" style="height: 190px;">
-            <img src="/images/family getaway.webp" class="w-100 h-100 object-fit-cover" alt="Family Getaway">
-          </div>
-          <div class="card-body p-4">
-            <h3 class="fw-bold fs-6 mb-1 text-dark">Family Getaway</h3>
-            <p class="text-muted small mb-4">Fun activities for all ages</p>
-            <a href="#" class="btn-sample-link d-inline-flex align-items-center gap-2 fw-bold text-decoration-none">
-              <span>VIEW SAMPLE ITINERARY</span>
-              <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── BOTTOM CHAT CTA BANNER ── -->
-<section class="tm-chat-cta py-5 border-top bg-light">
+<!-- GET INSPIRED -->
+<section class="py-5 bg-light">
   <div class="container">
-    <!-- تحسين الحاوية لتعمل بالفليكس المتجاوب وتدوير الحواف الذكي دون تدخل الـ CSS -->
-    <div class="cta-banner-inner p-4 p-md-5 d-flex flex-column flex-lg-row align-items-center justify-content-between gap-4 border bg-white">
-      <div class="cta-left-content d-flex flex-column flex-md-row align-items-center gap-3 text-center text-md-start">
-        <div class="cta-round-icon d-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 55px; height: 55px;">
-          <i class="fas fa-paper-plane"></i>
+    <h2 class="fw-bold text-navy mb-4">Get Inspired</h2>
+    <div class="row g-4">
+      @for (card of inspirationCards; track card.title) {
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="inspiration-card h-100">
+            <div class="card-img-holder">
+              <img [src]="card.img" [alt]="card.title">
+            </div>
+            <div class="p-4">
+              <h3 class="mb-1">{{ card.title }}</h3>
+              <p class="mb-3">{{ card.desc }}</p>
+              <a href="#" class="btn-sample-link">
+                <span>VIEW SAMPLE ITINERARY</span>
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
         </div>
-        <div>
-          <h3 class="fw-extrabold text-dark fs-5 mb-1">Ready to Create Your Unique Journey?</h3>
-          <p class="text-muted m-0 small">Our travel experts are excited to help you design the perfect trip.</p>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-5 bg-light border-top">
+  <div class="container">
+    <div class="cta-banner-inner d-flex align-items-center justify-content-between flex-wrap gap-4 p-4 p-md-5">
+      <div class="d-flex align-items-center gap-3 flex-wrap">
+        <div class="cta-round-icon flex-shrink-0"><i class="fas fa-paper-plane"></i></div>
+        <div class="cta-texts">
+          <h3>Ready to Create Your Unique Journey?</h3>
+          <p>Our travel experts are excited to help you design the perfect trip.</p>
         </div>
       </div>
-      <a href="https://wa.me/962790090036" target="_blank" rel="noopener noreferrer" class="btn-chat-trigger d-inline-flex align-items-center gap-2 text-decoration-none fw-bold text-white px-4 py-3">
+      <a href="https://wa.me/962790090036" target="_blank" rel="noopener noreferrer" class="btn-chat-trigger">
         <span>CHAT WITH OUR EXPERTS</span>
-        <i class="fab fa-whatsapp fs-5"></i>
+        <i class="fab fa-whatsapp"></i>
       </a>
     </div>
   </div>

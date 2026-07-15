@@ -1,16 +1,21 @@
-@import '../styles/variables';
+@use 'variables' as *;
 
+// ── Local helper tokens (Derived from your shared variables) ──────────────────
+$font-heading: $font-headings; // استخدام خط Cinzel المعتمد لديك
 
-// ── Brand tokens ──────────────────────────────────────────────────────────
-$navy: #0a192f;
-$gold: #c5a46d;
-$red:  #a81c24;
-
-$font-heading: var(--font-heading, 'Playfair Display', serif);
-
+// Global components tokens
 .text-gold { color: $gold !important; }
 .bg-navy { background-color: $navy !important; }
+.font-heading { font-family: $font-heading; }
+.fs-smaller { font-size: 0.75rem; }
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
+// ── Destinations Hero ─────────────────────────────────────────────────────
 .destinations-hero {
   min-height: 300px;
   font-family: $font-heading;
@@ -22,20 +27,6 @@ $font-heading: var(--font-heading, 'Playfair Display', serif);
     -webkit-text-fill-color: transparent;
   }
 
-  
-  .bg-red-glow {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba($red, 0.35) 0%, transparent 70%);
-    top: -15%;
-    left: -10%;
-    filter: blur(80px);
-    z-index: 2; // فوق الخلفية وتحت الكلام مباشرة ليظهر بوضوح
-    pointer-events: none;
-    
-  }
-
-  // الضوء الأحمر الناعم
   .bg-red-glow {
     width: 500px;
     height: 500px;
@@ -47,7 +38,6 @@ $font-heading: var(--font-heading, 'Playfair Display', serif);
     pointer-events: none;
   }
 
-
   .bg-dotted-pattern {
     background-image: radial-gradient(rgba($red, 0.80) 1.5px, transparent 1.5px);
     background-size: 24px 24px;
@@ -57,29 +47,24 @@ $font-heading: var(--font-heading, 'Playfair Display', serif);
     mask-image: linear-gradient(to bottom right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.3) 70%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.3) 70%, transparent 100%);
   }
-  
 
-  // ديزاين الصورة الهندسي المشطوف الجديد (Clean & Premium)
-// ديزاين الإطار العائم المنفصل (Minimal Luxury Frame)
   .minimal-frame-wrapper {
     width: 85%;
     height: 440px;
-    perspective: 1000px; // لتهيئة بيئة الحركة ثلاثية الأبعاد
+    perspective: 1000px;
 
-    // الإطار الخارجي الرفيع (باللون الأحمر الداكن مع إزاحة خفيفة)
     .outer-luxury-border {
       border: 1px solid rgba($red, 0.6);
       top: -12px;
       left: 12px;
       z-index: 1;
-      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      @include transition-smooth;
       pointer-events: none;
     }
 
-    // بلوك الصورة الأمامي
     .inner-image-block {
       z-index: 2;
-      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      @include transition-smooth;
       
       .image-overlay-blend {
         background: linear-gradient(to bottom right, rgba($navy, 0.2), rgba($red, 0.1));
@@ -88,7 +73,6 @@ $font-heading: var(--font-heading, 'Playfair Display', serif);
       }
     }
 
-    // تأثير الحركة التفاعلية عند الـ Hover (حركة عكسية بين الصورة والإطار)
     &:hover {
       .inner-image-block {
         transform: rotateY(-6deg) rotateX(4deg) translateZ(10px);
@@ -97,167 +81,88 @@ $font-heading: var(--font-heading, 'Playfair Display', serif);
       
       .outer-luxury-border {
         transform: translate(8px, -8px);
-        border-color: $gold; // يتحول للذهبي بلمسة خفيفة عند الـ hover
+        border-color: $gold;
       }
     }
   }
 
-  /* أنيميشن الدخول الجانبي المتناسق مع الديزاين الجديد */
-  @keyframes luxuryFadeInRight {
-    from {
-      opacity: 0;
-      transform: translateX(40px) rotateY(10deg);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0) rotateY(0);
-    }
-  }
-
-  /* =========================================
-     أنيميشن دخول العناصر أول ما الصفحة تفتح
-     ========================================= */
-  .animate-fade-up-1 {
-    animation: luxuryFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    opacity: 0;
-  }
-  
-  .animate-fade-up-2 {
-    animation: luxuryFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    animation-delay: 0.2s; // يدخل بعد الـ breadcrumb
-    opacity: 0;
-  }
-  
-  .animate-fade-up-3 {
-    animation: luxuryFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    animation-delay: 0.4s; // يدخل بعد العنوان
-    opacity: 0;
-  }
-
-  .animate-fade-in-right {
-    animation: luxuryFadeInRight 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    opacity: 0;
-  }
-
-  @keyframes luxuryFadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px); // يبدأ من تحت بـ 30 بكسل
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes luxuryFadeInRight {
-    from {
-      opacity: 0;
-      transform: translateX(40px) skewX(-4deg); // تأثير دخول انسيابي متناسق مع الشطفة
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0) skewX(0);
-    }
-  }
-
-  // أزرار الكبسولة والروابط
+  // Capsule Button
   .btn-luxury-capsule {
-    background: $red  !important;
+    background: $red !important;
     border: 1px solid rgba($red, 0.4);
-    color: #fff;
+    color: $white;
     padding: 6px 6px 6px 24px;
     border-radius: 50px;
     display: inline-flex;
     align-items: center;
     gap: 15px;
     text-decoration: none;
-    transition: all 0.3s ease;
+    @include transition-smooth;
 
     .icon-circle {
       width: 36px; height: 36px;
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      transition: .3s ease;
+      @include flex-center;
+      @include transition-smooth;
     }
     
     &:hover {
-      background: #fff; color: $navy; border-color: #fff;
-      .icon-circle { background: $navy; color: #fff; transform: rotate(360deg); }
+      background: $white; color: $navy; border-color: $white;
+      .icon-circle { background: $navy; color: $white; transform: rotate(360deg); }
     }
   }
 
   .hover-gold-text {
-    transition: all 0.2s ease;
+    @include transition-smooth;
     &:hover { color: $gold !important; transform: translateX(4px); }
   }
-}
-// ── Section headings ──────────────────────────────────────────────────────
-.destinations-listing {
-  .text-dark-red { color: $red; letter-spacing: 1.5px; }
-  .heading-size  { font: 2.5rem $font-heading; color: $navy; }
-  @media (max-width: 768px) { .heading-size { font-size: 1.8rem; } }
-}
 
-.luxury-text-center {
-  text-align: center; padding: 0 15px;
-
-  .luxury-subtitle {
-    font-family: $font-body; font-size: .85rem; text-transform: uppercase;
-    letter-spacing: 3px; color: $red; font-weight: 700; display: block; margin-bottom: 12px;
-  }
-  .luxury-creative-title {
-    font-family: $font-heading; font-size: 2.6rem; font-weight: 800;
-    line-height: 1.2; color: $navy; letter-spacing: -.5px; margin-bottom: 18px;
-  }
-  .luxury-description {
-    font-size: 1rem; line-height: 1.6; color: #6c757d;
-    max-width: 540px; margin: 0 auto;
-  }
-  @media (min-width: 768px) {
-    .luxury-creative-title { font-size: 3.8rem; line-height: 1.15; }
-    .luxury-description { font-size: 1.1rem; }
-  }
+  // Entry Animations
+  .animate-fade-up-1 { animation: luxuryFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
+  .animate-fade-up-2 { animation: luxuryFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; animation-delay: 0.2s; opacity: 0; }
+  .animate-fade-up-3 { animation: luxuryFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; animation-delay: 0.4s; opacity: 0; }
+  .animate-fade-in-right { animation: luxuryFadeInRight 1s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
 }
 
 // ── Filter tabs ───────────────────────────────────────────────────────────
 .interactive-tabs-wrapper {
-  position: relative; width: 100%; margin-bottom: 1.5rem;
+  position: relative; width: 100%;
 
   .filters-scroll-container {
-    display: flex !important; flex-direction: row !important;
-    flex-wrap: nowrap !important; gap: 12px !important;
+    display: flex !important; gap: 12px !important;
     overflow-x: auto !important; scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     padding: 12px 24px 16px !important; margin: 0 -24px !important;
-    // no-scrollbar inline (avoid global extend overhead)
-    -ms-overflow-style: none; scrollbar-width: none;
+    scrollbar-width: none;
     &::-webkit-scrollbar { display: none; }
   }
 
   .filter-pill {
-    background: #fff !important; color: #2b2b2b !important;
+    background: $white !important; color: $color-text-dark !important;
     border: 1px solid #e2dbd5 !important; padding: 10px 24px !important;
     font-size: .95rem !important; font-weight: 500 !important;
     white-space: nowrap !important; border-radius: 50px !important;
     box-shadow: 0 2px 6px rgba(0,0,0,.03) !important;
-    transition: all .3s cubic-bezier(.25,1,.5,1) !important;
+    @include transition-smooth;
     &:hover { border-color: $red !important; color: $red !important; }
     &.active-pill {
-      background: $red !important; border-color: $red !important; color: #fff !important;
+      background: $red !important; border-color: $red !important; color: $white !important;
       box-shadow: 0 4px 12px rgba($red,.3) !important;
     }
-    @media (max-width: 768px) { padding: 10px 22px !important; font-size: .9rem !important; }
+    
+    @include respond-to(md) {
+      padding: 10px 22px !important; font-size: .9rem !important;
+    }
   }
 
   .btn-filter-trigger {
     background: rgba($navy,.04); border: 1px solid rgba($navy,.1);
     padding: 10px 20px; border-radius: 50px; color: $navy;
-    transition: all .3s cubic-bezier(.25,1,.5,1);
-    &:hover { background: $navy; color: #fff; border-color: $navy; }
+    @include transition-smooth;
+    &:hover { background: $navy; color: $white; border-color: $navy; }
   }
 
-  @media (max-width: 768px) {
+  @include respond-to(md) {
     &::after {
       content: ''; position: absolute; top: 0; right: -24px;
       width: 50px; height: 100%;
@@ -272,28 +177,27 @@ $font-heading: var(--font-heading, 'Playfair Display', serif);
   height: 380px; cursor: pointer; background-color: #f0ebe4;
   transform: translateY(50px) scale(.93) rotateX(8deg);
   opacity: 0; filter: blur(6px);
-  transition: all .8s cubic-bezier(.25,1,.5,1);
+  transition: all .8s cubic-bezier(0.25,1,.5,1);
 
   .card-img-wrapper {
-    transition: transform .8s cubic-bezier(.25,1,.5,1);
-    .card-img-main { object-fit: cover; transition: transform .8s ease; }
+    transition: transform .8s cubic-bezier(0.25,1,.5,1);
+    .card-img-main { transition: transform .8s ease; }
     .card-gradient-overlay {
-      background: linear-gradient(to top, rgba($navy,.9) 0%, rgba($navy,.4) 50%, transparent 100%);
+      @include overlay-gradient(to top); // تم استبداله بـ الـ Mixin الخاص بك مباشرة
     }
   }
 
   .card-content {
     h3, .card-desc-text {
       opacity: 0; transform: translateY(15px);
-      transition: all .6s cubic-bezier(.25,1,.5,1);
+      transition: all .6s cubic-bezier(0.25,1,.5,1);
     }
-    h3             { font-family: $font-heading; letter-spacing: .5px; transition-delay: .15s; }
-    .card-desc-text { font-size: .88rem; min-height: 38px; transition-delay: .25s; }
+    h3 { font-family: $font-heading; letter-spacing: .5px; transition-delay: .15s; }
+    .card-desc-text { min-height: 38px; transition-delay: .25s; }
   }
 
   .arrow-circle-btn {
-    width: 38px; height: 38px; background: $red; color: #fff;
-    bottom: 20px; right: 20px;
+    width: 38px; height: 38px; background: $red; color: $white;
     transform: scale(0) rotate(-45deg);
     transition: all .5s cubic-bezier(.175,.885,.32,1.275);
     transition-delay: .35s;
@@ -314,8 +218,8 @@ $font-heading: var(--font-heading, 'Playfair Display', serif);
     }
   }
 
-  @media (max-width: 768px) {
-    height: 280px !important; margin-bottom: 8px;
+  @include respond-to(md) {
+    height: 280px !important;
     &.card-revealed .arrow-circle-btn { transform: scale(1) rotate(0deg) !important; }
   }
 }
@@ -333,7 +237,7 @@ $font-heading: var(--font-heading, 'Playfair Display', serif);
   background: rgba(255,255,255,.85); backdrop-filter: blur(16px);
   border-left: 1px solid rgba(255,255,255,.5);
   box-shadow: -10px 0 35px rgba($navy,.15); z-index: 1050;
-  transition: right .4s cubic-bezier(.25,1,.5,1);
+  transition: right .4s cubic-bezier(0.25,1,.5,1);
   &.open { right: 0; }
 
   .sidebar-filter-option {
@@ -342,21 +246,26 @@ $font-heading: var(--font-heading, 'Playfair Display', serif);
     &.active-opt { background: rgba($red,.08); border-color: rgba($red,.2); color: $red; font-weight: 600; }
   }
 
-  @media (max-width: 768px) { width: 290px; }
+  @include respond-to(md) { width: 290px; }
 }
 
-// ── Why us ────────────────────────────────────────────────────────────────
+// ── Why us & Custom Cards ─────────────────────────────────────────────────
 .why-travel-us {
-  background: #faf8f5;
+  .max-width-540 { max-width: 540px; }
   .icon-wrapper { width: 60px; height: 60px; background: rgba($red,.08); color: $red; font-size: 1.5rem; transition: .3s; }
   .feature-glass-card {
-    background: #fff; border: 1px solid #efeae4; border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,.02); transition: all .3s ease;
     &:hover {
-      transform: translateY(-8px); border-color: $gold;
-      box-shadow: 0 12px 30px rgba($gold,.15);
-      .icon-wrapper { background: $red; color: #fff; transform: rotateY(180deg); }
+      transform: translateY(-8px); border-color: $gold !important;
+      box-shadow: 0 12px 30px rgba($gold,.15) !important;
+      .icon-wrapper { background: $red; color: $white; transform: rotateY(180deg); }
     }
+  }
+}
+
+.custom-tour-card {
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
   }
 }
 
@@ -365,14 +274,25 @@ $font-heading: var(--font-heading, 'Playfair Display', serif);
   background: url('/images/top-jordan/aqaba.webp') center/cover;
   box-shadow: 0 15px 35px rgba($navy,.15);
   .banner-overlay { background: linear-gradient(135deg, rgba($navy,.9) 30%, rgba($red,.7) 100%); }
-  .btn-gold { background: $gold; color: $navy; border: none; transition: .3s; &:hover { background: lighten($gold,10%); transform: scale(1.05); } }
-}
-
-// ── CTA mobile ────────────────────────────────────────────────────────────
-@media (max-width: 768px) {
-  .cta-bottom-banner {
-    padding: 3.5rem 0 !important;
-    h3 { font-size: 1.6rem !important; }
-    .d-flex { gap: 12px !important; font-size: .8rem; justify-content: start !important; flex-direction: column; }
+  .btn-gold { 
+    background: $gold; color: $navy; border: none; @include transition-smooth;
+    &:hover { background: lighten($gold,10%); transform: scale(1.05); } 
   }
 }
+
+// ── Keyframes Container ───────────────────────────────────────────────────
+@keyframes luxuryFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes luxuryFadeInRight {
+  from { opacity: 0; transform: translateX(40px) skewX(-4deg); }
+  to { opacity: 1; transform: translateX(0) skewX(0); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow { animation: spin-slow 12s linear infinite; }
