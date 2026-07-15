@@ -20,7 +20,7 @@
         </h1>
         
         <div class="d-flex flex-column flex-sm-row gap-3 align-items-center justify-content-center justify-content-lg-start mt-2 animate-fade-up-3">
-          <a href="#destinations-listing" class="btn btn-luxury-capsule shadow">
+          <a routerLink="/tours" class="btn btn-luxury-capsule shadow">
             <span class="country-name">Explore Trips</span>
             <span class="icon-circle bg-red text-white"><i class="fa-solid fa-arrow-down"></i></span>
           </a>
@@ -82,7 +82,6 @@
         </button>
       }
     </div>
-
     <!-- شبكة عرض كروت المدن -->
     <div class="row g-4 overflow-hidden px-2">
       @for (city of filteredCities(); track city.id) {
@@ -202,7 +201,7 @@
       </div>
     </div>
 
-    <button class="btn btn-danger rounded-pill px-4 py-2 mt-5 text-white shadow-sm" routerLink="/experiences">Discover Experiences</button>
+    <button class="btn btn-danger rounded-pill px-4 py-2 mt-5 text-white shadow-sm" routerLink="/FAQ">Discover Experiences</button>
   </div>
 </section>
 
@@ -278,7 +277,7 @@
         </div>
       </div>
       <div class="col-12 col-md-4 text-center text-md-end mt-3 mt-md-0">
-        <button class="btn btn-gold rounded-pill px-4 py-2.5 fw-bold transition-all">
+        <button class="btn btn-gold rounded-pill px-4 py-2.5 fw-bold transition-all" routerLink="/tailor-made">
           Take the Quick Quiz
         </button>
       </div>

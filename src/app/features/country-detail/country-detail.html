@@ -1,6 +1,6 @@
 <!-- hero-section -->
 <section class="luxury-creative-hero d-flex align-items-center position-relative overflow-hidden mb-5">
-  <!-- خلفية ناعمة جداً وضبابية لإعطاء عمق للمكان -->
+
   <div class="hero-blur-ambient position-absolute inset-0"></div>
 
   <div class="container position-relative z-2">
@@ -16,7 +16,6 @@
     </nav>
 
     <!-- hero section -->
-      <!-- العمود الأول: النص داخل كارد زجاجي عائم (Floating Glass Card) -->
       <div class="col-12 col-lg-5 text-center text-lg-start ordering-mobile-2">
         <div class="hero-premium-floating-card p-4 p-md-5 rounded-4 border border-white border-opacity-10 backdrop-blur">
           <span class="badge-destination text-uppercase tracking-widest text-gold small d-block mb-3">Featured Destination</span>
@@ -153,14 +152,6 @@
       }
     </div>
   </div>
-
-  <div class="text-center mb-5">
-    <p class="mb-2 text-muted small">Find the perfect tour package for your next adventure</p>
-    <button class="btn btn-danger btn-sm text-uppercase px-4 fw-bold">
-      View All {{ activeTab() }}s ({{ filteredTours().length }})
-    </button>
-  </div>
-
   <!-- Top Destinations -->
   <div class="top-destinations-wrapper mb-5 py-4 border-top">
     <div class="container">
@@ -352,7 +343,7 @@
   <div class="container position-relative z-2 py-3">
     <h3 class="text-uppercase fw-bold mb-2 text-white">Ready To Explore {{ slug() }}?</h3>
     <p class="small mb-4 opacity-75 text-white">Let us create the perfect journey for you.</p>
-    <button class="btn btn-white text-danger text-uppercase px-4 py-2 small fw-bold rounded-1 bg-white border-0">
+    <button class="btn btn-white text-danger text-uppercase px-4 py-2 small fw-bold rounded-1 bg-white border-0" routerLink="/tailor-made">
       Plan Your Trip
     </button>
   </div>

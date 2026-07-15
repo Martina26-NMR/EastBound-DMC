@@ -147,4 +147,5 @@ export class Destinations implements AfterViewInit {
     // 4. دمج الرحلات معاً ليكون الإجمالي 4 كروت بالظبط (2 مصر و 2 أردن)
     this.featuredTours = [...egyptTours, ...jordanTours];
   }
+
 }

@@ -50,10 +50,6 @@
             <div class="floating-image-container glass-card overflow-hidden rounded-4 shadow-2xl">
               <img [src]="tour?.image" [alt]="tour?.title" class="img-fluid w-100 h-100 object-cover creative-zoom-img">
               <div class="glass-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-end p-4">
-                <div class="blur-caption p-3 w-100 rounded-3 d-flex justify-content-between align-items-center">
-                  <span class="fw-bold  tracking-wide">Explore The Journey</span>
-                  <span class="explore-arrow">→</span>
-                </div>
               </div>
             </div>
           </div>
@@ -155,7 +151,7 @@
             </div>
           </div>
 
-          <button class="btn premium-cta-btn w-100 py-3 fw-bold border-0 text-uppercase tracking-wider shadow-lg">
+          <button class="btn premium-cta-btn w-100 py-3 fw-bold border-0 text-uppercase tracking-wider shadow-lg" routerLink="/contact" >
             Book This Experience
           </button>
         </div>
