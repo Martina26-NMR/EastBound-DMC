@@ -10,29 +10,42 @@
   
   <meta name="description" content="East Bound DMC connects you to authentic journeys across Egypt and Jordan.">
   <!-- اسم الرابط الي اشتراناه -->
-  <link rel="canonical" href="https://www.eastbounddmc.com/">
+  <!-- <link rel="canonical" href="https://www.eastbounddmc.com/"> -->
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="East Bound DMC">
   <meta property="og:title" content="EastBound DMC">
   <meta property="og:description" content="Discover Egypt & Jordan with custom-made itineraries crafted by local experts.">
- <!-- الصوره الي هتظهر لليوزر لو اللينك اتبعت شات واتس فيس  -->
-  <meta property="og:image" content="https://www.eastbounddmc.com/assets/images/og-cover.jpg">
-  <meta property="og:url" content="https://www.eastbounddmc.com/">
-<link rel="icon" type="image/svg+xml" href="/icons/logooo.svg">
+  <!-- الصوره الي هتظهر لليوزر لو اللينك اتبعت شات واتس فيس  -->
+  <!-- <meta property="og:image" content="https://www.eastbounddmc.com/assets/images/og-cover.jpg"> -->
+  <!-- <meta property="og:url" content="https://www.eastbounddmc.com/"> -->
+  <link rel="icon" type="image/svg+xml" href="/icons/logooo.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="public/images/eastbound.logo.webp">
+  
+  <!-- ================= تحسين تحميل الخطوط لمنع الـ FOUC ================= -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- 1. عمل Preload للخطوط الأساسية حتى يتم تحميلها فوراً وبأعلى أولوية -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+  
+  <!-- 2. تحميل الخطوط بشكل غير معطل لـ رندرة الصفحة (Non-blocking) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  
+  <!-- 3. احتياطي (Fallback) في حال كان المستخدم معطل الجافا سكريبت -->
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+  </noscript>
+  <!-- =================================================================== -->
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
     "name": "EastBound DMC",
-    "url": "https://www.eastbounddmc.com",
-    "logo": "https://www.eastbounddmc.com/assets/images/logo-red.svg",
-    "image": "https://www.eastbounddmc.com/assets/images/og-cover.jpg",
+    <!-- "url": "https://www.eastbounddmc.com", -->
+    <!-- "logo": "https://www.eastbounddmc.com/assets/images/logo-red.svg", -->
+    <!-- "image": "https://www.eastbounddmc.com/assets/images/og-cover.jpg", -->
     "telephone": "+962793000052",
     "email": "info@eastbounddmc.com",
     "address": {

@@ -6,7 +6,7 @@
   
   <div class="container position-relative z-3 my-lg-5">
     <div class="row align-items-center g-5">
-      <!-- الجانب الأيسر -->
+
       <div class="col-lg-6 order-2 order-lg-1 text-center text-lg-start">
         <nav class="mb-3 text-uppercase tracking-widest small animate-fade-up-1">
           <span class="text-gold cursor-pointer" routerLink="/">Home</span>
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <!-- الجانب الأيمن -->
+    
       <div class="col-lg-6 order-1 order-lg-2 d-flex justify-content-center">
         <div class="minimal-frame-wrapper position-relative animate-fade-in-right">
           <div class="outer-luxury-border position-absolute w-100 h-100 rounded-4"></div>
@@ -62,7 +62,6 @@
       </button>
     </div>
 
-    <!-- التابس العلوية -->
     <div class="interactive-tabs-wrapper">
       <div class="filters-scroll-container">
         @for (filter of countryFilters; track filter) {
@@ -82,7 +81,7 @@
         </button>
       }
     </div>
-    <!-- شبكة عرض كروت المدن -->
+  
     <div class="row g-4 overflow-hidden px-2">
       @for (city of filteredCities(); track city.id) {
         <div class="col-12 col-md-6 col-lg-3">
