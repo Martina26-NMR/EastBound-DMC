@@ -111,7 +111,7 @@
 // ── Connection banner ─────────────────────────────────────────────────────
 .connection-banner {
   position: relative; min-height: 50vh; display: flex; align-items: center;
-  background: url('/assets/images/desert-connection.jpg') center/cover;
+  background: url('/images/adventure-blog.webp') center/cover;
   padding: 5rem 0; color: #fff;
   .banner-overlay  { position: absolute; inset: 0; background: rgba($navy,.7); z-index: 1; }
   .banner-wrapper  { position: relative; z-index: 2; }

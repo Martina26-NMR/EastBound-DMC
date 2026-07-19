@@ -6,13 +6,15 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
-  height: 100%;
+  overflow-x: hidden;
+  min-height: 100%;
+  height: auto !important;
   font-family: $font-body;
   color: $color-text-dark;
   background-color: $color-bg-white;
   // scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -109,3 +111,7 @@ img { max-width: 100%; height: auto; display: block; }
   &:hover { background:$dark-red; color:white; transform:translateY(-4px); }
 }
 .active-pill { background:$dark-red; color:white; box-shadow:0 10px 30px rgba($dark-red,.3); }
+
+.main-content-wrapper {
+  padding-top: 75px; 
+}

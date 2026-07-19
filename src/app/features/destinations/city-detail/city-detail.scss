@@ -1,4 +1,6 @@
-@import '../styles/variables';
+// @import '../styles/variables';
+@use 'variables' as *;
+  
 
 // ── Local tokens ──────────────────────────────────────────────────────────
 $glass-bg:     rgba(255,255,255,.08);
