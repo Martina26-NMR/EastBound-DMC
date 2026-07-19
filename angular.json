@@ -35,6 +35,9 @@
   "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
   "src/styles.scss"
 ],
+"scripts": [
+  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+],
   "server": "src/main.server.ts",
   "outputMode": "server",
   "ssr": {
@@ -42,21 +45,28 @@
   }
 },
           "configurations": {
-            "production": {
-   "budgets": [
-  {
-    "type": "initial",
-    "maximumWarning": "1MB",
-    "maximumError": "2MB"
+"production": {
+  "optimization": {
+    "scripts": true,
+    "styles": {
+      "minify": true,
+      "inlineCritical": true
+    }
   },
-  {
-    "type": "anyComponentStyle",
-    "maximumWarning": "20kB",
-    "maximumError": "40kB"
-  }
-],
-              "outputHashing": "all"
-            },
+  "budgets": [
+    {
+      "type": "initial",
+      "maximumWarning": "1MB",
+      "maximumError": "2MB"
+    },
+    {
+      "type": "anyComponentStyle",
+      "maximumWarning": "20kB",
+      "maximumError": "40kB"
+    }
+  ],
+  "outputHashing": "all"
+},
             "development": {
               "optimization": false,
               "extractLicenses": false,
