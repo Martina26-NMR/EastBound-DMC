@@ -1,0 +1,15 @@
+/
+/tailor-made
+/about-us
+/tours
+/destinations
+/destinations/:slug
+/destinations/:slug/:cityName
+/about-us
+/tailor-made
+/contact
+/tours/:id
+/blog
+/blog/:id
+/FAQ
+
